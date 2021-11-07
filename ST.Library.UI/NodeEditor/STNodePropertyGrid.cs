@@ -41,7 +41,7 @@ SOFTWARE.
 namespace ST.Library.UI.NodeEditor
 {
     /// <summary>
-    /// STNode节点属性编辑器
+    /// STNode node attribute editor.
     /// </summary>
     public class STNodePropertyGrid : Control
     {
@@ -49,18 +49,18 @@ namespace ST.Library.UI.NodeEditor
 
         private STNode _STNode;
         /// <summary>
-        /// 当前显示的STNode
+        /// STNode currently displayed.
         /// </summary>
-        [Description("当前显示的STNode"), Browsable(false)]
+        [Description("STNode currently displayed."), Browsable(false)]
         public STNode STNode {
             get { return _STNode; }
         }
 
         private Color _ItemHoverColor = Color.FromArgb(50, 125, 125, 125);
         /// <summary>
-        /// 获取或设置属性选项被鼠标悬停时候背景色
+        /// Gets or sets the background color when the attribute option is hovered by the mouse.
         /// </summary>
-        [Description("获取或设置属性选项被鼠标悬停时候背景色")]
+        [Description("Gets or sets the background color when the attribute option is hovered by the mouse.")]
         public Color ItemHoverColor {
             get { return _ItemHoverColor; }
             set { _ItemHoverColor = value; }
@@ -68,9 +68,9 @@ namespace ST.Library.UI.NodeEditor
 
         private Color _ItemSelectedColor = Color.DodgerBlue;
         /// <summary>
-        /// 获取或设置属性选项被选中时候背景色 当AutoColor被设置时此属性不能被设置
+        /// Gets or sets the background color when the attribute option is selected. This attribute cannot be set when AutoColor is set.
         /// </summary>
-        [Description("获取或设置属性选项被选中时候背景色 当AutoColor被设置时此属性不能被设置"), DefaultValue(typeof(Color), "DodgerBlue")]
+        [Description("Gets or sets the background color when the attribute option is selected. This attribute cannot be set when AutoColor is set."), DefaultValue(typeof(Color), "DodgerBlue")]
         public Color ItemSelectedColor {
             get { return _ItemSelectedColor; }
             set {
@@ -83,9 +83,9 @@ namespace ST.Library.UI.NodeEditor
 
         private Color _ItemValueBackColor = Color.FromArgb(255, 80, 80, 80);
         /// <summary>
-        /// 获取或设置属性选项值背景色
+        /// Gets or sets the background color of the attribute option value.
         /// </summary>
-        [Description("获取或设置属性选项值背景色")]
+        [Description("Gets or sets the background color of the attribute option value.")]
         public Color ItemValueBackColor {
             get { return _ItemValueBackColor; }
             set {
@@ -96,9 +96,9 @@ namespace ST.Library.UI.NodeEditor
 
         private Color _TitleColor = Color.FromArgb(127, 0, 0, 0);
         /// <summary>
-        /// 获取或设置默认标题背景色
+        /// Get or set the default title background color.
         /// </summary>
-        [Description("获取或设置默认标题背景色")]
+        [Description("Get or set the default title background color.")]
         public Color TitleColor {
             get { return _TitleColor; }
             set {
@@ -110,9 +110,9 @@ namespace ST.Library.UI.NodeEditor
 
         private Color _ErrorColor = Color.FromArgb(200, Color.Brown);
         /// <summary>
-        /// 获取或设置属性设置错误时候提示信息背景色
+        /// Get or set the background color of the prompt message when the attribute setting is wrong.
         /// </summary>
-        [Description("获取或设置属性设置错误时候提示信息背景色")]
+        [Description("Get or set the background color of the prompt message when the attribute setting is wrong.")]
         public Color ErrorColor {
             get { return _ErrorColor; }
             set { _ErrorColor = value; }
@@ -120,9 +120,9 @@ namespace ST.Library.UI.NodeEditor
 
         private Color _DescriptionColor = Color.FromArgb(200, Color.DarkGoldenrod);
         /// <summary>
-        /// 获取或设置属性描述信息背景色
+        /// Gets or sets the background color of the attribute description information.
         /// </summary>
-        [Description("获取或设置属性描述信息背景色")]
+        [Description("Gets or sets the background color of the attribute description information.")]
         public Color DescriptionColor {
             get { return _DescriptionColor; }
             set { _DescriptionColor = value; }
@@ -130,9 +130,9 @@ namespace ST.Library.UI.NodeEditor
 
         private bool _ShowTitle = true;
         /// <summary>
-        /// 获取或设置是否显示节点标题
+        /// Get or set whether to display the node title.
         /// </summary>
-        [Description("获取或设置是否显示节点标题")]
+        [Description("Get or set whether to display the node title.")]
         public bool ShowTitle {
             get { return _ShowTitle; }
             set {
@@ -144,9 +144,9 @@ namespace ST.Library.UI.NodeEditor
 
         private bool _AutoColor = true;
         /// <summary>
-        /// 获取或设置是否根据STNode自动设置控件高亮颜色
+        /// Gets or sets whether to automatically set the highlight color of the control according to STNode.
         /// </summary>
-        [Description("获取或设置是否根据STNode自动设置控件高亮颜色"), DefaultValue(true)]
+        [Description("Gets or sets whether to automatically set the highlight color of the control according to STNode."), DefaultValue(true)]
         public bool AutoColor {
             get { return _AutoColor; }
             set { _AutoColor = value; }
@@ -154,9 +154,9 @@ namespace ST.Library.UI.NodeEditor
 
         private bool _InfoFirstOnDraw;
         /// <summary>
-        /// 获取或当节点被设置时候 是否优先绘制信息面板
+        /// Gets or sets whether to draw the information panel first when the node is set.
         /// </summary>
-        [Description("获取或设置当节点被设置时候 是否优先绘制信息面板"), DefaultValue(false)]
+        [Description("Gets or sets whether to draw the information panel first when the node is set."), DefaultValue(false)]
         public bool InfoFirstOnDraw {
             get { return _InfoFirstOnDraw; }
             set { _InfoFirstOnDraw = value; }
@@ -164,9 +164,9 @@ namespace ST.Library.UI.NodeEditor
 
         private bool _ReadOnlyModel;
         /// <summary>
-        /// 获取或设置当前属性编辑器是否处于只读模式
+        /// Gets or sets whether the current attribute editor is in read-only mode.
         /// </summary>
-        [Description("获取或设置当前属性编辑器是否处于只读模式"), DefaultValue(false)]
+        [Description("Gets or sets whether the current attribute editor is in read-only mode."), DefaultValue(false)]
         public bool ReadOnlyModel {
             get { return _ReadOnlyModel; }
             set {
@@ -176,9 +176,9 @@ namespace ST.Library.UI.NodeEditor
             }
         }
         /// <summary>
-        /// 获取当前滚动条高度
+        /// Get the current height of the scroll bar.
         /// </summary>
-        [Description("获取当前滚动条高度")]
+        [Description("Get the current height of the scroll bar.")]
         public int ScrollOffset { get { return m_nOffsetY; } }
 
         #endregion
@@ -241,7 +241,7 @@ namespace ST.Library.UI.NodeEditor
         private int m_item_height = 30;
         private Color m_clr_item_1 = Color.FromArgb(10, 0, 0, 0);
         private Color m_clr_item_2 = Color.FromArgb(10, 255, 255, 255);
-        //所有属性列表保存在此List中
+        // All attribute lists are saved in this List.
         private List<STNodePropertyDescriptor> m_lst_item = new List<STNodePropertyDescriptor>();
 
         private STNodePropertyDescriptor m_item_hover;        //当前被鼠标悬停的选项
@@ -300,7 +300,7 @@ namespace ST.Library.UI.NodeEditor
                     var attr = a as STNodePropertyAttribute;
                     object obj = Activator.CreateInstance(attr.DescriptorType);
                     if (!(obj is STNodePropertyDescriptor))
-                        throw new ArgumentException("[STNodePropertyAttribute.DescriptorType]参数值必须为[STNodePropertyDescriptor]或者其子类的类型");
+                        throw new ArgumentException("[STNodePropertyAttribute.DescriptorType] The parameter value must be [STNodePropertyDescriptor] or its subclass type.");
                     var desc = (STNodePropertyDescriptor)Activator.CreateInstance(attr.DescriptorType);
                     desc.Node = node;
                     desc.Name = attr.Name;

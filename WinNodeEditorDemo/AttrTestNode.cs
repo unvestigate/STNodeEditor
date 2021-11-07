@@ -9,29 +9,29 @@ using System.Windows.Forms;
 
 namespace WinNodeEditorDemo
 {
-    [STNode("/", "Crystal_lz", "2212233137@qq.com", "www.st233.com", "关于此节点的描述信息\r\n此类为\r\nSTNodeAttribute\r\nSTNodePropertyAttribute\r\n效果演示类")]
+    [STNode("/", "Crystal_lz", "2212233137@qq.com", "www.st233.com", "Descriptive information about this node\r\nSuch as\r\nSTNodeAttribute\r\nSTNodePropertyAttribute\r\nEffect demonstration class")]
     public class AttrTestNode : STNode
     {
-        //因为属性编辑器默认并不支持Color类型数据 所以这里重写一个描述器并指定
-        [STNodeProperty("颜色", "颜色信息", DescriptorType = typeof(DescriptorForColor))]
+        //Because the attribute editor does not support Color type data by default, rewrite a descriptor here and specify.
+        [STNodeProperty("Color", "Color information", DescriptorType = typeof(DescriptorForColor))]
         public Color Color { get; set; }
 
-        [STNodeProperty("整型数组", "整型数组测试")]
+        [STNodeProperty("Integer array", "Integer array test")]
         public int[] IntArr { get; set; }
 
-        [STNodeProperty("布尔", "布尔类型测试")]
+        [STNodeProperty("Boolean", "Boolean type test")]
         public bool Bool { get; set; }
 
-        [STNodeProperty("字符串", "字符串类型测试")]
+        [STNodeProperty("String", "String type test")]
         public string String { get; set; }
 
-        [STNodeProperty("整型", "整型测试")]
+        [STNodeProperty("Integer", "Integer test")]
         public int Int { get; set; }
 
-        [STNodeProperty("浮点数", "浮点数类型测试")]
+        [STNodeProperty("Floating point", "Floating point type test")]
         public float Float { get; set; }
 
-        [STNodeProperty("枚举值", "枚举类型测试 -> FormBorderStyle")]
+        [STNodeProperty("Enumerated value", "Enumeration type test -> FormBorderStyle")]
         public FormBorderStyle STYLE { get; set; }
 
         public AttrTestNode() {

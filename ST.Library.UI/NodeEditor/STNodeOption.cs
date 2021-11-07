@@ -130,7 +130,7 @@ namespace ST.Library.UI.NodeEditor
                     if (this._DataType == null) return;
                     var t = value.GetType();
                     if (t != this._DataType && !t.IsSubclassOf(this._DataType)) {
-                        throw new ArgumentException("无效数据类型 数据类型必须为指定的数据类型或其子类");
+                        throw new ArgumentException("Invalid data type. The data type must be the specified data type or its subclass.");
                     }
                 }
                 _Data = value;
@@ -185,7 +185,7 @@ namespace ST.Library.UI.NodeEditor
         /// <param name="dataType">数据类型</param>
         /// <param name="bSingle">是否为单连接</param>
         public STNodeOption(string strText, Type dataType, bool bSingle) {
-            if (dataType == null) throw new ArgumentNullException("指定的数据类型不能为空");
+            if (dataType == null) throw new ArgumentNullException("The specified data type cannot be empty.");
             this._DotSize = 10;
             m_hs_connected = new HashSet<STNodeOption>();
             this._DataType = dataType;
@@ -256,7 +256,7 @@ namespace ST.Library.UI.NodeEditor
         protected void STNodeEidtorDisConnected(STNodeEditorOptionEventArgs e) {
             if (this._Owner == null) return;
             if (this._Owner.Owner == null) return;
-            this._Owner.Owner.OnOptionDisConnected(e);
+            this._Owner.Owner.OnOptionDisconnected(e);
         }
         /// <summary>
         /// 当前 Option 开始连接目标 Option
@@ -280,10 +280,10 @@ namespace ST.Library.UI.NodeEditor
         protected virtual bool DisConnectingOption(STNodeOption op) {
             if (this._Owner == null) return false;
             if (this._Owner.Owner == null) return false;
-            STNodeEditorOptionEventArgs e = new STNodeEditorOptionEventArgs(op, this, ConnectionStatus.DisConnecting);
-            this._Owner.Owner.OnOptionDisConnecting(e);
-            this.OnDisConnecting(new STNodeOptionEventArgs(true, op, ConnectionStatus.DisConnecting));
-            op.OnDisConnecting(new STNodeOptionEventArgs(false, this, ConnectionStatus.DisConnecting));
+            STNodeEditorOptionEventArgs e = new STNodeEditorOptionEventArgs(op, this, ConnectionStatus.Disconnecting);
+            this._Owner.Owner.OnOptionDisconnecting(e);
+            this.OnDisConnecting(new STNodeOptionEventArgs(true, op, ConnectionStatus.Disconnecting));
+            op.OnDisConnecting(new STNodeOptionEventArgs(false, this, ConnectionStatus.Disconnecting));
             return e.Continue;
         }
 
@@ -356,8 +356,8 @@ namespace ST.Library.UI.NodeEditor
             this.RemoveConnection(op, true);
             this.ControlBuildLinePath();
 
-            this.STNodeEidtorDisConnected(new STNodeEditorOptionEventArgs(op, this, ConnectionStatus.DisConnected));
-            return ConnectionStatus.DisConnected;
+            this.STNodeEidtorDisConnected(new STNodeEditorOptionEventArgs(op, this, ConnectionStatus.Disconnected));
+            return ConnectionStatus.Disconnected;
         }
         /// <summary>
         /// 断开当前 Option 的所有连接
@@ -435,7 +435,7 @@ namespace ST.Library.UI.NodeEditor
             bool b = false;
             if (m_hs_connected.Contains(op)) {
                 b = m_hs_connected.Remove(op);
-                if (this._IsInput) this.OnDataTransfer(new STNodeOptionEventArgs(bSponsor, op, ConnectionStatus.DisConnected));
+                if (this._IsInput) this.OnDataTransfer(new STNodeOptionEventArgs(bSponsor, op, ConnectionStatus.Disconnected));
                 this.OnDisConnected(new STNodeOptionEventArgs(bSponsor, op, ConnectionStatus.Connected));
             }
             return b;

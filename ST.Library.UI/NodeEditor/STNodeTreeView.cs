@@ -45,9 +45,9 @@ namespace ST.Library.UI.NodeEditor
     {
         private Color _ItemBackColor = Color.FromArgb(255, 45, 45, 45);
         /// <summary>
-        /// 获取或设置每行属性选项背景色
+        /// Get or set the background color of each row attribute option.
         /// </summary>
-        [Description("获取或设置每行属性选项背景色")]
+        [Description("Get or set the background color of each row attribute option.")]
         public Color ItemBackColor {
             get { return _ItemBackColor; }
             set {
@@ -57,9 +57,9 @@ namespace ST.Library.UI.NodeEditor
 
         private Color _ItemHoverColor = Color.FromArgb(50, 125, 125, 125);
         /// <summary>
-        /// 获取或设置属性选项被鼠标悬停时候背景色
+        /// Gets or sets the background color when the attribute option is hovered by the mouse.
         /// </summary>
-        [Description("获取或设置属性选项被鼠标悬停时候背景色")]
+        [Description("Gets or sets the background color when the attribute option is hovered by the mouse.")]
         public Color ItemHoverColor {
             get { return _ItemHoverColor; }
             set { _ItemHoverColor = value; }
@@ -67,9 +67,9 @@ namespace ST.Library.UI.NodeEditor
 
         private Color _TitleColor = Color.FromArgb(255, 60, 60, 60);
         /// <summary>
-        /// 获取或设置顶部检索区域背景色
+        /// Get or set the background color of the top search area.
         /// </summary>
-        [Description("获取或设置顶部检索区域背景颜色")]
+        [Description("Get or set the background color of the top search area.")]
         public Color TitleColor {
             get { return _TitleColor; }
             set {
@@ -79,9 +79,9 @@ namespace ST.Library.UI.NodeEditor
         }
 
         /// <summary>
-        /// 获取或设置检索文本框的背景色
+        /// Get or set the background color of the search text box.
         /// </summary>
-        [Description("获取或设置检索文本框的背景色")]
+        [Description("Get or set the background color of the search text box.")]
         public Color TextBoxColor {
             get { return m_tbx.BackColor; }
             set {
@@ -92,9 +92,9 @@ namespace ST.Library.UI.NodeEditor
 
         private Color _HightLightTextColor = Color.Lime;
         /// <summary>
-        /// 获取或设置检索时候高亮文本颜色
+        /// Get or set the highlight text color during retrieval.
         /// </summary>
-        [Description("获取或设置检索时候高亮文本颜色"), DefaultValue(typeof(Color), "Lime")]
+        [Description("Get or set the highlight text color during retrieval."), DefaultValue(typeof(Color), "Lime")]
         public Color HightLightTextColor {
             get { return _HightLightTextColor; }
             set { _HightLightTextColor = value; }
@@ -102,9 +102,9 @@ namespace ST.Library.UI.NodeEditor
 
         private Color _InfoButtonColor = Color.Gray;
         /// <summary>
-        /// 获取或设置信息显示按钮颜色 若设置AutoColor无法设置此属性值
+        /// Gets or sets the color of the information display button. If AutoColor is set, this property value cannot be set.
         /// </summary>
-        [Description("获取或设置信息显示按钮颜色 若设置AutoColor无法设置此属性值"), DefaultValue(typeof(Color), "Gray")]
+        [Description("Gets or sets the color of the information display button. If AutoColor is set, this property value cannot be set."), DefaultValue(typeof(Color), "Gray")]
         public Color InfoButtonColor {
             get { return _InfoButtonColor; }
             set { _InfoButtonColor = value; }
@@ -112,9 +112,9 @@ namespace ST.Library.UI.NodeEditor
 
         private Color _FolderCountColor = Color.FromArgb(40, 255, 255, 255);
         /// <summary>
-        /// 获取或设置统计个数的文本颜色
+        /// Get or set the text color of the count.
         /// </summary>
-        [Description("获取或设置统计个数的文本颜色")]
+        [Description("Get or set the text color of the count.")]
         public Color FolderCountColor {
             get { return _FolderCountColor; }
             set { _FolderCountColor = value; }
@@ -124,9 +124,9 @@ namespace ST.Library.UI.NodeEditor
 
         private bool _ShowFolderCount = true;
         /// <summary>
-        /// 获取或设置是否统计STNode的个数
+        /// Get or set whether to count the number of STNodes.
         /// </summary>
-        [Description("获取或设置是否统计STNode的个数"), DefaultValue(typeof(Color), "LightGray")]
+        [Description("Get or set whether to count the number of STNodes."), DefaultValue(typeof(Color), "LightGray")]
         public bool ShowFolderCount {
             get { return _ShowFolderCount; }
             set { _ShowFolderCount = value; }
@@ -134,9 +134,9 @@ namespace ST.Library.UI.NodeEditor
 
         private bool _ShowInfoButton = true;
         /// <summary>
-        /// 获取或设置是否显示信息按钮
+        /// Get or set whether to display the information button.
         /// </summary>
-        [Description("获取或设置是否显示信息按钮"), DefaultValue(true)]
+        [Description("Get or set whether to display the information button."), DefaultValue(true)]
         public bool ShowInfoButton {
             get { return _ShowInfoButton; }
             set { _ShowInfoButton = value; }
@@ -144,9 +144,9 @@ namespace ST.Library.UI.NodeEditor
 
         private bool _InfoPanelIsLeftLayout = true;
         /// <summary>
-        /// 获取或设置预览窗口是否是向左布局
+        /// Gets or sets whether the preview window is laid out to the left.
         /// </summary>
-        [Description("获取或设置预览窗口是否是向左布局"), DefaultValue(true)]
+        [Description("Gets or sets whether the preview window is laid out to the left."), DefaultValue(true)]
         public bool InfoPanelIsLeftLayout {
             get { return _InfoPanelIsLeftLayout; }
             set { _InfoPanelIsLeftLayout = value; }
@@ -154,9 +154,9 @@ namespace ST.Library.UI.NodeEditor
 
         private bool _AutoColor = true;
         /// <summary>
-        /// 获取或设置控件中部分颜色来之对应的STNode的标题颜色
+        /// Gets or sets the title color of the corresponding STNode from some colors in the control.
         /// </summary>
-        [Description("获取或设置控件中部分颜色来之对应的STNode的标题颜色"), DefaultValue(true)]
+        [Description("Gets or sets the title color of the corresponding STNode from some colors in the control."), DefaultValue(true)]
         public bool AutoColor {
             get { return _AutoColor; }
             set {
@@ -167,18 +167,18 @@ namespace ST.Library.UI.NodeEditor
 
         private STNodeEditor _Editor;
         /// <summary>
-        /// 获取节点预览时候使用的STNodeEditor
+        /// STNodeEditor used when getting node preview.
         /// </summary>
-        [Description("获取节点预览时候使用的STNodeEditor"), Browsable(false)]
+        [Description("STNodeEditor used when getting node preview."), Browsable(false)]
         public STNodeEditor Editor {
             get { return _Editor; }
         }
 
         private STNodePropertyGrid _PropertyGrid;
         /// <summary>
-        /// 获取节点预览时候使用的STNodePropertyGrid
+        /// Get the STNodePropertyGrid used for node preview.
         /// </summary>
-        [Description("获取节点预览时候使用的STNodePropertyGrid"), Browsable(false)]
+        [Description("Get the STNodePropertyGrid used for node preview."), Browsable(false)]
         public STNodePropertyGrid PropertyGrid {
             get { return _PropertyGrid; }
         }
@@ -285,13 +285,13 @@ namespace ST.Library.UI.NodeEditor
             if (stNodeType == null) return false;
             if (!stNodeType.IsSubclassOf(m_type_node_base)) {
                 if (bShowException)
-                    throw new ArgumentException("不支持的类型[" + stNodeType.FullName + "] [stNodeType]参数值必须为[STNode]子类的类型");
+                    throw new ArgumentException("Unsupported type [" + stNodeType.FullName + "] [stNodeType] parameter value must be the type of [STNode] subclass.");
                 else return false;
             }
             var attr = this.GetNodeAttribute(stNodeType);
             if (attr == null) {
                 if (bShowException)
-                    throw new InvalidOperationException("类型[" + stNodeType.FullName + "]未被[STNodeAttribute]所标记");
+                    throw new InvalidOperationException("Type [" + stNodeType.FullName + "] is not marked by [STNodeAttribute].");
                 else return false;
             }
             string strPath = string.Empty;
@@ -825,7 +825,7 @@ namespace ST.Library.UI.NodeEditor
             /// <param name="strName">当前树节点在控件中的显示名称</param>
             public STNodeTreeCollection(string strName) {
                 if (strName == null || strName.Trim() == string.Empty)
-                    throw new ArgumentNullException("显示名称不能为空");
+                    throw new ArgumentNullException("Display name cannot be empty.");
                 this._Name = strName.Trim();
                 this.NameLower = this._Name.ToLower();
             }

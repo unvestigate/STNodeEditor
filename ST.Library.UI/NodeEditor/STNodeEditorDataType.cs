@@ -10,75 +10,75 @@ namespace ST.Library.UI.NodeEditor
     public enum ConnectionStatus
     {
         /// <summary>
-        /// 不存在所有者
+        /// No owner
         /// </summary>
-        [Description("不存在所有者")]
+        [Description("No owner")]
         NoOwner,
         /// <summary>
-        /// 相同的所有者
+        /// Same owner
         /// </summary>
-        [Description("相同的所有者")]
+        [Description("Same owner")]
         SameOwner,
         /// <summary>
-        /// 均为输入或者输出选项
+        /// Both are input or output options
         /// </summary>
-        [Description("均为输入或者输出选项")]
+        [Description("Both are input or output options")]
         SameInputOrOutput,
         /// <summary>
-        /// 不同的数据类型
+        /// Different data types
         /// </summary>
-        [Description("不同的数据类型")]
+        [Description("Different data types")]
         ErrorType,
         /// <summary>
-        /// 单连接节点
+        /// Single connection node
         /// </summary>
-        [Description("单连接节点")]
+        [Description("Single connection node")]
         SingleOption,
         /// <summary>
-        /// 出现环形路径
+        /// Circular path
         /// </summary>
-        [Description("出现环形路径")]
+        [Description("Circular path")]
         Loop,
         /// <summary>
-        /// 已存在的连接
+        /// Existing connection
         /// </summary>
-        [Description("已存在的连接")]
+        [Description("Existing connection")]
         Exists,
         /// <summary>
-        /// 空白选项
+        /// Empty option
         /// </summary>
-        [Description("空白选项")]
+        [Description("Empty option")]
         EmptyOption,
         /// <summary>
-        /// 已经连接
+        /// Already connected
         /// </summary>
-        [Description("已经连接")]
+        [Description("Connected")]
         Connected,
         /// <summary>
-        /// 连接被断开
+        /// Disconnected
         /// </summary>
-        [Description("连接被断开")]
-        DisConnected,
+        [Description("Disconnected")]
+        Disconnected,
         /// <summary>
-        /// 节点被锁定
+        /// Node is locked
         /// </summary>
-        [Description("节点被锁定")]
+        [Description("Node is locked")]
         Locked,
         /// <summary>
-        /// 操作被拒绝
+        /// Operation denied
         /// </summary>
-        [Description("操作被拒绝")]
+        [Description("Operation denied")]
         Reject,
         /// <summary>
-        /// 正在被连接
+        /// Connecting
         /// </summary>
-        [Description("正在被连接")]
+        [Description("Connecting")]
         Connecting,
         /// <summary>
-        /// 正在断开连接
+        /// Disconnecting
         /// </summary>
-        [Description("正在断开连接")]
-        DisConnecting
+        [Description("Disconnecting")]
+        Disconnecting
     }
 
     public enum AlertLocation

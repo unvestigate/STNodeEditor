@@ -535,7 +535,7 @@ namespace ST.Library.UI.NodeEditor
                     var attr = a as STNodePropertyAttribute;
                     object obj = Activator.CreateInstance(attr.DescriptorType);
                     if (!(obj is STNodePropertyDescriptor))
-                        throw new InvalidOperationException("[STNodePropertyAttribute.Type]参数值必须为[STNodePropertyDescriptor]或者其子类的类型");
+                        throw new InvalidOperationException("[STNodePropertyAttribute.Type] The parameter value must be [STNodePropertyDescriptor] or its subclass type.");
                     var desc = (STNodePropertyDescriptor)Activator.CreateInstance(attr.DescriptorType);
                     desc.Node = this;
                     desc.PropertyInfo = p;
@@ -836,14 +836,14 @@ namespace ST.Library.UI.NodeEditor
                     var attr = a as STNodePropertyAttribute;
                     object obj = Activator.CreateInstance(attr.DescriptorType);
                     if (!(obj is STNodePropertyDescriptor))
-                        throw new InvalidOperationException("[STNodePropertyAttribute.Type]参数值必须为[STNodePropertyDescriptor]或者其子类的类型");
+                        throw new InvalidOperationException("[STNodePropertyAttribute.Type] The parameter value must be [STNodePropertyDescriptor] or its subclass type.");
                     var desc = (STNodePropertyDescriptor)Activator.CreateInstance(attr.DescriptorType);
                     desc.Node = this;
                     desc.PropertyInfo = p;
                     try {
                         if (dic.ContainsKey(p.Name)) desc.SetValue(dic[p.Name]);
                     } catch (Exception ex) {
-                        string strErr = "属性[" + this.Title + "." + p.Name + "]的值无法被还原 可通过重写[STNodePropertyAttribute.GetBytesFromValue(),STNodePropertyAttribute.GetValueFromBytes(byte[])]确保保存和加载时候的二进制数据正确";
+                        string strErr = "The value of attribute [" + this.Title + "." + p.Name + "] cannot be restored. You can rewrite [STNodePropertyAttribute.GetBytesFromValue(),STNodePropertyAttribute.GetValueFromBytes(byte[])] to ensure that the binary data is correct when saving and loading.";
                         Exception e = ex;
                         while (e != null) {
                             strErr += "\r\n----\r\n[" + e.GetType().Name + "] -> " + e.Message;

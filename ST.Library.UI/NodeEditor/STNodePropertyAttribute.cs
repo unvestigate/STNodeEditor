@@ -152,7 +152,7 @@ namespace ST.Library.UI.NodeEditor
                     return arr;
                 }
             }
-            throw new InvalidCastException("无法完成[string]到[" + t.FullName + "]的转换 请重载[STNodePropertyDescriptor.GetValueFromString(string)]");
+            throw new InvalidCastException("Unable to complete the conversion from[string] to[" + t.FullName + "] Please reload[STNodePropertyDescriptor.GetValueFromString(string)].");
         }
         /// <summary>
         /// 将属性目标类型的值转换为字符串形式的值

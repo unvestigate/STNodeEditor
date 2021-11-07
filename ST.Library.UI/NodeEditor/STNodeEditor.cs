@@ -140,9 +140,9 @@ namespace ST.Library.UI.NodeEditor
 
         private bool _ShowMagnet = true;
         /// <summary>
-        /// 获取或设置移动画布中 Node 时候 是否启用磁铁效果
+        /// Gets or sets whether to enable the magnet effect when moving the Node in the canvas.
         /// </summary>
-        [Description("获取或设置移动画布中 Node 时候 是否启用磁铁效果"), DefaultValue(true)]
+        [Description("Gets or sets whether to enable the magnet effect when moving the Node in the canvas."), DefaultValue(true)]
         public bool ShowMagnet {
             get { return _ShowMagnet; }
             set { _ShowMagnet = value; }
@@ -150,9 +150,9 @@ namespace ST.Library.UI.NodeEditor
 
         private bool _ShowBorder = true;
         /// <summary>
-        /// 获取或设置 移动画布中是否显示 Node 边框
+        /// Gets or sets whether to display the Node border in the moving canvas.
         /// </summary>
-        [Description("获取或设置 移动画布中是否显示 Node 边框"), DefaultValue(true)]
+        [Description("Gets or sets whether to display the Node border in the moving canvas."), DefaultValue(true)]
         public bool ShowBorder {
             get { return _ShowBorder; }
             set {
@@ -163,9 +163,9 @@ namespace ST.Library.UI.NodeEditor
 
         private bool _ShowGrid = true;
         /// <summary>
-        /// 获取或设置画布中是否绘制背景网格线条
+        /// Gets or sets whether to draw background grid lines in the canvas.
         /// </summary>
-        [Description("获取或设置画布中是否绘制背景网格线条"), DefaultValue(true)]
+        [Description("Gets or sets whether to draw background grid lines in the canvas."), DefaultValue(true)]
         public bool ShowGrid {
             get { return _ShowGrid; }
             set {
@@ -176,9 +176,9 @@ namespace ST.Library.UI.NodeEditor
 
         private bool _ShowLocation = true;
         /// <summary>
-        /// 获取或设置是否在画布边缘显示超出视角的 Node 位置信息
+        /// Get or set whether to display Node position information beyond the angle of view at the edge of the canvas.
         /// </summary>
-        [Description("获取或设置是否在画布边缘显示超出视角的 Node 位置信息"), DefaultValue(true)]
+        [Description("Get or set whether to display Node position information beyond the angle of view at the edge of the canvas."), DefaultValue(true)]
         public bool ShowLocation {
             get { return _ShowLocation; }
             set {
@@ -226,9 +226,9 @@ namespace ST.Library.UI.NodeEditor
         //========================================color================================
         private Color _GridColor = Color.Black;
         /// <summary>
-        /// 获取或设置绘制画布背景时 网格线条颜色
+        /// Gets or sets the grid line color when drawing the canvas background.
         /// </summary>
-        [Description("获取或设置绘制画布背景时 网格线条颜色"), DefaultValue(typeof(Color), "Black")]
+        [Description("Gets or sets the grid line color when drawing the canvas background."), DefaultValue(typeof(Color), "Black")]
         public Color GridColor {
             get { return _GridColor; }
             set {
@@ -239,9 +239,9 @@ namespace ST.Library.UI.NodeEditor
 
         private Color _BorderColor = Color.Black;
         /// <summary>
-        /// 获取或设置画布中 Node 边框颜色
+        /// Get or set the border color of Node in the canvas.
         /// </summary>
-        [Description("获取或设置画布中 Node 边框颜色"), DefaultValue(typeof(Color), "Black")]
+        [Description("Get or set the border color of Node in the canvas."), DefaultValue(typeof(Color), "Black")]
         public Color BorderColor {
             get { return _BorderColor; }
             set {
@@ -254,9 +254,9 @@ namespace ST.Library.UI.NodeEditor
 
         private Color _BorderHoverColor = Color.Gray;
         /// <summary>
-        /// 获取或设置画布中悬停 Node 边框颜色
+        /// Gets or sets the border color of the hovering Node in the canvas.
         /// </summary>
-        [Description("获取或设置画布中悬停 Node 边框颜色"), DefaultValue(typeof(Color), "Gray")]
+        [Description("Gets or sets the border color of the hovering Node in the canvas."), DefaultValue(typeof(Color), "Gray")]
         public Color BorderHoverColor {
             get { return _BorderHoverColor; }
             set {
@@ -269,9 +269,9 @@ namespace ST.Library.UI.NodeEditor
 
         private Color _BorderSelectedColor = Color.Orange;
         /// <summary>
-        /// 获取或设置画布中选中 Node 边框颜色
+        /// Gets or sets the border color of the selected Node in the canvas.
         /// </summary>
-        [Description("获取或设置画布中选中 Node 边框颜色"), DefaultValue(typeof(Color), "Orange")]
+        [Description("Gets or sets the border color of the selected Node in the canvas."), DefaultValue(typeof(Color), "Orange")]
         public Color BorderSelectedColor {
             get { return _BorderSelectedColor; }
             set {
@@ -284,9 +284,9 @@ namespace ST.Library.UI.NodeEditor
 
         private Color _BorderActiveColor = Color.OrangeRed;
         /// <summary>
-        /// 获取或设置画布中活动 Node 边框颜色
+        /// Gets or sets the border color of the active Node in the canvas.
         /// </summary>
-        [Description("获取或设置画布中活动 Node 边框颜色"), DefaultValue(typeof(Color), "OrangeRed")]
+        [Description("Gets or sets the border color of the active Node in the canvas."), DefaultValue(typeof(Color), "OrangeRed")]
         public Color BorderActiveColor {
             get { return _BorderActiveColor; }
             set {
@@ -299,9 +299,9 @@ namespace ST.Library.UI.NodeEditor
 
         private Color _MarkForeColor = Color.White;
         /// <summary>
-        /// 获取或设置画布绘制 Node 标记详情采用的前景色
+        /// Gets or sets the foreground color used for canvas drawing Node mark details.
         /// </summary>
-        [Description("获取或设置画布绘制 Node 标记详情采用的前景色"), DefaultValue(typeof(Color), "White")]
+        [Description("Gets or sets the foreground color used for canvas drawing Node mark details."), DefaultValue(typeof(Color), "White")]
         public Color MarkForeColor {
             get { return _MarkBackColor; }
             set {
@@ -312,9 +312,9 @@ namespace ST.Library.UI.NodeEditor
 
         private Color _MarkBackColor = Color.FromArgb(180, Color.Black);
         /// <summary>
-        /// 获取或设置画布绘制 Node 标记详情采用的背景色
+        /// Gets or sets the background color used for drawing Node mark details on the canvas.
         /// </summary>
-        [Description("获取或设置画布绘制 Node 标记详情采用的背景色")]
+        [Description("Gets or sets the background color used for drawing Node mark details on the canvas.")]
         public Color MarkBackColor {
             get { return _MarkBackColor; }
             set {
@@ -325,9 +325,9 @@ namespace ST.Library.UI.NodeEditor
 
         private Color _MagnetColor = Color.Lime;
         /// <summary>
-        /// 获取或设置画布中移动 Node 时候 磁铁标记颜色
+        /// Get or set the magnet mark color when moving Node in the canvas.
         /// </summary>
-        [Description("获取或设置画布中移动 Node 时候 磁铁标记颜色"), DefaultValue(typeof(Color), "Lime")]
+        [Description("Get or set the magnet mark color when moving Node in the canvas."), DefaultValue(typeof(Color), "Lime")]
         public Color MagnetColor {
             get { return _MagnetColor; }
             set { _MagnetColor = value; }
@@ -335,9 +335,9 @@ namespace ST.Library.UI.NodeEditor
 
         private Color _SelectedRectangleColor = Color.DodgerBlue;
         /// <summary>
-        /// 获取或设置画布中选择矩形区域的颜色
+        /// Gets or sets the color of the selected rectangular area in the canvas.
         /// </summary>
-        [Description("获取或设置画布中选择矩形区域的颜色"), DefaultValue(typeof(Color), "DodgerBlue")]
+        [Description("Gets or sets the color of the selected rectangular area in the canvas."), DefaultValue(typeof(Color), "DodgerBlue")]
         public Color SelectedRectangleColor {
             get { return _SelectedRectangleColor; }
             set { _SelectedRectangleColor = value; }
@@ -345,9 +345,9 @@ namespace ST.Library.UI.NodeEditor
 
         private Color _HighLineColor = Color.Cyan;
         /// <summary>
-        /// 获取或设置画布中高亮连线的颜色
+        /// Get or set the color of the highlighted line in the canvas.
         /// </summary>
-        [Description("获取或设置画布中高亮连线的颜色"), DefaultValue(typeof(Color), "Cyan")]
+        [Description("Get or set the color of the highlighted line in the canvas."), DefaultValue(typeof(Color), "Cyan")]
         public Color HighLineColor {
             get { return _HighLineColor; }
             set { _HighLineColor = value; }
@@ -355,9 +355,9 @@ namespace ST.Library.UI.NodeEditor
 
         private Color _LocationForeColor = Color.Red;
         /// <summary>
-        /// 获取或设置画布中边缘位置提示区域前景色
+        /// Gets or sets the foreground color of the hint area at the edge of the canvas.
         /// </summary>
-        [Description("获取或设置画布中边缘位置提示区域前景色"), DefaultValue(typeof(Color), "Red")]
+        [Description("Gets or sets the foreground color of the hint area at the edge of the canvas."), DefaultValue(typeof(Color), "Red")]
         public Color LocationForeColor {
             get { return _LocationForeColor; }
             set {
@@ -368,9 +368,9 @@ namespace ST.Library.UI.NodeEditor
 
         private Color _LocationBackColor = Color.FromArgb(120, Color.Black);
         /// <summary>
-        /// 获取或设置画布中边缘位置提示区域背景色
+        /// Gets or sets the background color of the edge position prompt area in the canvas.
         /// </summary>
-        [Description("获取或设置画布中边缘位置提示区域背景色")]
+        [Description("Gets or sets the background color of the edge position prompt area in the canvas.")]
         public Color LocationBackColor {
             get { return _LocationBackColor; }
             set {
@@ -381,9 +381,9 @@ namespace ST.Library.UI.NodeEditor
 
         private Color _UnknownTypeColor = Color.Gray;
         /// <summary>
-        /// 获取或设置画布中当 Node 中 Option 数据类型无法确定时应当使用的颜色
+        /// Gets or sets the color that should be used in the canvas when the Option data type in Node cannot be determined.
         /// </summary>
-        [Description("获取或设置画布中当 Node 中 Option 数据类型无法确定时应当使用的颜色"), DefaultValue(typeof(Color), "Gray")]
+        [Description("Gets or sets the color that should be used in the canvas when the Option data type in Node cannot be determined."), DefaultValue(typeof(Color), "Gray")]
         public Color UnknownTypeColor {
             get { return _UnknownTypeColor; }
             set {
@@ -394,7 +394,7 @@ namespace ST.Library.UI.NodeEditor
 
         private Dictionary<Type, Color> _TypeColor = new Dictionary<Type, Color>();
         /// <summary>
-        /// 获取或设置画布中 Node 中 Option 数据类型预设颜色
+        /// Get or set the preset color of Option data type in Node in the canvas.
         /// </summary>
         [Browsable(false)]
         public Dictionary<Type, Color> TypeColor {
@@ -516,60 +516,60 @@ namespace ST.Library.UI.NodeEditor
 
         #region event ----------------------------------------------------------------------------------------------------
         /// <summary>
-        /// 活动的节点发生变化时候发生
+        /// Occurs when the active node changes.
         /// </summary>
-        [Description("活动的节点发生变化时候发生")]
+        [Description("Occurs when the active node changes.")]
         public event EventHandler ActiveChanged;
         /// <summary>
-        /// 选择的节点发生变化时候发生
+        /// Occurs when the selected node changes.
         /// </summary>
-        [Description("选择的节点发生变化时候发生")]
+        [Description("Occurs when the selected node changes.")]
         public event EventHandler SelectedChanged;
         /// <summary>
-        /// 悬停的节点发生变化时候发生
+        /// Occurs when the hovering node changes.
         /// </summary>
-        [Description("悬停的节点发生变化时候发生")]
+        [Description("Occurs when the hovering node changes.")]
         public event EventHandler HoverChanged;
         /// <summary>
-        /// 当节点被添加时候发生
+        /// Occurs when a node is added.
         /// </summary>
-        [Description("当节点被添加时候发生")]
+        [Description("Occurs when a node is added.")]
         public event STNodeEditorEventHandler NodeAdded;
         /// <summary>
-        /// 当节点被移除时候发生
+        /// Occurs when a node is added.
         /// </summary>
-        [Description("当节点被移除时候发生")]
+        [Description("Occurs when a node is removed.")]
         public event STNodeEditorEventHandler NodeRemoved;
         /// <summary>
-        /// 移动画布原点时候发生
+        /// Occurs when the origin of the canvas is moved.
         /// </summary>
-        [Description("移动画布原点时候发生")]
+        [Description("Occurs when the origin of the canvas is moved.")]
         public event EventHandler CanvasMoved;
         /// <summary>
-        /// 缩放画布时候发生
+        /// Occurs when the canvas is zoomed.
         /// </summary>
-        [Description("缩放画布时候发生")]
-        public event EventHandler CanvasScaled;
+        [Description("Occurs when the canvas is zoomed.")]
+        public event EventHandler CanvasZoomed;
         /// <summary>
-        /// 连接节点选项时候发生
+        /// Occurs when connecting node options.
         /// </summary>
-        [Description("连接节点选项时候发生")]
+        [Description("Occurs when connecting node options.")]
         public event STNodeEditorOptionEventHandler OptionConnected;
         /// <summary>
-        /// 正在连接节点选项时候发生
+        /// Occurs when connecting node options.
         /// </summary>
-        [Description("正在连接节点选项时候发生")]
+        [Description("Occurs when connecting node options.")]
         public event STNodeEditorOptionEventHandler OptionConnecting;
         /// <summary>
-        /// 断开节点选项时候发生
+        /// Occurs when the node is disconnected.
         /// </summary>
-        [Description("断开节点选项时候发生")]
-        public event STNodeEditorOptionEventHandler OptionDisConnected;
+        [Description("Occurs when the node is disconnected.")]
+        public event STNodeEditorOptionEventHandler OptionDisconnected;
         /// <summary>
-        /// 正在断开节点选项时候发生
+        /// Occurs when the node option is being disconnected.
         /// </summary>
-        [Description("正在断开节点选项时候发生")]
-        public event STNodeEditorOptionEventHandler OptionDisConnecting;
+        [Description("Occurs when the node option is being disconnected.")]
+        public event STNodeEditorOptionEventHandler OptionDisconnecting;
 
         protected virtual internal void OnSelectedChanged(EventArgs e) {
             if (this.SelectedChanged != null) this.SelectedChanged(this, e);
@@ -589,20 +589,20 @@ namespace ST.Library.UI.NodeEditor
         protected virtual void OnCanvasMoved(EventArgs e) {
             if (this.CanvasMoved != null) this.CanvasMoved(this, e);
         }
-        protected virtual void OnCanvasScaled(EventArgs e) {
-            if (this.CanvasScaled != null) this.CanvasScaled(this, e);
+        protected virtual void OnCanvasZoomed(EventArgs e) {
+            if (this.CanvasZoomed != null) this.CanvasZoomed(this, e);
         }
         protected internal virtual void OnOptionConnected(STNodeEditorOptionEventArgs e) {
             if (this.OptionConnected != null) this.OptionConnected(this, e);
         }
-        protected internal virtual void OnOptionDisConnected(STNodeEditorOptionEventArgs e) {
-            if (this.OptionDisConnected != null) this.OptionDisConnected(this, e);
+        protected internal virtual void OnOptionDisconnected(STNodeEditorOptionEventArgs e) {
+            if (this.OptionDisconnected != null) this.OptionDisconnected(this, e);
         }
         protected internal virtual void OnOptionConnecting(STNodeEditorOptionEventArgs e) {
             if (this.OptionConnecting != null) this.OptionConnecting(this, e);
         }
-        protected internal virtual void OnOptionDisConnecting(STNodeEditorOptionEventArgs e) {
-            if (this.OptionDisConnecting != null) this.OptionDisConnecting(this, e);
+        protected internal virtual void OnOptionDisconnecting(STNodeEditorOptionEventArgs e) {
+            if (this.OptionDisconnecting != null) this.OptionDisconnecting(this, e);
         }
 
         #endregion event
@@ -1385,11 +1385,11 @@ namespace ST.Library.UI.NodeEditor
         }
 
         private ConnectionStatus DisConnectionHover() {
-            if (!m_dic_gp_info.ContainsKey(m_gp_hover)) return ConnectionStatus.DisConnected;
+            if (!m_dic_gp_info.ContainsKey(m_gp_hover)) return ConnectionStatus.Disconnected;
             ConnectionInfo ci = m_dic_gp_info[m_gp_hover];
             var ret = ci.Output.DisConnectOption(ci.Input);
-            //this.OnOptionDisConnected(new STNodeOptionEventArgs(ci.Output, ci.Input, ret));
-            if (ret == ConnectionStatus.DisConnected) {
+            //this.OnOptionDisconnected(new STNodeOptionEventArgs(ci.Output, ci.Input, ret));
+            if (ret == ConnectionStatus.Disconnected) {
                 m_dic_gp_info.Remove(m_gp_hover);
                 m_gp_hover.Dispose();
                 m_gp_hover = null;
@@ -1769,7 +1769,7 @@ namespace ST.Library.UI.NodeEditor
             this._CanvasScale = f;
             this._CanvasOffsetX = m_real_canvas_x -= this.CanvasToControl(x_c, true) - x;
             this._CanvasOffsetY = m_real_canvas_y -= this.CanvasToControl(y_c, false) - y;
-            this.OnCanvasScaled(EventArgs.Empty);
+            this.OnCanvasZoomed(EventArgs.Empty);
             this.Invalidate();
         }
         /// <summary>
@@ -1861,7 +1861,7 @@ namespace ST.Library.UI.NodeEditor
                         foreach (STNodeOption op in node.InputOptions) if (!dic.ContainsKey(op)) dic.Add(op, dic.Count);
                         foreach (STNodeOption op in node.OutputOptions) if (!dic.ContainsKey(op)) dic.Add(op, dic.Count);
                     } catch (Exception ex) {
-                        throw new Exception("获取节点数据出错-" + node.Title, ex);
+                        throw new Exception("Error getting node data -" + node.Title, ex);
                     }
                 }
                 gs.Write(BitConverter.GetBytes(m_dic_gp_info.Count), 0, 4);
@@ -1947,8 +1947,8 @@ namespace ST.Library.UI.NodeEditor
             byte[] byLen = new byte[4];
             s.Read(byLen, 0, 4);
             if (BitConverter.ToInt32(byLen, 0) != BitConverter.ToInt32(new byte[] { (byte)'S', (byte)'T', (byte)'N', (byte)'D' }, 0))
-                throw new InvalidDataException("无法识别的文件类型");
-            if (s.ReadByte() != 1) throw new InvalidDataException("无法识别的文件版本号");
+                throw new InvalidDataException("Unrecognized file type.");
+            if (s.ReadByte() != 1) throw new InvalidDataException("Unrecognized file version number.");
             using (GZipStream gs = new GZipStream(s, CompressionMode.Decompress)) {
                 gs.Read(byLen, 0, 4);
                 float x = BitConverter.ToSingle(byLen, 0);
@@ -1968,10 +1968,10 @@ namespace ST.Library.UI.NodeEditor
                     gs.Read(byData, 0, byData.Length);
                     STNode node = null;
                     try { node = this.GetNodeFromData(byData); } catch (Exception ex) {
-                        throw new Exception("加载节点时发生错误可能数据已损坏\r\n" + ex.Message, ex);
+                        throw new Exception("An error occurred while loading the node, the data may be corrupted\r\n" + ex.Message, ex);
                     }
                     try { this._Nodes.Add(node); } catch (Exception ex) {
-                        throw new Exception("加载节点出错-" + node.Title, ex);
+                        throw new Exception("Error loading node -" + node.Title, ex);
                     }
                     foreach (STNodeOption op in node.InputOptions) if (hs.Add(op)) dic.Add(dic.Count, op);
                     foreach (STNodeOption op in node.OutputOptions) if (hs.Add(op)) dic.Add(dic.Count, op);
@@ -2015,8 +2015,14 @@ namespace ST.Library.UI.NodeEditor
                 nIndex += nLen;
                 dic.Add(strKey, byValue);
             }
-            if (!m_dic_type.ContainsKey(strGUID)) throw new TypeLoadException("无法找到类型 {" + strModel.Split('|')[1] + "} 所在程序集 确保程序集 {" + strModel.Split('|')[0] + "} 已被编辑器正确加载 可通过调用LoadAssembly()加载程序集");
-            Type t = m_dic_type[strGUID]; ;
+            if (!m_dic_type.ContainsKey(strGUID))
+            {
+                throw new TypeLoadException(
+                    "Cannot find the assembly where the type {" + strModel.Split('|')[1] + 
+                    "} is located. Ensure that the assembly {" + strModel.Split('|')[0] + 
+                    "} has been loaded correctly by the editor. You can load the assembly by calling LoadAssembly().");
+            }
+            Type t = m_dic_type[strGUID];
             STNode node = (STNode)Activator.CreateInstance(t);
             node.OnLoadNode(dic);
             return node;

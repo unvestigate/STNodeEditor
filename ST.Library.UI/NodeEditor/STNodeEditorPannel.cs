@@ -14,9 +14,9 @@ namespace ST.Library.UI.NodeEditor
     {
         private bool _LeftLayout = true;
         /// <summary>
-        /// 获取或设置是否是左边布局
+        /// Get or set whether it is the left layout.
         /// </summary>
-        [Description("获取或设置是否是左边布局"), DefaultValue(true)]
+        [Description("Get or set whether it is the left layout."), DefaultValue(true)]
         public bool LeftLayout {
             get { return _LeftLayout; }
             set {
@@ -29,9 +29,9 @@ namespace ST.Library.UI.NodeEditor
 
         private Color _SplitLineColor = Color.Black;
         /// <summary>
-        /// 获取或这是分割线颜色
+        /// Get or this is the color of the dividing line.
         /// </summary>
-        [Description("获取或这是分割线颜色"), DefaultValue(typeof(Color), "Black")]
+        [Description("Get or this is the color of the dividing line."), DefaultValue(typeof(Color), "Black")]
         public Color SplitLineColor {
             get { return _SplitLineColor; }
             set { _SplitLineColor = value; }
@@ -39,9 +39,9 @@ namespace ST.Library.UI.NodeEditor
 
         private Color _HandleLineColor = Color.Gray;
         /// <summary>
-        /// 获取或设置分割线手柄颜色
+        /// Get or set the color of the dividing line handle.
         /// </summary>
-        [Description("获取或设置分割线手柄颜色"), DefaultValue(typeof(Color), "Gray")]
+        [Description("Get or set the color of the dividing line handle."), DefaultValue(typeof(Color), "Gray")]
         public Color HandleLineColor {
             get { return _HandleLineColor; }
             set { _HandleLineColor = value; }
@@ -49,9 +49,9 @@ namespace ST.Library.UI.NodeEditor
 
         private bool _ShowScale = true;
         /// <summary>
-        /// 获取或设置编辑器缩放时候显示比例
+        /// Get or set the display scale when the editor is zoomed.
         /// </summary>
-        [Description("获取或设置编辑器缩放时候显示比例"), DefaultValue(true)]
+        [Description("Get or set the display scale when the editor is zoomed."), DefaultValue(true)]
         public bool ShowScale {
             get { return _ShowScale; }
             set { _ShowScale = value; }
@@ -59,9 +59,9 @@ namespace ST.Library.UI.NodeEditor
 
         private bool _ShowConnectionStatus = true;
         /// <summary>
-        /// 获取或设置节点连线时候是否显示状态
+        /// Get or set whether the status is displayed when the node is connected.
         /// </summary>
-        [Description("获取或设置节点连线时候是否显示状态"), DefaultValue(true)]
+        [Description("Get or set whether the status is displayed when the node is connected."), DefaultValue(true)]
         public bool ShowConnectionStatus {
             get { return _ShowConnectionStatus; }
             set { _ShowConnectionStatus = value; }
@@ -69,9 +69,9 @@ namespace ST.Library.UI.NodeEditor
 
         private int _X;
         /// <summary>
-        /// 获取或设置分割线水平宽度
+        /// Get or set the horizontal width of the dividing line.
         /// </summary>
-        [Description("获取或设置分割线水平宽度"), DefaultValue(201)]
+        [Description("Get or set the horizontal width of the dividing line."), DefaultValue(201)]
         public int X {
             get { return _X; }
             set {
@@ -85,9 +85,9 @@ namespace ST.Library.UI.NodeEditor
 
         private int _Y;
         /// <summary>
-        /// 获取或设置分割线垂直高度
+        /// Get or set the vertical height of the dividing line.
         /// </summary>
-        [Description("获取或设置分割线垂直高度")]
+        [Description("Get or set the vertical height of the dividing line.")]
         public int Y {
             get { return _Y; }
             set {
@@ -99,23 +99,23 @@ namespace ST.Library.UI.NodeEditor
             }
         }
         /// <summary>
-        /// 获取面板中的STNodeEditor
+        /// Get the STNodeEditor in the panel.
         /// </summary>
-        [Description("获取面板中的STNodeEditor"), Browsable(false)]
+        [Description("Get the STNodeEditor in the panel."), Browsable(false)]
         public STNodeEditor Editor {
             get { return m_editor; }
         }
         /// <summary>
-        /// 获取面板中的STNodeTreeView
+        /// Get the STNodeTreeView in the panel.
         /// </summary>
-        [Description("获取面板中的STNodeTreeView"), Browsable(false)]
+        [Description("Get the STNodeTreeView in the panel."), Browsable(false)]
         public STNodeTreeView TreeView {
             get { return m_tree; }
         }
         /// <summary>
-        /// 获取面板中的STNodePropertyGrid
+        /// Get the STNodePropertyGrid in the panel.
         /// </summary>
-        [Description("获取面板中的STNodePropertyGrid"), Browsable(false)]
+        [Description("Get the STNodePropertyGrid in the panel."), Browsable(false)]
         public STNodePropertyGrid PropertyGrid {
             get { return m_grid; }
         }
@@ -177,7 +177,7 @@ namespace ST.Library.UI.NodeEditor
             }
 
             m_editor.ActiveChanged += (s, e) => m_grid.SetNode(m_editor.ActiveNode);
-            m_editor.CanvasScaled += (s, e) => {
+            m_editor.CanvasZoomed += (s, e) => {
                 if (this._ShowScale)
                     m_editor.ShowAlert(m_editor.CanvasScale.ToString("F2"), Color.White, Color.FromArgb(127, 255, 255, 0));
             };

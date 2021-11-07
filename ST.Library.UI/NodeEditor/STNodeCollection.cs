@@ -15,7 +15,7 @@ namespace ST.Library.UI.NodeEditor
         private STNodeEditor m_owner;
 
         internal STNodeCollection(STNodeEditor owner) {
-            if (owner == null) throw new ArgumentNullException("所有者不能为空");
+            if (owner == null) throw new ArgumentNullException("Owner cannot be empty.");
             m_owner = owner;
             m_nodes = new STNode[4];
         }
@@ -34,7 +34,7 @@ namespace ST.Library.UI.NodeEditor
         }
 
         public int Add(STNode node) {
-            if (node == null) throw new ArgumentNullException("添加对象不能为空");
+            if (node == null) throw new ArgumentNullException("Add object cannot be empty.");
             this.EnsureSpace(1);
             int nIndex = this.IndexOf(node);
             if (-1 == nIndex) {
@@ -52,10 +52,10 @@ namespace ST.Library.UI.NodeEditor
         }
 
         public void AddRange(STNode[] nodes) {
-            if (nodes == null) throw new ArgumentNullException("添加对象不能为空");
+            if (nodes == null) throw new ArgumentNullException("Add object cannot be empty.");
             this.EnsureSpace(nodes.Length);
             foreach (var n in nodes) {
-                if (n == null) throw new ArgumentNullException("添加对象不能为空");
+                if (n == null) throw new ArgumentNullException("Add object cannot be empty.");
                 if (-1 == this.IndexOf(n)) {
                     n.Owner = m_owner;
                     m_nodes[this._Count++] = n;
@@ -93,9 +93,9 @@ namespace ST.Library.UI.NodeEditor
 
         public void Insert(int nIndex, STNode node) {
             if (nIndex < 0 || nIndex >= this._Count)
-                throw new IndexOutOfRangeException("索引越界");
+                throw new IndexOutOfRangeException("Index out of bounds.");
             if (node == null)
-                throw new ArgumentNullException("插入对象不能为空");
+                throw new ArgumentNullException("Insert object cannot be empty.");
             this.EnsureSpace(1);
             for (int i = this._Count; i > nIndex; i--)
                 m_nodes[i] = m_nodes[i - 1];
@@ -122,7 +122,7 @@ namespace ST.Library.UI.NodeEditor
 
         public void RemoveAt(int nIndex) {
             if (nIndex < 0 || nIndex >= this._Count)
-                throw new IndexOutOfRangeException("索引越界");
+                throw new IndexOutOfRangeException("Index out of bounds.");
             m_nodes[nIndex].Owner = null;
             m_owner.InternalRemoveSelectedNode(m_nodes[nIndex]);
             if (m_owner.ActiveNode == m_nodes[nIndex]) m_owner.SetActiveNode(null);
@@ -130,7 +130,7 @@ namespace ST.Library.UI.NodeEditor
             this._Count--;
             for (int i = nIndex, Len = this._Count; i < Len; i++)
                 m_nodes[i] = m_nodes[i + 1];
-            if (this._Count == 0) {             //当不存在节点时候 坐标系回归
+            if (this._Count == 0) {             // When there are no nodes, the coordinate system returns.
                 m_owner.ScaleCanvas(1, 0, 0);
                 m_owner.MoveCanvas(10, 10, true, CanvasMoveArgs.All);
             } else {
@@ -142,15 +142,15 @@ namespace ST.Library.UI.NodeEditor
         public STNode this[int nIndex] {
             get {
                 if (nIndex < 0 || nIndex >= this._Count)
-                    throw new IndexOutOfRangeException("索引越界");
+                    throw new IndexOutOfRangeException("Index out of bounds.");
                 return m_nodes[nIndex];
             }
-            set { throw new InvalidOperationException("禁止重新赋值元素"); }
+            set { throw new InvalidOperationException("Reassignment of elements not allowed."); }
         }
 
         public void CopyTo(Array array, int index) {
             if (array == null)
-                throw new ArgumentNullException("数组不能为空");
+                throw new ArgumentNullException("Array cannot be empty.");
             m_nodes.CopyTo(array, index);
         }
 

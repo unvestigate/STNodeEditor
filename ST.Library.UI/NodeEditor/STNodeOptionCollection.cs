@@ -24,7 +24,7 @@ namespace ST.Library.UI.NodeEditor
         private bool m_isInput;     //当前集合是否是存放的是输入点
 
         internal STNodeOptionCollection(STNode owner, bool isInput) {
-            if (owner == null) throw new ArgumentNullException("所有者不能为空");
+            if (owner == null) throw new ArgumentNullException("Owner cannot be empty.");
             m_owner = owner;
             m_isInput = isInput;
             m_options = new STNodeOption[4];
@@ -38,7 +38,7 @@ namespace ST.Library.UI.NodeEditor
         }
 
         public int Add(STNodeOption option) {
-            if (option == null) throw new ArgumentNullException("添加对象不能为空");
+            if (option == null) throw new ArgumentNullException("Add object cannot be empty.");
             this.EnsureSpace(1);
             int nIndex = option == STNodeOption.Empty ? -1 : this.IndexOf(option);
             if (-1 == nIndex) {
@@ -52,10 +52,10 @@ namespace ST.Library.UI.NodeEditor
         }
 
         public void AddRange(STNodeOption[] options) {
-            if (options == null) throw new ArgumentNullException("添加对象不能为空");
+            if (options == null) throw new ArgumentNullException("Add object cannot be empty.");
             this.EnsureSpace(options.Length);
             foreach (var op in options) {
-                if (op == null) throw new ArgumentNullException("添加对象不能为空");
+                if (op == null) throw new ArgumentNullException("Add object cannot be empty.");
                 if (-1 == this.IndexOf(op)) {
                     op.Owner = m_owner;
                     op.IsInput = m_isInput;
@@ -82,9 +82,9 @@ namespace ST.Library.UI.NodeEditor
 
         public void Insert(int index, STNodeOption option) {
             if (index < 0 || index >= this._Count)
-                throw new IndexOutOfRangeException("索引越界");
+                throw new IndexOutOfRangeException("Index out of bounds.");
             if (option == null)
-                throw new ArgumentNullException("插入对象不能为空");
+                throw new ArgumentNullException("Insert object cannot be empty.");
             this.EnsureSpace(1);
             for (int i = this._Count; i > index; i--)
                 m_options[i] = m_options[i - 1];
@@ -109,7 +109,7 @@ namespace ST.Library.UI.NodeEditor
 
         public void RemoveAt(int index) {
             if (index < 0 || index >= this._Count)
-                throw new IndexOutOfRangeException("索引越界");
+                throw new IndexOutOfRangeException("Index out of bounds.");
             this._Count--;
             m_options[index].Owner = null;
             for (int i = index, Len = this._Count; i < Len; i++)
@@ -120,15 +120,15 @@ namespace ST.Library.UI.NodeEditor
         public STNodeOption this[int index] {
             get {
                 if (index < 0 || index >= this._Count)
-                    throw new IndexOutOfRangeException("索引越界");
+                    throw new IndexOutOfRangeException("Index out of bounds.");
                 return m_options[index];
             }
-            set { throw new InvalidOperationException("禁止重新赋值元素"); }
+            set { throw new InvalidOperationException("Reassignment of elements not allowed."); }
         }
 
         public void CopyTo(Array array, int index) {
             if (array == null)
-                throw new ArgumentNullException("数组不能为空");
+                throw new ArgumentNullException("Array cannot be empty.");
             m_options.CopyTo(array, index);
         }
 

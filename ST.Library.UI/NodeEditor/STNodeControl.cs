@@ -155,7 +155,7 @@ namespace ST.Library.UI.NodeEditor
             get { return _Font; }
             set {
                 if (value == _Font) return;
-                if (value == null) throw new ArgumentNullException("值不能为空");
+                if (value == null) throw new ArgumentNullException("Value cannot be empty.");
                 _Font = value;
                 this.Invalidate();
             }
