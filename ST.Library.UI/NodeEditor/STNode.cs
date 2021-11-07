@@ -43,7 +43,7 @@ namespace ST.Library.UI.NodeEditor
     {
         private STNodeEditor _Owner;
         /// <summary>
-        /// 获取当前 Node 所有者
+        /// Get the current Node owner.
         /// </summary>
         public STNodeEditor Owner {
             get { return _Owner; }
@@ -62,7 +62,7 @@ namespace ST.Library.UI.NodeEditor
 
         private bool _IsSelected;
         /// <summary>
-        /// 获取或设置 Node 是否处于被选中状态
+        /// Get or set whether Node is selected.
         /// </summary>
         public bool IsSelected {
             get { return _IsSelected; }
@@ -77,7 +77,7 @@ namespace ST.Library.UI.NodeEditor
 
         private bool _IsActive;
         /// <summary>
-        /// 获取 Node 是否处于活动状态
+        /// Get whether Node is active.
         /// </summary>
         public bool IsActive {
             get { return _IsActive; }
@@ -90,7 +90,7 @@ namespace ST.Library.UI.NodeEditor
 
         private Color _TitleColor;
         /// <summary>
-        /// 获取或设置标题背景颜色
+        /// Get or set the background color of the title.
         /// </summary>
         public Color TitleColor {
             get { return _TitleColor; }
@@ -102,7 +102,7 @@ namespace ST.Library.UI.NodeEditor
 
         private Color _MarkColor;
         /// <summary>
-        /// 获取或设置标记信息背景颜色
+        /// Get or set the background color of the marker information.
         /// </summary>
         public Color MarkColor {
             get { return _MarkColor; }
@@ -114,7 +114,7 @@ namespace ST.Library.UI.NodeEditor
 
         private Color _ForeColor = Color.White;
         /// <summary>
-        /// 获取或设置当前 Node 前景色
+        /// Get or set the current Node foreground color.
         /// </summary>
         public Color ForeColor {
             get { return _ForeColor; }
@@ -126,7 +126,7 @@ namespace ST.Library.UI.NodeEditor
 
         private Color _BackColor;
         /// <summary>
-        /// 获取或设置当前 Node 背景色
+        /// Get or set the background color of the current Node.
         /// </summary>
         public Color BackColor {
             get { return _BackColor; }
@@ -138,7 +138,7 @@ namespace ST.Library.UI.NodeEditor
 
         private string _Title;
         /// <summary>
-        /// 获取或设置 Node 标题
+        /// Get or set the Node title.
         /// </summary>
         public string Title {
             get { return _Title; }
@@ -151,7 +151,7 @@ namespace ST.Library.UI.NodeEditor
 
         private string _Mark;
         /// <summary>
-        /// 获取或设置 Node 标记信息
+        /// Get or set Node tag information.
         /// </summary>
         public string Mark {
             get { return _Mark; }
@@ -165,9 +165,9 @@ namespace ST.Library.UI.NodeEditor
             }
         }
 
-        private string[] _MarkLines;//单独存放行数据 不用每次在绘制中去拆分
+        private string[] _MarkLines;//Store the row data separately, no need to split each time in the drawing.
         /// <summary>
-        /// 获取 Node 标记信息行数据
+        /// Get the data of the Node tag information row.
         /// </summary>
         public string[] MarkLines {
             get { return _MarkLines; }
@@ -175,7 +175,7 @@ namespace ST.Library.UI.NodeEditor
 
         private int _Left;
         /// <summary>
-        /// 获取或设置 Node 左边坐标
+        /// Get or set the left coordinate of Node.
         /// </summary>
         public int Left {
             get { return _Left; }
@@ -194,7 +194,7 @@ namespace ST.Library.UI.NodeEditor
 
         private int _Top;
         /// <summary>
-        /// 获取或设置 Node 上边坐标
+        /// Get or set the top coordinate of Node.
         /// </summary>
         public int Top {
             get { return _Top; }
@@ -213,7 +213,7 @@ namespace ST.Library.UI.NodeEditor
 
         private int _Width = 100;
         /// <summary>
-        /// 获取或设置 Node 宽度 当AutoSize被设置时 无法设置此值
+        /// Gets or sets the width of the Node. This value cannot be set when AutoSize is set.
         /// </summary>
         public int Width {
             get { return _Width; }
@@ -234,7 +234,7 @@ namespace ST.Library.UI.NodeEditor
 
         private int _Height = 40;
         /// <summary>
-        /// 获取或设置 Node 高度 当AutoSize被设置时 无法设置此值
+        /// Gets or sets the height of Node. This value cannot be set when AutoSize is set.
         /// </summary>
         public int Height {
             get { return _Height; }
@@ -255,7 +255,7 @@ namespace ST.Library.UI.NodeEditor
 
         private int _ItemHeight = 20;
         /// <summary>
-        /// 获取或设置 Node 每个选项的高度
+        /// Get or set the height of each option of Node.
         /// </summary>
         public int ItemHeight {
             get { return _ItemHeight; }
@@ -275,26 +275,26 @@ namespace ST.Library.UI.NodeEditor
 
         private bool _AutoSize = true;
         /// <summary>
-        /// 获取或设置 Node 是否自动计算宽高
+        /// Get or set whether Node automatically calculates width and height.
         /// </summary>
         public bool AutoSize {
             get { return _AutoSize; }
             protected set { _AutoSize = value; }
         }
         /// <summary>
-        /// 获取 Node 右边边坐标
+        /// Get the coordinates of the right side of Node.
         /// </summary>
         public int Right {
             get { return _Left + _Width; }
         }
         /// <summary>
-        /// 获取 Node 下边坐标
+        /// Get the coordinates of the bottom of Node.
         /// </summary>
         public int Bottom {
             get { return _Top + _Height; }
         }
         /// <summary>
-        /// 获取 Node 矩形区域
+        /// Get Node rectangle area.
         /// </summary>
         public Rectangle Rectangle {
             get {
@@ -302,7 +302,7 @@ namespace ST.Library.UI.NodeEditor
             }
         }
         /// <summary>
-        /// 获取 Node 标题矩形区域
+        /// Get the rectangular area of ​​the Node title.
         /// </summary>
         public Rectangle TitleRectangle {
             get {
@@ -312,7 +312,7 @@ namespace ST.Library.UI.NodeEditor
 
         private Rectangle _MarkRectangle;
         /// <summary>
-        /// 获取 Node 标记矩形区域
+        /// Get Node marked rectangular area.
         /// </summary>
         public Rectangle MarkRectangle {
             get { return _MarkRectangle; }
@@ -320,7 +320,7 @@ namespace ST.Library.UI.NodeEditor
 
         private int _TitleHeight = 20;
         /// <summary>
-        /// 获取或设置 Node 标题高度
+        /// Get or set the height of the Node title.
         /// </summary>
         public int TitleHeight {
             get { return _TitleHeight; }
@@ -329,41 +329,41 @@ namespace ST.Library.UI.NodeEditor
 
         private STNodeOptionCollection _InputOptions;
         /// <summary>
-        /// 获取输入选项集合
+        /// Get a collection of input options.
         /// </summary>
         protected internal STNodeOptionCollection InputOptions {
             get { return _InputOptions; }
         }
         /// <summary>
-        /// 获取输入选项集合个数
+        /// Get the number of input option sets.
         /// </summary>
         public int InputOptionsCount { get { return _InputOptions.Count; } }
 
         private STNodeOptionCollection _OutputOptions;
         /// <summary>
-        /// 获取输出选项
+        /// Get output options.
         /// </summary>
         protected internal STNodeOptionCollection OutputOptions {
             get { return _OutputOptions; }
         }
         /// <summary>
-        /// 获取输出选项个数
+        /// Get the number of output options.
         /// </summary>
         public int OutputOptionsCount { get { return _OutputOptions.Count; } }
 
         private STNodeControlCollection _Controls;
         /// <summary>
-        /// 获取 Node 所包含的控件集合
+        /// Get the collection of controls contained in Node.
         /// </summary>
         protected STNodeControlCollection Controls {
             get { return _Controls; }
         }
         /// <summary>
-        /// 获取 Node 所包含的控件集合个数
+        /// Get the number of control collections contained in Node.
         /// </summary>
         public int ControlsCount { get { return _Controls.Count; } }
         /// <summary>
-        /// 获取 Node 坐标位置
+        /// Get Node coordinate position.
         /// </summary>
         public Point Location {
             get { return new Point(this._Left, this._Top); }
@@ -373,7 +373,7 @@ namespace ST.Library.UI.NodeEditor
             }
         }
         /// <summary>
-        /// 获取 Node 大小
+        /// Get Node size.
         /// </summary>
         public Size Size {
             get { return new Size(this._Width, this._Height); }
@@ -385,7 +385,7 @@ namespace ST.Library.UI.NodeEditor
 
         private Font _Font;
         /// <summary>
-        /// 获取或设置 Node 字体
+        /// Get or set the Node font.
         /// </summary>
         protected Font Font {
             get { return _Font; }
@@ -398,7 +398,7 @@ namespace ST.Library.UI.NodeEditor
 
         private bool _LockOption;
         /// <summary>
-        /// 获取或设置是否锁定Option选项 锁定后不在接受连接
+        /// Get or set whether to lock the Option option. After locking, it will not accept the connection.
         /// </summary>
         public bool LockOption {
             get { return _LockOption; }
@@ -410,7 +410,7 @@ namespace ST.Library.UI.NodeEditor
 
         private bool _LockLocation;
         /// <summary>
-        /// 获取或设置是否锁定Node位置 锁定后不可移动
+        /// Gets or sets whether to lock the Node position and cannot move after being locked.
         /// </summary>
         public bool LockLocation {
             get { return _LockLocation; }
@@ -422,7 +422,7 @@ namespace ST.Library.UI.NodeEditor
 
         private ContextMenuStrip _ContextMenuStrip;
         /// <summary>
-        /// 获取或设置当前Node 上下文菜单
+        /// Get or set the current Node context menu.
         /// </summary>
         public ContextMenuStrip ContextMenuStrip {
             get { return _ContextMenuStrip; }
@@ -431,7 +431,7 @@ namespace ST.Library.UI.NodeEditor
 
         private object _Tag;
         /// <summary>
-        /// 获取或设置用户自定义保存的数据
+        /// Get or set user-defined saved data.
         /// </summary>
         public object Tag {
             get { return _Tag; }
@@ -440,7 +440,7 @@ namespace ST.Library.UI.NodeEditor
 
         private Guid _Guid;
         /// <summary>
-        /// 获取全局唯一标识
+        /// Get the globally unique identifier.
         /// </summary>
         public Guid Guid {
             get { return _Guid; }
@@ -448,7 +448,7 @@ namespace ST.Library.UI.NodeEditor
 
         private bool _LetGetOptions = false;
         /// <summary>
-        /// 获取或设置是否允许外部访问STNodeOption
+        /// Get or set whether to allow external access to STNodeOption.
         /// </summary>
         public bool LetGetOptions {
             get { return _LetGetOptions; }
@@ -485,15 +485,15 @@ namespace ST.Library.UI.NodeEditor
         //private int m_nItemHeight = 30;
         protected StringFormat m_sf;
         /// <summary>
-        /// 当前Node中 活动的控件
+        /// Currently active controls in Node.
         /// </summary>
         protected STNodeControl m_ctrl_active;
         /// <summary>
-        /// 当前Node中 悬停的控件
+        /// Controls hovering in the current Node.
         /// </summary>
         protected STNodeControl m_ctrl_hover;
         /// <summary>
-        /// 当前Node中 鼠标点下的控件
+        /// The control under the mouse click in the current Node.
         /// </summary>
         protected STNodeControl m_ctrl_down;
 
@@ -573,13 +573,13 @@ namespace ST.Library.UI.NodeEditor
 
         #region protected
         /// <summary>
-        /// 当Node被构造时候发生
+        /// Occurs when Node is constructed.
         /// </summary>
         protected virtual void OnCreate() { }
         /// <summary>
-        /// 绘制整个Node
+        /// Draw the entire Node.
         /// </summary>
-        /// <param name="dt">绘制工具</param>
+        /// <param name="dt">Drawing tools</param>
         protected internal virtual void OnDrawNode(DrawingTools dt) {
             dt.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
             //Fill background
@@ -591,9 +591,9 @@ namespace ST.Library.UI.NodeEditor
             this.OnDrawBody(dt);
         }
         /// <summary>
-        /// 绘制Node标题部分
+        /// Draw the Node header part.
         /// </summary>
-        /// <param name="dt">绘制工具</param>
+        /// <param name="dt">Drawing tools</param>
         protected virtual void OnDrawTitle(DrawingTools dt) {
             m_sf.Alignment = StringAlignment.Center;
             m_sf.LineAlignment = StringAlignment.Center;
@@ -636,9 +636,9 @@ namespace ST.Library.UI.NodeEditor
             }
         }
         /// <summary>
-        /// 绘制Node主体部分 除去标题部分
+        /// Draw the main part of Node, remove the title part.
         /// </summary>
-        /// <param name="dt">绘制工具</param>
+        /// <param name="dt">Drawing tools</param>
         protected virtual void OnDrawBody(DrawingTools dt) {
             SolidBrush brush = dt.SolidBrush;
             foreach (STNodeOption op in this._InputOptions) {
@@ -651,30 +651,30 @@ namespace ST.Library.UI.NodeEditor
                 this.OnDrawOptionDot(dt, op);
                 this.OnDrawOptionText(dt, op);
             }
-            if (this._Controls.Count != 0) {    //绘制子控件
-                //将坐标原点与节点对齐
+            if (this._Controls.Count != 0) {    //Draw child control
+                //Align the origin of the coordinates with the node.
                 //dt.Graphics.ResetTransform();
                 dt.Graphics.TranslateTransform(this._Left, this._Top + this._TitleHeight);
-                Point pt = Point.Empty;         //当前需要偏移的量 
-                Point pt_last = Point.Empty;    //最后一个控件相对于节点的坐标
+                Point pt = Point.Empty;         //The amount of offset currently needed 
+                Point pt_last = Point.Empty;    //The coordinates of the last control relative to the node
                 foreach (STNodeControl v in this._Controls) {
                     if (!v.Visable) continue;
                     pt.X = v.Left - pt_last.X;
                     pt.Y = v.Top - pt_last.Y;
                     pt_last = v.Location;
-                    dt.Graphics.TranslateTransform(pt.X, pt.Y); //将原点坐标移动至控件位置
+                    dt.Graphics.TranslateTransform(pt.X, pt.Y); //Move the origin coordinate to the control position
                     dt.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
                     v.OnPaint(dt);
                 }
-                //dt.Graphics.TranslateTransform(-pt_last.X, -pt_last.Y); 还原坐标
+                //dt.Graphics.TranslateTransform(-pt_last.X, -pt_last.Y); Restore coordinates
                 dt.Graphics.TranslateTransform(-this._Left - pt_last.X, -this._Top - this._TitleHeight - pt_last.Y);
                 //dt.Graphics.
             }
         }
         /// <summary>
-        /// 绘制标记信息
+        /// Draw marker information.
         /// </summary>
-        /// <param name="dt">绘制工具</param>
+        /// <param name="dt">Drawing tools</param>
         protected internal virtual void OnDrawMark(DrawingTools dt) {
             if (string.IsNullOrEmpty(this._Mark)) return;
             Graphics g = dt.Graphics;
@@ -682,34 +682,34 @@ namespace ST.Library.UI.NodeEditor
             m_sf.LineAlignment = StringAlignment.Center;
             g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
             brush.Color = this._MarkColor;
-            g.FillRectangle(brush, this._MarkRectangle);                                //填充背景色
+            g.FillRectangle(brush, this._MarkRectangle);                                //Fill background color
 
-            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;       //确定文本绘制所需大小
+            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;       //Determine the size required for text drawing
             var sz = g.MeasureString(this.Mark, this.Font, this._MarkRectangle.Width);
             brush.Color = this._ForeColor;
-            if (sz.Height > this._ItemHeight || sz.Width > this._MarkRectangle.Width) {    //如果超过绘图区 则绘制部分
+            if (sz.Height > this._ItemHeight || sz.Width > this._MarkRectangle.Width) {    //If it exceeds the drawing area, draw part
                 Rectangle rect = new Rectangle(this._MarkRectangle.Left + 2, this._MarkRectangle.Top + 2, this._MarkRectangle.Width - 20, 16);
                 m_sf.Alignment = StringAlignment.Near;
                 g.DrawString(this._MarkLines[0], this._Font, brush, rect, m_sf);
                 m_sf.Alignment = StringAlignment.Far;
                 rect.Width = this._MarkRectangle.Width - 5;
-                g.DrawString("+", this._Font, brush, rect, m_sf);                       // + 表示超过绘图区
+                g.DrawString("+", this._Font, brush, rect, m_sf);                       // + Indicates that the drawing area is exceeded
             } else {
                 m_sf.Alignment = StringAlignment.Near;
                 g.DrawString(this._MarkLines[0].Trim(), this._Font, brush, this._MarkRectangle, m_sf);
             }
         }
         /// <summary>
-        /// 绘制选项连线的点
+        /// Draw the points of the option line.
         /// </summary>
-        /// <param name="dt">绘制工具</param>
-        /// <param name="op">指定的选项</param>
+        /// <param name="dt">Drawing tools</param>
+        /// <param name="op">Specified options</param>
         protected virtual void OnDrawOptionDot(DrawingTools dt, STNodeOption op) {
             Graphics g = dt.Graphics;
             Pen pen = dt.Pen;
             SolidBrush brush = dt.SolidBrush;
             var t = typeof(object);
-            if (op.DotColor != Color.Transparent)           //设置颜色
+            if (op.DotColor != Color.Transparent)           //Set color
                 brush.Color = op.DotColor;
             else {
                 if (op.DataType == t)
@@ -717,13 +717,13 @@ namespace ST.Library.UI.NodeEditor
                 else
                     brush.Color = this.Owner.TypeColor.ContainsKey(op.DataType) ? this.Owner.TypeColor[op.DataType] : this.Owner.UnknownTypeColor;
             }
-            if (op.IsSingle) {                              //单连接 圆形
+            if (op.IsSingle) {                              //Single connection round
                 g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-                if (op.DataType == t) {                     //未知类型绘制 否则填充
+                if (op.DataType == t) {                     //Unknown type draw, otherwise fill
                     g.DrawEllipse(pen, op.DotRectangle.X, op.DotRectangle.Y, op.DotRectangle.Width - 1, op.DotRectangle.Height - 1);
                 } else
                     g.FillEllipse(brush, op.DotRectangle);
-            } else {                                        //多连接 矩形
+            } else {                                        //Multi-connected rectangle
                 g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
                 if (op.DataType == t) {
                     g.DrawRectangle(pen, op.DotRectangle.X, op.DotRectangle.Y, op.DotRectangle.Width - 1, op.DotRectangle.Height - 1);
@@ -732,10 +732,10 @@ namespace ST.Library.UI.NodeEditor
             }
         }
         /// <summary>
-        /// 绘制选项的文本
+        /// Text for drawing options
         /// </summary>
-        /// <param name="dt">绘制工具</param>
-        /// <param name="op">指定的选项</param>
+        /// <param name="dt">Drawing tools</param>
+        /// <param name="op">Specified options</param>
         protected virtual void OnDrawOptionText(DrawingTools dt, STNodeOption op) {
             Graphics g = dt.Graphics;
             SolidBrush brush = dt.SolidBrush;
@@ -748,32 +748,32 @@ namespace ST.Library.UI.NodeEditor
             g.DrawString(op.Text, this.Font, brush, op.TextRectangle, m_sf);
         }
         /// <summary>
-        /// 当计算Option连线点位置时候发生
+        /// Occurs when calculating Option connection point position.
         /// </summary>
-        /// <param name="op">需要计算的Option</param>
-        /// <param name="pt">自动计算出的位置</param>
-        /// <param name="nIndex">当前Option的索引</param>
-        /// <returns>新的位置</returns>
+        /// <param name="op">Option to be calculated</param>
+        /// <param name="pt">Automatically calculated position</param>
+        /// <param name="nIndex">Index of the current Option</param>
+        /// <returns>New location</returns>
         protected virtual Point OnSetOptionDotLocation(STNodeOption op, Point pt, int nIndex) {
             return pt;
         }
         /// <summary>
-        /// 当计算Option文本区域时候发生
+        /// Occurs when calculating the Option text area.
         /// </summary>
-        /// <param name="op">需要计算的Option</param>
-        /// <param name="rect">自动计算出的区域</param>
-        /// <param name="nIndex">当前Option的索引</param>
-        /// <returns>新的区域</returns>
+        /// <param name="op">Option to be calculated</param>
+        /// <param name="rect">Automatically calculated area</param>
+        /// <param name="nIndex">Index of the current Option</param>
+        /// <returns>New area</returns>
         protected virtual Rectangle OnSetOptionTextRectangle(STNodeOption op, Rectangle rect, int nIndex) {
             return rect;
         }
         /// <summary>
-        /// 获取当前STNode所需要的默认大小
-        /// 返回的大小并不会限制绘制区域 任然可以在此区域之外绘制
-        /// 但是并不会被STNodeEditor所接受 并触发对应事件
+        /// Get the default size required by the current STNode.
+        /// The returned size does not limit the drawing area, it can still be drawn outside this area.
+        /// But it will not be accepted by STNodeEditor and trigger the corresponding event.
         /// </summary>
-        /// <param name="g">绘图面板</param>
-        /// <returns>计算出来的大小</returns>
+        /// <param name="g">Drawing panel</param>
+        /// <returns>Calculated size</returns>
         protected virtual Size GetDefaultNodeSize(Graphics g) {
             int nInputHeight = 0, nOutputHeight = 0;
             foreach (STNodeOption op in this._InputOptions) nInputHeight += this._ItemHeight;
@@ -797,27 +797,27 @@ namespace ST.Library.UI.NodeEditor
             return new Size(nWidth, nHeight);
         }
         /// <summary>
-        /// 计算当前Mark所需要的矩形区域
-        /// 返回的大小并不会限制绘制区域 任然可以在此区域之外绘制
-        /// 但是并不会被STNodeEditor所接受 并触发对应事件
+        /// Calculate the rectangular area required by the current Mark.
+        /// The returned size does not limit the drawing area, it can still be drawn outside this area.
+        /// But it will not be accepted by STNodeEditor and trigger the corresponding event.
         /// </summary>
-        /// <param name="g">绘图面板</param>
-        /// <returns>计算后的区域</returns>
+        /// <param name="g">Drawing panel</param>
+        /// <returns>Calculated area</returns>
         protected virtual Rectangle OnBuildMarkRectangle(Graphics g) {
             //if (string.IsNullOrEmpty(this._Mark)) return Rectangle.Empty;
             return new Rectangle(this._Left, this._Top - 30, this._Width, 20);
         }
         /// <summary>
-        /// 当需要保存时候 此Node有哪些需要额外保存的数据
-        /// 注意: 保存时并不会进行序列化 还原时候仅重新通过空参数构造器创建此Node
-        ///       然后调用 OnLoadNode() 将保存的数据进行还原
+        /// When it needs to be saved, what data does this Node need to save additionally?
+        /// Note: Serialization will not be performed when saving, but this Node will only be recreated through the empty parameter constructor when restoring
+        ///       Then call OnLoadNode() to restore the saved data
         /// </summary>
-        /// <param name="dic">需要保存的数据</param>
+        /// <param name="dic">Data to be saved</param>
         protected virtual void OnSaveNode(Dictionary<string, byte[]> dic) { }
         /// <summary>
-        /// 当还原该节点时候会将 OnSaveNode() 所返回的数据重新传入此函数
+        /// When the node is restored, the data returned by OnSaveNode() will be re-passed into this function
         /// </summary>
-        /// <param name="dic">保存时候的数据</param>
+        /// <param name="dic">Data at the time of saving</param>
         protected internal virtual void OnLoadNode(Dictionary<string, byte[]> dic) {
             if (dic.ContainsKey("AutoSize")) this._AutoSize = dic["AutoSize"][0] == 1;
             if (dic.ContainsKey("LockOption")) this._LockOption = dic["LockOption"][0] == 1;
@@ -855,37 +855,37 @@ namespace ST.Library.UI.NodeEditor
             }
         }
         /// <summary>
-        /// 当编辑器加载完成所有的节点时候发生
+        /// Occurs when the editor has loaded all nodes
         /// </summary>
         protected internal virtual void OnEditorLoadCompleted() { }
         /// <summary>
-        /// 设置Option的文本信息
+        /// Set option text information
         /// </summary>
-        /// <param name="op">目标Option</param>
-        /// <param name="strText">文本</param>
-        /// <returns>是否成功</returns>
+        /// <param name="op">Target Option</param>
+        /// <param name="strText">Text</param>
+        /// <returns>whether succeed</returns>
         protected bool SetOptionText(STNodeOption op, string strText) {
             if (op.Owner != this) return false;
             op.Text = strText;
             return true;
         }
         /// <summary>
-        /// 设置Option文本信息颜色
+        /// Set option text information color
         /// </summary>
-        /// <param name="op">目标Option</param>
-        /// <param name="clr">颜色</param>
-        /// <returns>是否成功</returns>
+        /// <param name="op">Target Option</param>
+        /// <param name="clr">Color</param>
+        /// <returns>Result</returns>
         protected bool SetOptionTextColor(STNodeOption op, Color clr) {
             if (op.Owner != this) return false;
             op.TextColor = clr;
             return true;
         }
         /// <summary>
-        /// 设置Option连线点颜色
+        /// Set Option connection point color
         /// </summary>
-        /// <param name="op">目标Option</param>
-        /// <param name="clr">颜色</param>
-        /// <returns>是否成功</returns>
+        /// <param name="op">Target Option</param>
+        /// <param name="clr">Color</param>
+        /// <returns>Result</returns>
         protected bool SetOptionDotColor(STNodeOption op, Color clr) {
             if (op.Owner != this) return false;
             op.DotColor = clr;
@@ -1001,21 +1001,21 @@ namespace ST.Library.UI.NodeEditor
 
 
         /// <summary>
-        /// 当所有者发生改变时候发生
+        /// Occurs when the owner changes.
         /// </summary>
         protected virtual void OnOwnerChanged() { }
         /// <summary>
-        /// 当选中状态改变时候发生
+        /// Occurs when the selected state changes.
         /// </summary>
         protected virtual void OnSelectedChanged() { }
         /// <summary>
-        /// 当活动状态改变时候发生
+        /// Occurs when the activity state changes.
         /// </summary>
         protected virtual void OnActiveChanged() { }
 
         #endregion protected
         /// <summary>
-        /// 计算每个Option的位置
+        /// Calculate the position of each option.
         /// </summary>
         protected virtual void SetOptionsLocation() {
             int nIndex = 0;
@@ -1045,7 +1045,7 @@ namespace ST.Library.UI.NodeEditor
         }
 
         /// <summary>
-        /// 重绘Node
+        /// Redraw Node.
         /// </summary>
         public void Invalidate() {
             if (this._Owner != null) {
@@ -1053,9 +1053,9 @@ namespace ST.Library.UI.NodeEditor
             }
         }
         /// <summary>
-        /// 重绘 Node 指定区域
+        /// Redraw the designated area of ​​Node.
         /// </summary>
-        /// <param name="rect">Node 指定区域</param>
+        /// <param name="rect">Node designated area</param>
         public void Invalidate(Rectangle rect) {
             rect.X += this._Left;
             rect.Y += this._Top;
@@ -1066,9 +1066,9 @@ namespace ST.Library.UI.NodeEditor
             }
         }
         /// <summary>
-        /// 获取此Node所包含的输入Option集合
+        /// Get the set of input options contained in this Node.
         /// </summary>
-        /// <returns>Option集合</returns>
+        /// <returns>Option collection</returns>
         public STNodeOption[] GetInputOptions() {
             if (!this._LetGetOptions) return null;
             STNodeOption[] ops = new STNodeOption[this._InputOptions.Count];
@@ -1076,9 +1076,9 @@ namespace ST.Library.UI.NodeEditor
             return ops;
         }
         /// <summary>
-        /// 获取此Node所包含的输出Option集合
+        /// Get the set of output options contained in this Node.
         /// </summary>
-        /// <returns>Option集合</returns>
+        /// <returns>Option collection</returns>
         public STNodeOption[] GetOutputOptions() {
             if (!this._LetGetOptions) return null;
             STNodeOption[] ops = new STNodeOption[this._OutputOptions.Count];
@@ -1086,10 +1086,10 @@ namespace ST.Library.UI.NodeEditor
             return ops;
         }
         /// <summary>
-        /// 设置Node的选中状态
+        /// Set the selected state of Node.
         /// </summary>
-        /// <param name="bSelected">是否选中</param>
-        /// <param name="bRedraw">是否重绘</param>
+        /// <param name="bSelected">Whether selected</param>
+        /// <param name="bRedraw">Whether to redraw</param>
         public void SetSelected(bool bSelected, bool bRedraw) {
             if (this._IsSelected == bSelected) return;
             this._IsSelected = bSelected;

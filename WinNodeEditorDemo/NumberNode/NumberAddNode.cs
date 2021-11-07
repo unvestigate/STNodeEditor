@@ -15,7 +15,7 @@ namespace WinNodeEditorDemo.NumberNode
         private STNodeOption m_in_num2;
         private STNodeOption m_out_num;
         private int m_nNum1, m_nNum2;
-        private StringFormat m_sf;
+        //private StringFormat m_sf;
 
         protected override void OnCreate() {
             base.OnCreate();

@@ -14,7 +14,7 @@ namespace WinNodeEditorDemo
     [STNode("/", "DebugST", "2212233137@qq.com", "st233.com", "此节点仅演示UI自定义以及控件,并不包含功能.")]
     public class CalcNode : STNode
     {
-        private StringFormat m_f;
+        //private StringFormat m_f;
 
         protected override void OnCreate() {
             base.OnCreate();

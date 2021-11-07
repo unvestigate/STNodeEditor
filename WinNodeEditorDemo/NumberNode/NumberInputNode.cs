@@ -26,7 +26,7 @@ namespace WinNodeEditorDemo.NumberNode
         }
 
         private STNodeOption m_op_number;       //输出选项
-        private StringFormat m_sf = new StringFormat();
+        //private StringFormat m_sf = new StringFormat();
 
         protected override void OnCreate() {
             base.OnCreate();
