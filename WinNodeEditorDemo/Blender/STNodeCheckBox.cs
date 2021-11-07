@@ -30,8 +30,11 @@ namespace WinNodeEditorDemo.Blender
 
         protected override void OnMouseClick(System.Windows.Forms.MouseEventArgs e) {
             base.OnMouseClick(e);
-            this.Checked = !this.Checked;
-            this.OnValueChanged(new EventArgs());
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                this.Checked = !this.Checked;
+                this.OnValueChanged(new EventArgs());
+            }
         }
 
         protected override void OnPaint(DrawingTools dt) {

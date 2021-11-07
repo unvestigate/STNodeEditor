@@ -21,11 +21,15 @@ namespace WinNodeEditorDemo.Blender
 
         protected override void OnMouseClick(System.Windows.Forms.MouseEventArgs e) {
             base.OnMouseClick(e);
-            ColorDialog cd = new ColorDialog();
-            if (cd.ShowDialog() != DialogResult.OK) return;
-            //this._Color = cd.Color;
-            this.BackColor = cd.Color;
-            this.OnValueChanged(new EventArgs());
+
+            if (e.Button == MouseButtons.Left)
+            {
+                ColorDialog cd = new ColorDialog();
+                if (cd.ShowDialog() != DialogResult.OK) return;
+                //this._Color = cd.Color;
+                this.BackColor = cd.Color;
+                this.OnValueChanged(new EventArgs());
+            }
         }
     }
 }

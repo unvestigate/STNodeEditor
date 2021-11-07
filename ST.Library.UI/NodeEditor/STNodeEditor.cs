@@ -719,43 +719,64 @@ namespace ST.Library.UI.NodeEditor
 
             if (nfi.Node != null) {
                 nfi.Node.OnMouseDown(new MouseEventArgs(e.Button, e.Clicks, (int)m_pt_down_in_canvas.X - nfi.Node.Left, (int)m_pt_down_in_canvas.Y - nfi.Node.Top, e.Delta));
-                bool bCtrlDown = (Control.ModifierKeys & Keys.Control) == Keys.Control;
-                if (bCtrlDown) {
-                    if (nfi.Node.IsSelected) {
-                        if (nfi.Node == this._ActiveNode) {
-                            this.SetActiveNode(null);
+
+                if (e.Button == MouseButtons.Left)
+                {
+                    bool bCtrlDown = (Control.ModifierKeys & Keys.Control) == Keys.Control;
+                    if (bCtrlDown)
+                    {
+                        if (nfi.Node.IsSelected)
+                        {
+                            if (nfi.Node == this._ActiveNode)
+                            {
+                                this.SetActiveNode(null);
+                            }
                         }
-                    } else {
-                        nfi.Node.SetSelected(true, true);
+                        else
+                        {
+                            nfi.Node.SetSelected(true, true);
+                        }
+                        return;
                     }
-                    return;
-                } else if (!nfi.Node.IsSelected) {
-                    foreach (var n in m_hs_node_selected.ToArray()) n.SetSelected(false, false);
+                    else if (!nfi.Node.IsSelected)
+                    {
+                        foreach (var n in m_hs_node_selected.ToArray()) n.SetSelected(false, false);
+                    }
+                    nfi.Node.SetSelected(true, false);                      //添加到已选择节点
+                    this.SetActiveNode(nfi.Node);
+                    if (this.PointInRectangle(nfi.Node.TitleRectangle, m_pt_down_in_canvas.X, m_pt_down_in_canvas.Y))
+                    {
+                        if (e.Button == MouseButtons.Right)
+                        {
+                            if (nfi.Node.ContextMenuStrip != null)
+                            {
+                                nfi.Node.ContextMenuStrip.Show(this.PointToScreen(e.Location));
+                            }
+                        }
+                        else
+                        {
+                            m_dic_pt_selected.Clear();
+                            lock (m_hs_node_selected)
+                            {
+                                foreach (STNode n in m_hs_node_selected)    //记录已选择节点位置 如果需要移动已选中节点时候 将会有用
+                                    m_dic_pt_selected.Add(n, n.Location);
+                            }
+                            m_ca = CanvasAction.MoveNode;                   //如果点下的是节点的标题 则可以移动该节点
+                            if (this._ShowMagnet && this._ActiveNode != null) this.BuildMagnetLocation();   //建立磁铁需要的坐标 如果需要移动已选中节点时候 将会有用
+                        }
+                    }
+                    else
+                        m_node_down = nfi.Node;
                 }
-                nfi.Node.SetSelected(true, false);                      //添加到已选择节点
-                this.SetActiveNode(nfi.Node);
-                if (this.PointInRectangle(nfi.Node.TitleRectangle, m_pt_down_in_canvas.X, m_pt_down_in_canvas.Y)) {
-                    if (e.Button == MouseButtons.Right) {
-                        if (nfi.Node.ContextMenuStrip != null) {
-                            nfi.Node.ContextMenuStrip.Show(this.PointToScreen(e.Location));
-                        }
-                    } else {
-                        m_dic_pt_selected.Clear();
-                        lock (m_hs_node_selected) {
-                            foreach (STNode n in m_hs_node_selected)    //记录已选择节点位置 如果需要移动已选中节点时候 将会有用
-                                m_dic_pt_selected.Add(n, n.Location);
-                        }
-                        m_ca = CanvasAction.MoveNode;                   //如果点下的是节点的标题 则可以移动该节点
-                        if (this._ShowMagnet && this._ActiveNode != null) this.BuildMagnetLocation();   //建立磁铁需要的坐标 如果需要移动已选中节点时候 将会有用
-                    }
-                } else
-                    m_node_down = nfi.Node;
             } else {
-                this.SetActiveNode(null);
-                foreach (var n in m_hs_node_selected.ToArray()) n.SetSelected(false, false);//没有点下任何东西 清空已经选择节点
-                m_ca = CanvasAction.SelectRectangle;                    //进入矩形区域选择模式
-                m_rect_select.Width = m_rect_select.Height = 0;
-                m_node_down = null;
+                if (e.Button == MouseButtons.Left)
+                {
+                    this.SetActiveNode(null);
+                    foreach (var n in m_hs_node_selected.ToArray()) n.SetSelected(false, false);//没有点下任何东西 清空已经选择节点
+                    m_ca = CanvasAction.SelectRectangle;                    //进入矩形区域选择模式
+                    m_rect_select.Width = m_rect_select.Height = 0;
+                    m_node_down = null;
+                }
             }
             //this.SetActiveNode(nfi.Node);
         }
@@ -766,6 +787,14 @@ namespace ST.Library.UI.NodeEditor
             m_pt_in_canvas.X = ((e.X - this._CanvasOffsetX) / this._CanvasScale);
             m_pt_in_canvas.Y = ((e.Y - this._CanvasOffsetY) / this._CanvasScale);
 
+            if (e.Button == MouseButtons.Middle)
+            {  //鼠标中键移动画布
+                this._CanvasOffsetX = m_real_canvas_x = m_pt_canvas_old.X + (e.X - m_pt_down_in_control.X);
+                this._CanvasOffsetY = m_real_canvas_y = m_pt_canvas_old.Y + (e.Y - m_pt_down_in_control.Y);
+                this.Invalidate();
+                return;
+            }
+
             if (m_node_down != null) {
                 m_node_down.OnMouseMove(new MouseEventArgs(e.Button, e.Clicks,
                     (int)m_pt_in_canvas.X - m_node_down.Left,
@@ -773,12 +802,7 @@ namespace ST.Library.UI.NodeEditor
                 return;
             }
 
-            if (e.Button == MouseButtons.Middle) {  //鼠标中键移动画布
-                this._CanvasOffsetX = m_real_canvas_x = m_pt_canvas_old.X + (e.X - m_pt_down_in_control.X);
-                this._CanvasOffsetY = m_real_canvas_y = m_pt_canvas_old.Y + (e.Y - m_pt_down_in_control.Y);
-                this.Invalidate();
-                return;
-            }
+            
             if (e.Button == MouseButtons.Left) {    //如果鼠标左键点下 判断行为
                 m_gp_hover = null;
                 switch (m_ca) {
@@ -877,7 +901,7 @@ namespace ST.Library.UI.NodeEditor
             if ((Control.ModifierKeys & Keys.Control) == Keys.Control) {
                 float f = this._CanvasScale + (e.Delta < 0 ? -0.1f : 0.1f);
                 this.ScaleCanvas(f, this.Width / 2, this.Height / 2);
-            } else {
+            } /*else {
                 if (!m_mouse_in_control) return;
                 var nfi = this.FindNodeFromPoint(m_pt_in_canvas);
                 if (this._HoverNode != null) {
@@ -894,7 +918,7 @@ namespace ST.Library.UI.NodeEditor
                 else t = 2;
                 this.MoveCanvas(this._CanvasOffsetX, m_real_canvas_y + (e.Delta < 0 ? -t : t), true, CanvasMoveArgs.Top);//process mouse mid
                 m_dt_vw = DateTime.Now;
-            }
+            }*/
         }
 
         protected virtual void OnMouseHWheel(MouseEventArgs e) {
@@ -1735,7 +1759,11 @@ namespace ST.Library.UI.NodeEditor
                 return;
             }
             if (this._CanvasScale == f) return;
-            if (f < 0.5) f = 0.5f; else if (f > 3) f = 3;
+
+            const float min = 0.2f;
+            const float max = 2.5f;
+
+            if (f < min) f = min; else if (f > max) f = max;
             float x_c = this.ControlToCanvas(x, true);
             float y_c = this.ControlToCanvas(y, false);
             this._CanvasScale = f;

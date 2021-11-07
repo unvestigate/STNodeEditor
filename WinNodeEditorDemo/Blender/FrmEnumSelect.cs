@@ -59,10 +59,13 @@ namespace WinNodeEditorDemo.Blender
 
         protected override void OnMouseClick(MouseEventArgs e) {
             base.OnMouseClick(e);
-            int nIndex = e.Y / (int)(20 * m_scale);
-            if (nIndex >= 0 && nIndex < m_lst.Count) this.Enum = (Enum)m_lst[nIndex];
-            this.DialogResult = System.Windows.Forms.DialogResult.OK;
-            m_bClosed = true;
+            if (e.Button == MouseButtons.Left)
+            {
+                int nIndex = e.Y / (int)(20 * m_scale);
+                if (nIndex >= 0 && nIndex < m_lst.Count) this.Enum = (Enum)m_lst[nIndex];
+                this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                m_bClosed = true;
+            }
         }
 
         protected override void OnMouseLeave(EventArgs e) {
