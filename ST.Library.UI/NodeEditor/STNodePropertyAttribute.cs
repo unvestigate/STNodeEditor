@@ -10,14 +10,14 @@ using System.Windows.Forms;
 namespace ST.Library.UI.NodeEditor
 {
     /// <summary>
-    /// STNode节点属性特性
-    /// 用于描述STNode节点属性信息 以及在属性编辑器上的行为
+    /// STNode node attribute characteristics.
+    /// Used to describe STNode node attribute information and behavior on the attribute editor.
     /// </summary>
     public class STNodePropertyAttribute : Attribute
     {
         private string _Name;
         /// <summary>
-        /// 获取属性需要在属性编辑器上显示的名称
+        /// Get the name of the property that needs to be displayed on the property editor.
         /// </summary>
         public string Name {
             get { return _Name; }
@@ -25,7 +25,7 @@ namespace ST.Library.UI.NodeEditor
 
         private string _Description;
         /// <summary>
-        /// 获取属性需要在属性编辑器上显示的描述
+        /// Get the description of the property that needs to be displayed on the property editor.
         /// </summary>
         public string Description {
             get { return _Description; }
@@ -33,7 +33,7 @@ namespace ST.Library.UI.NodeEditor
 
         private Type _ConverterType = typeof(STNodePropertyDescriptor);
         /// <summary>
-        /// 获取属性描述器类型
+        /// Get the attribute descriptor type.
         /// </summary>
         public Type DescriptorType {
             get { return _ConverterType; }
@@ -41,10 +41,10 @@ namespace ST.Library.UI.NodeEditor
         }
 
         /// <summary>
-        /// 构造一个STNode属性特性
+        /// Construct an STNode attribute feature.
         /// </summary>
-        /// <param name="strKey">需要显示的名称</param>
-        /// <param name="strDesc">需要显示的描述信息</param>
+        /// <param name="strKey">The name that needs to be displayed</param>
+        /// <param name="strDesc">Descriptive information that needs to be displayed</param>
         public STNodePropertyAttribute(string strKey, string strDesc) {
             this._Name = strKey;
             this._Description = strDesc;
@@ -52,41 +52,41 @@ namespace ST.Library.UI.NodeEditor
         //private Type m_descriptor_type_base = typeof(STNodePropertyDescriptor);
     }
     /// <summary>
-    /// STNode属性描述器
-    /// 用于确定在属性编辑器上如何与属性的值进行交互 以及确定属性值在属性编辑器上将如何绘制并交互
+    /// STNode attribute descriptor
+    /// Used to determine how to interact with the value of the attribute on the attribute editor, and to determine how the attribute value will be drawn and interacted on the attribute editor.
     /// </summary>
     public class STNodePropertyDescriptor
     {
         /// <summary>
-        /// 获取目标节点
+        /// Get the target node.
         /// </summary>
         public STNode Node { get; internal set; }
         /// <summary>
-        /// 获取所属的节点属性编辑器控件
+        /// Get the attribute editor control of the node to which it belongs.
         /// </summary>
         public STNodePropertyGrid Control { get; internal set; }
         /// <summary>
-        /// 获取选项所在区域
+        /// Get the area where the option is located.
         /// </summary>
         public Rectangle Rectangle { get; internal set; }
         /// <summary>
-        /// 获取选项名称所在区域
+        /// Get the area where the option name is located.
         /// </summary>
         public Rectangle RectangleL { get; internal set; }
         /// <summary>
-        /// 获取选项值所在区域
+        /// Get the area where the option value is located.
         /// </summary>
         public Rectangle RectangleR { get; internal set; }
         /// <summary>
-        /// 获取选项需要显示的名称
+        /// Get the name of the option that needs to be displayed.
         /// </summary>
         public string Name { get; internal set; }
         /// <summary>
-        /// 获取属性对应的描述信息
+        /// Get the description information corresponding to the attribute.
         /// </summary>
         public string Description { get; internal set; }
         /// <summary>
-        /// 获取属性信息
+        /// Get attribute information.
         /// </summary>
         public PropertyInfo PropertyInfo { get; internal set; }
 
@@ -99,7 +99,7 @@ namespace ST.Library.UI.NodeEditor
         private StringFormat m_sf;
 
         /// <summary>
-        /// 构造一个描述器
+        /// Construct a descriptor.
         /// </summary>
         public STNodePropertyDescriptor() {
             m_sf = new StringFormat();
@@ -108,16 +108,16 @@ namespace ST.Library.UI.NodeEditor
         }
 
         /// <summary>
-        /// 当确定STNode属性在属性编辑器上的位置时候发生
+        /// Occurs when determining the position of the STNode attribute on the attribute editor.
         /// </summary>
         protected internal virtual void OnSetItemLocation() { }
         /// <summary>
-        /// 将字符串形式的属性值转换为属性目标类型的值
-        /// 默认只支持 int float double string bool 以及上述类型的Array
-        /// 若目标类型不在上述中 请重写此函数自行转换
+        /// Convert the attribute value in the form of a string to the value of the attribute target type.
+        /// By default, only int float double string bool and the above types of Array are supported.
+        /// If the target type is not in the above, please rewrite this function to convert by yourself.
         /// </summary>
-        /// <param name="strText">字符串形式的属性值</param>
-        /// <returns>属性真实目标类型的值</returns>
+        /// <param name="strText">Attribute value as a string</param>
+        /// <returns>The value of the true target type of the attribute</returns>
         protected internal virtual object GetValueFromString(string strText) {
             Type t = this.PropertyInfo.PropertyType;
             if (t == m_t_int) return int.Parse(strText);
@@ -141,12 +141,12 @@ namespace ST.Library.UI.NodeEditor
                     for (int i = 0; i < strs.Length; i++) arr[i] = float.Parse(strs[i].Trim());
                     return arr;
                 }
-                if (t_1 == m_t_int) {
+                if (t_1 == m_t_double) {
                     double[] arr = new double[strs.Length];
                     for (int i = 0; i < strs.Length; i++) arr[i] = double.Parse(strs[i].Trim());
                     return arr;
                 }
-                if (t_1 == m_t_int) {
+                if (t_1 == m_t_bool) {
                     bool[] arr = new bool[strs.Length];
                     for (int i = 0; i < strs.Length; i++) arr[i] = bool.Parse(strs[i].Trim());
                     return arr;
@@ -155,11 +155,11 @@ namespace ST.Library.UI.NodeEditor
             throw new InvalidCastException("Unable to complete the conversion from[string] to[" + t.FullName + "] Please reload[STNodePropertyDescriptor.GetValueFromString(string)].");
         }
         /// <summary>
-        /// 将属性目标类型的值转换为字符串形式的值
-        /// 默认对类型值进行 ToString() 操作
-        /// 如需特殊处理 请重写此函数自行转换
+        /// Convert the value of the attribute target type to a value in the form of a string.
+        /// ToString() operation is performed on type values ​​by default.
+        /// If you need special processing, please rewrite this function to convert by yourself.
         /// </summary>
-        /// <returns>属性值的字符串形式</returns>
+        /// <returns>The string form of the attribute value</returns>
         protected internal virtual string GetStringFromValue() {
             var v = this.PropertyInfo.GetValue(this.Node, null);
             var t = this.PropertyInfo.PropertyType;
@@ -172,96 +172,96 @@ namespace ST.Library.UI.NodeEditor
             return v.ToString();
         }
         /// <summary>
-        /// 将二进制形式的属性值转换为属性目标类型的值 用于从文件存储中的数据还原属性值
-        /// 默认将其转换为字符串然后调用 GetValueFromString(string)
-        /// 此函数与 GetBytesFromValue() 相对应 若需要重写函数应当两个函数一起重写
+        /// Convert the attribute value in binary form to the value of the attribute target type to restore the attribute value from the data in the file storage
+        /// Convert it to a string by default and then call GetValueFromString(string)
+        /// This function corresponds to GetBytesFromValue(). If you need to rewrite the function, you should rewrite the two functions together
         /// </summary>
-        /// <param name="byData">二进制数据</param>
-        /// <returns>属性真实目标类型的值</returns>
+        /// <param name="byData">Binary data</param>
+        /// <returns>The value of the true target type of the attribute</returns>
         protected internal virtual object GetValueFromBytes(byte[] byData) {
             if (byData == null) return null;
             string strText = Encoding.UTF8.GetString(byData);
             return this.GetValueFromString(strText);
         }
         /// <summary>
-        /// 将属性目标类型的值转换为二进制形式的值 用于文件存储时候调用
-        /// 默认调用 GetStringFromValue() 然后将字符串转换为二进制数据
-        /// 如需特殊处理 请重写此函数自行转换 并且重写 GetValueFromBytes()
+        /// Convert the value of the attribute target type to a value in binary form, which is used for file storage.
+        /// By default, GetStringFromValue() is called and then the string is converted to binary data.
+        /// If you need special processing, please rewrite this function to convert by yourself and rewrite GetValueFromBytes().
         /// </summary>
-        /// <returns>属性值的二进制形式</returns>
+        /// <returns>The binary form of the attribute value</returns>
         protected internal virtual byte[] GetBytesFromValue() {
             string strText = this.GetStringFromValue();
             if (strText == null) return null;
             return Encoding.UTF8.GetBytes(strText);
         }
         /// <summary>
-        /// 此函数对应 System.Reflection.PropertyInfo.GetValue()
+        /// This function corresponds to System.Reflection.PropertyInfo.GetValue().
         /// </summary>
-        /// <param name="index">索引属性的可选索引值 对于非索引属性 此值应为null</param>
-        /// <returns>属性值</returns>
+        /// <param name="index">Optional index value for indexed properties. For non-indexed properties this value should be null.</param>
+        /// <returns>Attribute value</returns>
         protected internal virtual object GetValue(object[] index) {
             return this.PropertyInfo.GetValue(this.Node, index);
         }
         /// <summary>
-        /// 此函数对应 System.Reflection.PropertyInfo.SetValue()
+        /// This function corresponds to System.Reflection.PropertyInfo.SetValue().
         /// </summary>
-        /// <param name="value">需要设置的属性值</param>
+        /// <param name="value">The attribute value that needs to be set</param>
         protected internal virtual void SetValue(object value) {
             this.PropertyInfo.SetValue(this.Node, value, null);
         }
         /// <summary>
-        /// 此函数对应 System.Reflection.PropertyInfo.SetValue()
-        /// 在调用之前会默认进行 GetValueFromString(strValue) 处理
+        /// This function corresponds to System.Reflection.PropertyInfo.SetValue().
+        /// GetValueFromString(strValue) will be processed by default before calling.
         /// </summary>
-        /// <param name="strValue">需要设置的属性字符串形式的值</param>
+        /// <param name="strValue">The value in the form of an attribute string that needs to be set</param>
         protected internal virtual void SetValue(string strValue) {
             this.PropertyInfo.SetValue(this.Node, this.GetValueFromString(strValue), null);
         }
         /// <summary>
-        /// 此函数对应 System.Reflection.PropertyInfo.SetValue()
-        /// 在调用之前会默认进行 GetValueFromBytes(byte[]) 处理
+        /// This function corresponds to System.Reflection.PropertyInfo.SetValue().
+        /// GetValueFromBytes(byte[]) will be processed by default before calling.
         /// </summary>
-        /// <param name="byData">需要设置的属性二进制数据</param>
+        /// <param name="byData">The attribute binary data that needs to be set</param>
         protected internal virtual void SetValue(byte[] byData) {
             this.PropertyInfo.SetValue(this.Node, this.GetValueFromBytes(byData), null);
         }
         /// <summary>
-        /// 此函数对应 System.Reflection.PropertyInfo.SetValue()
+        /// This function corresponds to System.Reflection.PropertyInfo.SetValue().
         /// </summary>
-        /// <param name="value">需要设置的属性值</param>
-        /// <param name="index">索引属性的可选索引值 对于非索引属性 此值应为null</param>
+        /// <param name="value">The attribute value that needs to be set</param>
+        /// <param name="index">Optional index value for indexed properties. For non-indexed properties this value should be null.</param>
         protected internal virtual void SetValue(object value, object[] index) {
             this.PropertyInfo.SetValue(this.Node, value, index);
         }
         /// <summary>
-        /// 此函数对应 System.Reflection.PropertyInfo.SetValue()
-        /// 在调用之前会默认进行 GetValueFromString(strValue) 处理
+        /// This function corresponds to System.Reflection.PropertyInfo.SetValue().
+        /// GetValueFromString(strValue) will be processed by default before calling.
         /// </summary>
-        /// <param name="strValue">需要设置的属性字符串形式的值</param>
-        /// <param name="index">索引属性的可选索引值 对于非索引属性 此值应为null</param>
+        /// <param name="strValue">The value in the form of an attribute string that needs to be set</param>
+        /// <param name="index">Optional index value for indexed properties For non-indexed properties this value should be null</param>
         protected internal virtual void SetValue(string strValue, object[] index) {
             this.PropertyInfo.SetValue(this.Node, this.GetValueFromString(strValue), index);
         }
         /// <summary>
-        /// 此函数对应 System.Reflection.PropertyInfo.SetValue()
-        /// 在调用之前会默认进行 GetValueFromBytes(byte[]) 处理
+        /// This function corresponds to System.Reflection.PropertyInfo.SetValue().
+        /// GetValueFromBytes(byte[]) will be processed by default before calling.
         /// </summary>
-        /// <param name="byData">需要设置的属性二进制数据</param>
-        /// <param name="index">索引属性的可选索引值 对于非索引属性 此值应为null</param>
+        /// <param name="byData">The attribute binary data that needs to be set</param>
+        /// <param name="index">Optional index value for indexed properties For non-indexed properties this value should be null</param>
         protected internal virtual void SetValue(byte[] byData, object[] index) {
             this.PropertyInfo.SetValue(this.Node, this.GetValueFromBytes(byData), index);
         }
         /// <summary>
-        /// 当设置属性值发生错误时候发生
+        /// Occurs when an error occurs when setting the property value.
         /// </summary>
-        /// <param name="ex">异常信息</param>
+        /// <param name="ex">Exception information</param>
         protected internal virtual void OnSetValueError(Exception ex) {
             this.Control.SetErrorMessage(ex.Message);
         }
         /// <summary>
-        /// 当绘制属性在属性编辑器上的值所在区域时候发生
+        /// Occurs when the property is drawn in the area where the value on the property editor is located.
         /// </summary>
-        /// <param name="dt">绘制工具</param>
+        /// <param name="dt">Drawing tools</param>
         protected internal virtual void OnDrawValueRectangle(DrawingTools dt) {
             Graphics g = dt.Graphics;
             SolidBrush brush = dt.SolidBrush;
@@ -284,35 +284,34 @@ namespace ST.Library.UI.NodeEditor
             }
         }
         /// <summary>
-        /// 当鼠标进入属性值所在区域时候发生
+        /// Occurs when the mouse enters the area where the attribute value is located.
         /// </summary>
-        /// <param name="e">事件参数</param>
+        /// <param name="e">Event parameter</param>
         protected internal virtual void OnMouseEnter(EventArgs e) { }
         /// <summary>
-        /// 当鼠标在属性值所在区域点击时候发生
+        /// Occurs when the mouse clicks on the area where the attribute value is located.
         /// </summary>
-        /// <param name="e">事件参数</param>
-        protected internal virtual void OnMouseDown(MouseEventArgs e) {
-        }
+        /// <param name="e">Event parameter</param>
+        protected internal virtual void OnMouseDown(MouseEventArgs e) { }
         /// <summary>
-        /// 当鼠标在属性值所在区域移动时候发生
+        /// Occurs when the mouse moves in the area where the attribute value is located.
         /// </summary>
-        /// <param name="e">事件参数</param>
+        /// <param name="e">Event parameter</param>
         protected internal virtual void OnMouseMove(MouseEventArgs e) { }
         /// <summary>
-        /// 当鼠标在属性值所在区域抬起时候发生
+        /// Occurs when the mouse is raised in the area where the attribute value is located.
         /// </summary>
-        /// <param name="e">事件参数</param>
+        /// <param name="e">Event parameter</param>
         protected internal virtual void OnMouseUp(MouseEventArgs e) { }
         /// <summary>
-        /// 当鼠标在属性值所在区域离开时候发生
+        /// Occurs when the mouse leaves the area where the attribute value is located.
         /// </summary>
-        /// <param name="e">事件参数</param>
+        /// <param name="e">Event parameter</param>
         protected internal virtual void OnMouseLeave(EventArgs e) { }
         /// <summary>
-        /// 当鼠标在属性值所在区域点击时候发生
+        /// Occurs when the mouse clicks on the area where the attribute value is located.
         /// </summary>
-        /// <param name="e">事件参数</param>
+        /// <param name="e">Event parameter</param>
         protected internal virtual void OnMouseClick(MouseEventArgs e) {
             Type t = this.PropertyInfo.PropertyType;
             if (t == m_t_bool || t.IsEnum) {
@@ -323,7 +322,7 @@ namespace ST.Library.UI.NodeEditor
             new FrmSTNodePropertyInput(this).Show(this.Control);
         }
         /// <summary>
-        /// 重绘选项区域
+        /// Redraw options area.
         /// </summary>
         public void Invalidate() {
             Rectangle rect = this.Rectangle;

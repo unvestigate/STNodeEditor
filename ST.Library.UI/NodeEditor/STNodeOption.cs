@@ -15,20 +15,20 @@ namespace ST.Library.UI.NodeEditor
 
         private STNode _Owner;
         /// <summary>
-        /// 获取当前 Option 所属的 Node
+        /// Get the Node to which the current Option belongs.
         /// </summary>
         public STNode Owner {
             get { return _Owner; }
             internal set {
                 if (value == _Owner) return;
-                if (_Owner != null) this.DisConnectionAll();        //当所有者变更时 断开当前所有连接
+                if (_Owner != null) this.DisconnectAll();        //When the owner changes, disconnect all current connections.
                 _Owner = value;
             }
         }
 
         private bool _IsSingle;
         /// <summary>
-        /// 获取当前 Option 是否仅能被连接一次
+        /// Get whether the current Option can only be connected once.
         /// </summary>
         public bool IsSingle {
             get { return _IsSingle; }
@@ -36,7 +36,7 @@ namespace ST.Library.UI.NodeEditor
 
         private bool _IsInput;
         /// <summary>
-        /// 获取当前 Option 是否是输入选项
+        /// Get whether the current Option is an input option.
         /// </summary>
         public bool IsInput {
             get { return _IsInput; }
@@ -45,7 +45,7 @@ namespace ST.Library.UI.NodeEditor
 
         private Color _TextColor = Color.White;
         /// <summary>
-        /// 获取或设置当前 Option 文本颜色
+        /// Get or set the current Option text color.
         /// </summary>
         public Color TextColor {
             get { return _TextColor; }
@@ -58,7 +58,7 @@ namespace ST.Library.UI.NodeEditor
 
         private Color _DotColor = Color.Transparent;
         /// <summary>
-        /// 获取或设置当前 Option 连接点的颜色
+        /// Get or set the color of the connection point of the current Option.
         /// </summary>
         public Color DotColor {
             get { return _DotColor; }
@@ -71,8 +71,8 @@ namespace ST.Library.UI.NodeEditor
 
         private string _Text;
         /// <summary>
-        /// 获取或设置当前 Option 显示文本
-        /// 当AutoSize被设置时 无法修改此属性
+        /// Get or set the current Option display text.
+        /// When AutoSize is set, this property cannot be modified.
         /// </summary>
         public string Text {
             get { return _Text; }
@@ -86,7 +86,7 @@ namespace ST.Library.UI.NodeEditor
 
         private int _DotLeft;
         /// <summary>
-        /// 获取当前 Option 连接点的左边坐标
+        /// Get the left coordinate of the current Option connection point.
         /// </summary>
         public int DotLeft {
             get { return _DotLeft; }
@@ -94,7 +94,7 @@ namespace ST.Library.UI.NodeEditor
         }
         private int _DotTop;
         /// <summary>
-        /// 获取当前 Option 连接点的上边坐标
+        /// Get the upper coordinate of the current Option connection point.
         /// </summary>
         public int DotTop {
             get { return _DotTop; }
@@ -103,7 +103,7 @@ namespace ST.Library.UI.NodeEditor
 
         private int _DotSize;
         /// <summary>
-        /// 获取当前 Option 连接点的宽度
+        /// Get the width of the current Option connection point.
         /// </summary>
         public int DotSize {
             get { return _DotSize; }
@@ -112,7 +112,7 @@ namespace ST.Library.UI.NodeEditor
 
         private Rectangle _TextRectangle;
         /// <summary>
-        /// 获取当前 Option 文本区域
+        /// Get the current Option text area.
         /// </summary>
         public Rectangle TextRectangle {
             get { return _TextRectangle; }
@@ -121,7 +121,7 @@ namespace ST.Library.UI.NodeEditor
 
         private object _Data;
         /// <summary>
-        /// 获取或者设置当前 Option 所包含的数据
+        /// Get or set the data contained in the current Option.
         /// </summary>
         public object Data {
             get { return _Data; }
@@ -139,7 +139,7 @@ namespace ST.Library.UI.NodeEditor
 
         private Type _DataType;
         /// <summary>
-        /// 获取当前 Option 数据类型
+        /// Get the current Option data type.
         /// </summary>
         public Type DataType {
             get { return _DataType; }
@@ -148,7 +148,7 @@ namespace ST.Library.UI.NodeEditor
 
         //private Rectangle _DotRectangle;
         /// <summary>
-        /// 获取当前 Option 连接点的区域
+        /// Get the area of ​​the current Option connection point.
         /// </summary>
         public Rectangle DotRectangle {
             get {
@@ -156,13 +156,13 @@ namespace ST.Library.UI.NodeEditor
             }
         }
         /// <summary>
-        /// 获取当前 Option 被连接的个数
+        /// Get the number of currently connected Options.
         /// </summary>
         public int ConnectionCount {
             get { return m_hs_connected.Count; }
         }
         /// <summary>
-        /// 获取当前 Option 所连接的 Option 集合
+        /// Get the set of options connected to the current Option.
         /// </summary>
         internal HashSet<STNodeOption> ConnectedOption {
             get { return m_hs_connected; }
@@ -170,7 +170,7 @@ namespace ST.Library.UI.NodeEditor
 
         #endregion Properties
         /// <summary>
-        /// 保存已经被连接的点
+        /// Save the connected points.
         /// </summary>
         protected HashSet<STNodeOption> m_hs_connected;
 
@@ -179,11 +179,11 @@ namespace ST.Library.UI.NodeEditor
         private STNodeOption() { }
 
         /// <summary>
-        /// 构造一个 Option
+        /// Construct an Option.
         /// </summary>
-        /// <param name="strText">显示文本</param>
-        /// <param name="dataType">数据类型</param>
-        /// <param name="bSingle">是否为单连接</param>
+        /// <param name="strText">Display text</param>
+        /// <param name="dataType">Type of data</param>
+        /// <param name="bSingle">Whether it is a single connection</param>
         public STNodeOption(string strText, Type dataType, bool bSingle) {
             if (dataType == null) throw new ArgumentNullException("The specified data type cannot be empty.");
             this._DotSize = 10;
@@ -198,23 +198,23 @@ namespace ST.Library.UI.NodeEditor
         #region Event
 
         /// <summary>
-        /// 当被连接时候发生
+        /// Occurs when connected.
         /// </summary>
         public event STNodeOptionEventHandler Connected;
         /// <summary>
-        /// 当连接开始发生时发生
+        /// Occurs when the connection starts to happen.
         /// </summary>
         public event STNodeOptionEventHandler Connecting;
         /// <summary>
-        /// 当连接断开时候发生
+        /// Occurs when the connection is disconnected.
         /// </summary>
-        public event STNodeOptionEventHandler DisConnected;
+        public event STNodeOptionEventHandler Disconnected;
         /// <summary>
-        /// 当连接开始断开时发生
+        /// Occurs when the connection starts to drop.
         /// </summary>
-        public event STNodeOptionEventHandler DisConnecting;
+        public event STNodeOptionEventHandler Disconnecting;
         /// <summary>
-        /// 当有数据传递时候发生
+        /// Occurs when there is data transfer.
         /// </summary>
         public event STNodeOptionEventHandler DataTransfer;
 
@@ -222,16 +222,16 @@ namespace ST.Library.UI.NodeEditor
 
         #region protected
         /// <summary>
-        /// 重绘整个控件
+        /// Redraw the entire control.
         /// </summary>
         protected void Invalidate() {
             if (this._Owner == null) return;
             this._Owner.Invalidate();
         }
         /*
-         * 开始我认为应当只有输入类型的选项才具有事件 因为输入是被动的 而输出则是主动的
-         * 但是后来发现 比如在STNodeHub中输出节点就用到了事件
-         * 以防万一所以这里代码注释起来了 也并不是很有问题 输出选项不注册事件也是一样的效果
+         * At first I thought that only the input type options should have events because the input is passive and the output is active.
+         * But later I discovered that events are used for output nodes in STNodeHub, for example.
+         * Just in case, the code here is commented and it is not very problematic. The output option does not register the event, and the effect is the same.
          */
         protected internal virtual void OnConnected(STNodeOptionEventArgs e) {
             if (this.Connected != null/* && this._IsInput*/) this.Connected(this, e);
@@ -239,30 +239,30 @@ namespace ST.Library.UI.NodeEditor
         protected internal virtual void OnConnecting(STNodeOptionEventArgs e) {
             if (this.Connecting != null) this.Connecting(this, e);
         }
-        protected internal virtual void OnDisConnected(STNodeOptionEventArgs e) {
-            if (this.DisConnected != null/* && this._IsInput*/) this.DisConnected(this, e);
+        protected internal virtual void OnDisconnected(STNodeOptionEventArgs e) {
+            if (this.Disconnected != null/* && this._IsInput*/) this.Disconnected(this, e);
         }
-        protected internal virtual void OnDisConnecting(STNodeOptionEventArgs e) {
-            if (this.DisConnecting != null) this.DisConnecting(this, e);
+        protected internal virtual void OnDisconnecting(STNodeOptionEventArgs e) {
+            if (this.Disconnecting != null) this.Disconnecting(this, e);
         }
         protected internal virtual void OnDataTransfer(STNodeOptionEventArgs e) {
             if (this.DataTransfer != null/* && this._IsInput*/) this.DataTransfer(this, e);
         }
-        protected void STNodeEidtorConnected(STNodeEditorOptionEventArgs e) {
+        protected void STNodeEditorConnected(STNodeEditorOptionEventArgs e) {
             if (this._Owner == null) return;
             if (this._Owner.Owner == null) return;
             this._Owner.Owner.OnOptionConnected(e);
         }
-        protected void STNodeEidtorDisConnected(STNodeEditorOptionEventArgs e) {
+        protected void STNodeEditorDisconnected(STNodeEditorOptionEventArgs e) {
             if (this._Owner == null) return;
             if (this._Owner.Owner == null) return;
             this._Owner.Owner.OnOptionDisconnected(e);
         }
         /// <summary>
-        /// 当前 Option 开始连接目标 Option
+        /// The current Option starts to connect to the target Option
         /// </summary>
-        /// <param name="op">需要连接的 Option</param>
-        /// <returns>是否允许继续操作</returns>
+        /// <param name="op">Option to be connected</param>
+        /// <returns>Whether to allow the operation to continue</returns>
         protected virtual bool ConnectingOption(STNodeOption op) {
             if (this._Owner == null) return false;
             if (this._Owner.Owner == null) return false;
@@ -273,17 +273,17 @@ namespace ST.Library.UI.NodeEditor
             return e.Continue;
         }
         /// <summary>
-        /// 当前 Option 开始断开目标 Option
+        /// The current Option starts to disconnect the target Option
         /// </summary>
-        /// <param name="op">需要断开的 Option</param>
-        /// <returns>是否允许继续操作</returns>
-        protected virtual bool DisConnectingOption(STNodeOption op) {
+        /// <param name="op">Option to be disconnected</param>
+        /// <returns>Whether to allow the operation to continue</returns>
+        protected virtual bool DisconnectingOption(STNodeOption op) {
             if (this._Owner == null) return false;
             if (this._Owner.Owner == null) return false;
             STNodeEditorOptionEventArgs e = new STNodeEditorOptionEventArgs(op, this, ConnectionStatus.Disconnecting);
             this._Owner.Owner.OnOptionDisconnecting(e);
-            this.OnDisConnecting(new STNodeOptionEventArgs(true, op, ConnectionStatus.Disconnecting));
-            op.OnDisConnecting(new STNodeOptionEventArgs(false, this, ConnectionStatus.Disconnecting));
+            this.OnDisconnecting(new STNodeOptionEventArgs(true, op, ConnectionStatus.Disconnecting));
+            op.OnDisconnecting(new STNodeOptionEventArgs(false, this, ConnectionStatus.Disconnecting));
             return e.Continue;
         }
 
@@ -291,38 +291,38 @@ namespace ST.Library.UI.NodeEditor
 
         #region public
         /// <summary>
-        /// 当前 Option 连接目标 Option
+        /// The current Option connection target Option.
         /// </summary>
-        /// <param name="op">需要连接的 Option</param>
-        /// <returns>连接结果</returns>
+        /// <param name="op">Option to be connected</param>
+        /// <returns>Connection result</returns>
         public virtual ConnectionStatus ConnectOption(STNodeOption op) {
             if (!this.ConnectingOption(op)) {
-                this.STNodeEidtorConnected(new STNodeEditorOptionEventArgs(op, this, ConnectionStatus.Reject));
+                this.STNodeEditorConnected(new STNodeEditorOptionEventArgs(op, this, ConnectionStatus.Reject));
                 return ConnectionStatus.Reject;
             }
 
             var v = this.CanConnect(op);
             if (v != ConnectionStatus.Connected) {
-                this.STNodeEidtorConnected(new STNodeEditorOptionEventArgs(op, this, v));
+                this.STNodeEditorConnected(new STNodeEditorOptionEventArgs(op, this, v));
                 return v;
             }
             v = op.CanConnect(this);
             if (v != ConnectionStatus.Connected) {
-                this.STNodeEidtorConnected(new STNodeEditorOptionEventArgs(op, this, v));
+                this.STNodeEditorConnected(new STNodeEditorOptionEventArgs(op, this, v));
                 return v;
             }
             op.AddConnection(this, false);
             this.AddConnection(op, true);
             this.ControlBuildLinePath();
 
-            this.STNodeEidtorConnected(new STNodeEditorOptionEventArgs(op, this, v));
+            this.STNodeEditorConnected(new STNodeEditorOptionEventArgs(op, this, v));
             return v;
         }
         /// <summary>
-        /// 检测当前 Option 是否可以连接目标 Option
+        /// Check whether the current Option can connect to the target Option
         /// </summary>
-        /// <param name="op">需要连接的 Option</param>
-        /// <returns>检测结果</returns>
+        /// <param name="op">Option to be connected</param>
+        /// <returns>Test results</returns>
         public virtual ConnectionStatus CanConnect(STNodeOption op) {
             if (this == STNodeOption.Empty || op == STNodeOption.Empty) return ConnectionStatus.EmptyOption;
             if (this._IsInput == op.IsInput) return ConnectionStatus.SameInputOrOutput;
@@ -336,43 +336,43 @@ namespace ST.Library.UI.NodeEditor
             return ConnectionStatus.Connected;
         }
         /// <summary>
-        /// 当前 Option 断开目标 Option
+        /// The current Option disconnects the target Option
         /// </summary>
-        /// <param name="op">需要断开的 Option</param>
+        /// <param name="op">Option to be disconnected</param>
         /// <returns></returns>
-        public virtual ConnectionStatus DisConnectOption(STNodeOption op) {
-            if (!this.DisConnectingOption(op)) {
-                this.STNodeEidtorDisConnected(new STNodeEditorOptionEventArgs(op, this, ConnectionStatus.Reject));
+        public virtual ConnectionStatus DisconnectOption(STNodeOption op) {
+            if (!this.DisconnectingOption(op)) {
+                this.STNodeEditorDisconnected(new STNodeEditorOptionEventArgs(op, this, ConnectionStatus.Reject));
                 return ConnectionStatus.Reject;
             }
 
             if (op.Owner == null) return ConnectionStatus.NoOwner;
             if (this._Owner == null) return ConnectionStatus.NoOwner;
             if (op.Owner.LockOption && this._Owner.LockOption) {
-                this.STNodeEidtorDisConnected(new STNodeEditorOptionEventArgs(op, this, ConnectionStatus.Locked));
+                this.STNodeEditorDisconnected(new STNodeEditorOptionEventArgs(op, this, ConnectionStatus.Locked));
                 return ConnectionStatus.Locked;
             }
             op.RemoveConnection(this, false);
             this.RemoveConnection(op, true);
             this.ControlBuildLinePath();
 
-            this.STNodeEidtorDisConnected(new STNodeEditorOptionEventArgs(op, this, ConnectionStatus.Disconnected));
+            this.STNodeEditorDisconnected(new STNodeEditorOptionEventArgs(op, this, ConnectionStatus.Disconnected));
             return ConnectionStatus.Disconnected;
         }
         /// <summary>
-        /// 断开当前 Option 的所有连接
+        /// Disconnect all connections of the current Option.
         /// </summary>
-        public void DisConnectionAll() {
+        public void DisconnectAll() {
             if (this._DataType == null) return;
             var arr = m_hs_connected.ToArray();
             foreach (var v in arr) {
-                this.DisConnectOption(v);
+                this.DisconnectOption(v);
             }
         }
         /// <summary>
-        /// 获取当前 Option 所连接的 Option 集合
+        /// Get the set of options connected to the current Option
         /// </summary>
-        /// <returns>如果为null 则表示不存在所有者 否则返回集合</returns>
+        /// <returns>If it is null, it means there is no owner, otherwise it returns a collection</returns>
         public List<STNodeOption> GetConnectedOption() {
             if (this._DataType == null) return null;
             if (!this._IsInput)
@@ -386,7 +386,7 @@ namespace ST.Library.UI.NodeEditor
             return lst;
         }
         /// <summary>
-        /// 向当前 Option 所连接的所有 Option 投递数据
+        /// Deliver data to all options connected to the current Option
         /// </summary>
         public void TransferData() {
             if (this._DataType == null) return;
@@ -395,21 +395,21 @@ namespace ST.Library.UI.NodeEditor
             }
         }
         /// <summary>
-        /// 向当前 Option 所连接的所有 Option 投递数据
+        /// Deliver data to all options connected to the current Option
         /// </summary>
-        /// <param name="data">需要投递的数据</param>
+        /// <param name="data">Data to be delivered</param>
         public void TransferData(object data) {
             if (this._DataType == null) return;
-            this.Data = data;   //不是this._Data
+            this.Data = data;   //Not this._Data
             foreach (var v in m_hs_connected) {
                 v.OnDataTransfer(new STNodeOptionEventArgs(true, this, ConnectionStatus.Connected));
             }
         }
         /// <summary>
-        /// 向当前 Option 所连接的所有 Option 投递数据
+        /// Deliver data to all options connected to the current Option
         /// </summary>
-        /// <param name="data">需要投递的数据</param>
-        /// <param name="bDisposeOld">是否释放旧数据</param>
+        /// <param name="data">Data to be delivered</param>
+        /// <param name="bDisposeOld">Whether to release old data</param>
         public void TransferData(object data, bool bDisposeOld) {
             if (bDisposeOld && this._Data != null) {
                 if (this._Data is IDisposable) ((IDisposable)this._Data).Dispose();
@@ -436,7 +436,7 @@ namespace ST.Library.UI.NodeEditor
             if (m_hs_connected.Contains(op)) {
                 b = m_hs_connected.Remove(op);
                 if (this._IsInput) this.OnDataTransfer(new STNodeOptionEventArgs(bSponsor, op, ConnectionStatus.Disconnected));
-                this.OnDisConnected(new STNodeOptionEventArgs(bSponsor, op, ConnectionStatus.Connected));
+                this.OnDisconnected(new STNodeOptionEventArgs(bSponsor, op, ConnectionStatus.Connected));
             }
             return b;
         }

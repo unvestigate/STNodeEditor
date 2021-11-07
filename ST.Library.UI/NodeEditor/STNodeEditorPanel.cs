@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace ST.Library.UI.NodeEditor
 {
-    public class STNodeEditorPannel : Control
+    public class STNodeEditorPanel : Control
     {
         private bool _LeftLayout = true;
         /// <summary>
@@ -145,7 +145,7 @@ namespace ST.Library.UI.NodeEditor
         [DllImport("user32.dll")]
         private static extern bool MoveWindow(IntPtr hWnd, int x, int y, int w, int h, bool bRedraw);
 
-        public STNodeEditorPannel() {
+        public STNodeEditorPanel() {
             this.SetStyle(ControlStyles.UserPaint, true);
             this.SetStyle(ControlStyles.ResizeRedraw, true);
             this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
@@ -233,19 +233,19 @@ namespace ST.Library.UI.NodeEditor
             if (this._LeftLayout) {
                 //m_tree.Location = Point.Empty;
                 //m_tree.Size = new Size(m_sx - 1, m_sy - 1);
-                STNodeEditorPannel.MoveWindow(m_tree.Handle, 0, 0, this._X - 1, this._Y - 1, false);
+                STNodeEditorPanel.MoveWindow(m_tree.Handle, 0, 0, this._X - 1, this._Y - 1, false);
 
                 //m_grid.Location = new Point(0, m_sy + 2);
                 //m_grid.Size = new Size(m_sx - 1, this.Height - m_sy - 2);
-                STNodeEditorPannel.MoveWindow(m_grid.Handle, 0, this._Y + 2, this._X - 1, this.Height - this._Y - 2, false);
+                STNodeEditorPanel.MoveWindow(m_grid.Handle, 0, this._Y + 2, this._X - 1, this.Height - this._Y - 2, false);
 
                 //m_editor.Location = new Point(m_sx + 2, 0);
                 //m_editor.Size = new Size(this.Width - m_sx - 2, this.Height);
-                STNodeEditorPannel.MoveWindow(m_editor.Handle, this._X + 2, 0, this.Width - this._X - 2, this.Height, false);
+                STNodeEditorPanel.MoveWindow(m_editor.Handle, this._X + 2, 0, this.Width - this._X - 2, this.Height, false);
             } else {
-                STNodeEditorPannel.MoveWindow(m_editor.Handle, 0, 0, this._X - 1, this.Height, false);
-                STNodeEditorPannel.MoveWindow(m_tree.Handle, this._X + 2, 0, this.Width - this._X - 2, this._Y - 1, false);
-                STNodeEditorPannel.MoveWindow(m_grid.Handle, this._X + 2, this._Y + 2, this.Width - this._X - 2, this.Height - this._Y - 2, false);
+                STNodeEditorPanel.MoveWindow(m_editor.Handle, 0, 0, this._X - 1, this.Height, false);
+                STNodeEditorPanel.MoveWindow(m_tree.Handle, this._X + 2, 0, this.Width - this._X - 2, this._Y - 1, false);
+                STNodeEditorPanel.MoveWindow(m_grid.Handle, this._X + 2, this._Y + 2, this.Width - this._X - 2, this.Height - this._Y - 2, false);
             }
         }
 
@@ -293,28 +293,28 @@ namespace ST.Library.UI.NodeEditor
             this.Cursor = Cursors.Arrow;
         }
         /// <summary>
-        /// 向树控件中添加一个STNode
+        /// Add an STNode to the tree control.
         /// </summary>
-        /// <param name="stNodeType">STNode类型</param>
-        /// <returns>是否添加成功</returns>
+        /// <param name="stNodeType">STNode type</param>
+        /// <returns>Is it added successfully?</returns>
         public bool AddSTNode(Type stNodeType) {
             return m_tree.AddNode(stNodeType);
         }
         /// <summary>
-        /// 从程序集中加载STNode
+        /// Load STNode from assembly.
         /// </summary>
-        /// <param name="strFileName">程序集路径</param>
-        /// <returns>添加成功个数</returns>
+        /// <param name="strFileName">Assembly path</param>
+        /// <returns>Number of successful additions</returns>
         public int LoadAssembly(string strFileName) {
             m_editor.LoadAssembly(strFileName);
             return m_tree.LoadAssembly(strFileName);
         }
         /// <summary>
-        /// 设置编辑器显示连接状态的文本
+        /// Set the editor to display the text of the connection status.
         /// </summary>
-        /// <param name="status">连接状态</param>
-        /// <param name="strText">对应显示文本</param>
-        /// <returns>旧文本</returns>
+        /// <param name="status">Connection Status</param>
+        /// <param name="strText">Corresponding display text</param>
+        /// <returns>Old text</returns>
         public string SetConnectionStatusText(ConnectionStatus status, string strText) {
             string strOld = null;
             if (m_dic_status_key.ContainsKey(status)) {

@@ -51,22 +51,22 @@ namespace ST.Library.UI.NodeEditor
 
         #region protected enum,struct --------------------------------------------------------------------------------------
 
-        protected enum CanvasAction     //当前鼠标移动操作表示进行下列哪一个行为
+        protected enum CanvasAction     //The current mouse movement operation indicates which of the following actions is performed
         {
-            None,                       //无
-            MoveNode,                   //正在移动 Node
-            ConnectOption,              //正在连接 Option
-            SelectRectangle,            //正在选择矩形区域
-            DrawMarkDetails             //正在绘制标记信息详情
+            None,                       //None
+            MoveNode,                   //Moving Node
+            ConnectOption,              //Connecting Option
+            SelectRectangle,            //Selecting rectangular area
+            DrawMarkDetails             //Drawing marker information details
         }
 
         protected struct MagnetInfo
         {
-            public bool XMatched;       //X轴是否有磁铁匹配上
+            public bool XMatched;       //Is there a magnet matching on the X axis?
             public bool YMatched;
-            public int X;               //与X轴那个数字匹配上
+            public int X;               //Match the number on the X axis
             public int Y;
-            public int OffsetX;         //当前节点X位置与匹配上的X的相对偏移
+            public int OffsetX;         //The relative offset of the current node's X position and the matched X
             public int OffsetY;
         }
 
@@ -76,7 +76,7 @@ namespace ST.Library.UI.NodeEditor
 
         private float _CanvasOffsetX;
         /// <summary>
-        /// 获取画布原点相对于控件 X 方向上的偏移位置
+        /// Get the offset position of the canvas origin relative to the X direction of the control.
         /// </summary>
         [Browsable(false)]
         public float CanvasOffsetX {
@@ -85,7 +85,7 @@ namespace ST.Library.UI.NodeEditor
 
         private float _CanvasOffsetY;
         /// <summary>
-        /// 获取画布原点相对于控件 Y 方向上的偏移位置
+        /// Get the offset position of the canvas origin relative to the Y direction of the control.
         /// </summary>
         [Browsable(false)]
         public float CanvasOffsetY {
@@ -94,7 +94,7 @@ namespace ST.Library.UI.NodeEditor
 
         private PointF _CanvasOffset;
         /// <summary>
-        /// 获取画布原点相对于控件偏移位置
+        /// Get the offset position of the canvas origin relative to the control.
         /// </summary>
         [Browsable(false)]
         public PointF CanvasOffset {
@@ -107,7 +107,7 @@ namespace ST.Library.UI.NodeEditor
 
         private Rectangle _CanvasValidBounds;
         /// <summary>
-        /// 获取画布中的有被用到的有效区域
+        /// Get the effective area in the canvas that is used.
         /// </summary>
         [Browsable(false)]
         public Rectangle CanvasValidBounds {
@@ -116,7 +116,7 @@ namespace ST.Library.UI.NodeEditor
 
         private float _CanvasScale = 1;
         /// <summary>
-        /// 获取画布的缩放比例
+        /// Get the zoom ratio of the canvas.
         /// </summary>
         [Browsable(false)]
         public float CanvasScale {
@@ -125,7 +125,7 @@ namespace ST.Library.UI.NodeEditor
 
         private float _Curvature = 0.3F;
         /// <summary>
-        /// 获取或设置 Option 之间连线的曲度
+        /// Get or set the curvature of the lines between Options.
         /// </summary>
         [Browsable(false)]
         public float Curvature {
@@ -189,7 +189,7 @@ namespace ST.Library.UI.NodeEditor
 
         private STNodeCollection _Nodes;
         /// <summary>
-        /// 获取画布中 Node 集合
+        /// Get the Node collection in the canvas.
         /// </summary>
         [Browsable(false)]
         public STNodeCollection Nodes {
@@ -200,7 +200,7 @@ namespace ST.Library.UI.NodeEditor
 
         private STNode _ActiveNode;
         /// <summary>
-        /// 获取当前画布中被选中的活动 Node
+        /// Get the selected active Node in the current canvas.
         /// </summary>
         [Browsable(false)]
         public STNode ActiveNode {
@@ -217,7 +217,7 @@ namespace ST.Library.UI.NodeEditor
 
         private STNode _HoverNode;
         /// <summary>
-        /// 获取当前画布中鼠标悬停的 Node
+        /// Get the Node where the mouse is hovering in the current canvas.
         /// </summary>
         [Browsable(false)]
         public STNode HoverNode {
@@ -405,39 +405,39 @@ namespace ST.Library.UI.NodeEditor
 
         #region protected properties ----------------------------------------------------------------------------------------
         /// <summary>
-        /// 当前鼠标在控件中的实时位置
+        /// The current real-time position of the mouse in the control.
         /// </summary>
         protected Point m_pt_in_control;
         /// <summary>
-        /// 当前鼠标在画布中的实时位置
+        /// The current real-time position of the mouse in the canvas.
         /// </summary>
         protected PointF m_pt_in_canvas;
         /// <summary>
-        /// 鼠标点击时在控件上的位置
+        /// The position on the control when the mouse is clicked.
         /// </summary>
         protected Point m_pt_down_in_control;
         /// <summary>
-        /// 鼠标点击时在画布中的位置
+        /// The position in the canvas when the mouse is clicked.
         /// </summary>
         protected PointF m_pt_down_in_canvas;
         /// <summary>
-        /// 用于鼠标点击移动画布时候 鼠标点下时候的画布坐标位置
+        /// Used to move the canvas when the mouse is clicked, and the coordinate position of the canvas when the mouse is clicked.
         /// </summary>
         protected PointF m_pt_canvas_old;
         /// <summary>
-        /// 用于保存连线过程中保存点下 Option 的起点坐标
+        /// Used to save the starting point coordinates of the Option under the save point during the connection process.
         /// </summary>
         protected Point m_pt_dot_down;
         /// <summary>
-        /// 用于保存连线过程中鼠标点下的起点Option 当MouseUP时候 确定是否连接此节点
+        /// Used to save the starting point under the mouse point in the connection process Option When MouseUP determines whether to connect to this node.
         /// </summary>
         protected STNodeOption m_option_down;
         /// <summary>
-        /// 当前鼠标点下的 STNode
+        /// STNode under the current mouse click.
         /// </summary>
         protected STNode m_node_down;
         /// <summary>
-        /// 当前鼠标是否位于控件中
+        /// Whether the current mouse is in the control.
         /// </summary>
         protected bool m_mouse_in_control;
 
@@ -466,41 +466,41 @@ namespace ST.Library.UI.NodeEditor
         private MagnetInfo m_mi = new MagnetInfo();
 
         private RectangleF m_rect_select = new RectangleF();
-        //节点边框预设图案
+        //Node border preset pattern
         private Image m_img_border;
         private Image m_img_border_hover;
         private Image m_img_border_selected;
         private Image m_img_border_active;
-        //用于鼠标滚动或者触摸板移动画布时候的动画效果 该值为需要移动到的真实坐标地址 查看->MoveCanvasThread()
+        //Used for the animation effect when the mouse scrolls or the touchpad moves the canvas. This value is the real coordinate address that needs to be moved to. View->MoveCanvasThread()
         private float m_real_canvas_x;
         private float m_real_canvas_y;
-        //用于移动节点时候 保存鼠标点下时候选中的节点初始坐标
+        //Used to save the initial coordinates of the selected node when the mouse is clicked
         private Dictionary<STNode, Point> m_dic_pt_selected = new Dictionary<STNode, Point>();
-        //用于磁铁效果 移动节点时候 非选择节点的统计出来的需要参与磁铁效果的坐标 查看->BuildMagnetLocation()
+        //Used for magnet effect When moving nodes, the statistics of non-selected nodes need to participate in the coordinates of the magnet effect. View->BuildMagnetLocation()
         private List<int> m_lst_magnet_x = new List<int>();
         private List<int> m_lst_magnet_y = new List<int>();
-        //用于磁铁效果 移动节点时候 活动选择节点统计出来需要参与磁铁效果的坐标 查看->CheckMagnet()
+        //Used for the magnet effect when moving the node, the active selection node counts the coordinates that need to participate in the magnet effect View->CheckMagnet()
         private List<int> m_lst_magnet_mx = new List<int>();
         private List<int> m_lst_magnet_my = new List<int>();
-        //用于鼠标滚动中计算时间触发间隔 根据间隔不同 画布产生的位移不同 查看->OnMouseWheel(),OnMouseHWheel()
+        //It is used to calculate the time trigger interval during mouse scrolling. According to the interval, the displacement produced by the canvas is different. View->OnMouseWheel(),OnMouseHWheel()
         private DateTime m_dt_vw = DateTime.Now;
         private DateTime m_dt_hw = DateTime.Now;
-        //移动鼠标过程中的当前行为
+        //Current behavior during mouse movement
         private CanvasAction m_ca;
-        //保存已选中的节点
+        //Save the selected node
         private HashSet<STNode> m_hs_node_selected = new HashSet<STNode>();
 
-        private bool m_is_process_mouse_event = true;               //是否向下(Node or NodeControls)传递鼠标相关事件 如断开连接相关操作不应向下传递
-        private bool m_is_buildpath;                                //用于重绘过程中 判断该次是否要重新建立缓存连线的路径
-        private Pen m_p_line = new Pen(Color.Cyan, 2f);             //用于绘制已经连接的线条
-        private Pen m_p_line_hover = new Pen(Color.Cyan, 4f);       //用于绘制鼠标悬停时候的线条
-        private GraphicsPath m_gp_hover;                            //当前鼠标悬停的连线路径
-        private StringFormat m_sf = new StringFormat();             //文本格式 用于Mark绘制时候 设置文本格式
-        //保存每个连接线条与之对应的节点关系
+        private bool m_is_process_mouse_event = true;               //Whether to pass mouse-related events downwards (Node or NodeControls), such as disconnection-related operations should not be passed downwards
+        private bool m_is_buildpath;                                //Used to determine whether to re-establish the cache connection path during the redrawing process
+        private Pen m_p_line = new Pen(Color.Cyan, 2f);             //Used to draw connected lines
+        private Pen m_p_line_hover = new Pen(Color.Cyan, 4f);       //Used to draw the line when the mouse is hovering
+        private GraphicsPath m_gp_hover;                            //The current connection path where the mouse is hovering
+        private StringFormat m_sf = new StringFormat();             //Text format Used to set the text format when Mark draws
+        //Save the node relationship corresponding to each connecting line
         private Dictionary<GraphicsPath, ConnectionInfo> m_dic_gp_info = new Dictionary<GraphicsPath, ConnectionInfo>();
-        //保存超出视觉区域的 Node 的位置
+        //Save the position of the Node beyond the visual area
         private List<Point> m_lst_node_out = new List<Point>();
-        //当前编辑器已加载的 Node 类型 用于从文件或者数据中加载节点使用
+        //The Node type loaded in the current editor is used to load nodes from files or data.
         private Dictionary<string, Type> m_dic_type = new Dictionary<string, Type>();
 
         private int m_time_alert;
@@ -630,9 +630,11 @@ namespace ST.Library.UI.NodeEditor
         protected override void WndProc(ref Message m) {
             base.WndProc(ref m);
             try {
-                Point pt = new Point(((int)m.LParam) >> 16, (ushort)m.LParam);
-                pt = this.PointToClient(pt);
-                if (m.Msg == WM_MOUSEHWHEEL) { //获取水平滚动消息
+                if (m.Msg == WM_MOUSEHWHEEL) { //Get horizontal scrolling message
+
+                    Point pt = new Point(((int)m.LParam) >> 16, (ushort)m.LParam);
+                    pt = this.PointToClient(pt);
+
                     MouseButtons mb = MouseButtons.None;
                     int n = (ushort)m.WParam;
                     if ((n & 0x0001) == 0x0001) mb |= MouseButtons.Left;
@@ -655,13 +657,13 @@ namespace ST.Library.UI.NodeEditor
 
             if (this._ShowGrid) this.OnDrawGrid(m_drawing_tools, this.Width, this.Height);
 
-            g.TranslateTransform(this._CanvasOffsetX, this._CanvasOffsetY); //移动坐标系
-            g.ScaleTransform(this._CanvasScale, this._CanvasScale);         //缩放绘图表面
+            g.TranslateTransform(this._CanvasOffsetX, this._CanvasOffsetY); //Move the coordinate system
+            g.ScaleTransform(this._CanvasScale, this._CanvasScale);         //Scale the drawing surface
 
             this.OnDrawConnectedLine(m_drawing_tools);
             this.OnDrawNode(m_drawing_tools, this.ControlToCanvas(this.ClientRectangle));
 
-            if (m_ca == CanvasAction.ConnectOption) {                       //如果正在连线
+            if (m_ca == CanvasAction.ConnectOption) {                       //If you are connecting
                 m_drawing_tools.Pen.Color = this._HighLineColor;
                 g.SmoothingMode = SmoothingMode.HighQuality;
                 if (m_option_down.IsInput)
@@ -669,17 +671,17 @@ namespace ST.Library.UI.NodeEditor
                 else
                     this.DrawBezier(g, m_drawing_tools.Pen, m_pt_dot_down, m_pt_in_canvas, this._Curvature);
             }
-            //重置绘图坐标 我认为除了节点以外的其它 修饰相关的绘制不应该在Canvas坐标系中绘制 而应该使用控件的坐标进行绘制 不然会受到缩放比影响
+            //Reset the drawing coordinates. I think that other than the nodes, the decoration related drawing should not be drawn in the Canvas coordinate system, but the coordinates of the control should be used for drawing, otherwise it will be affected by the zoom ratio.
             g.ResetTransform();
 
             switch (m_ca) {
-                case CanvasAction.MoveNode:                                 //移动过程中 绘制对齐参考线
+                case CanvasAction.MoveNode:                                 //Draw alignment guides during movement
                     if (this._ShowMagnet && this._ActiveNode != null) this.OnDrawMagnet(m_drawing_tools, m_mi);
                     break;
-                case CanvasAction.SelectRectangle:                          //绘制矩形选取
+                case CanvasAction.SelectRectangle:                          //Draw rectangle selection
                     this.OnDrawSelectedRectangle(m_drawing_tools, this.CanvasToControl(m_rect_select));
                     break;
-                case CanvasAction.DrawMarkDetails:                          //绘制标记信息详情
+                case CanvasAction.DrawMarkDetails:                          //Draw marker information details
                     if (!string.IsNullOrEmpty(m_find.Mark)) this.OnDrawMark(m_drawing_tools);
                     break;
             }
@@ -699,20 +701,20 @@ namespace ST.Library.UI.NodeEditor
             m_pt_canvas_old.X = this._CanvasOffsetX;
             m_pt_canvas_old.Y = this._CanvasOffsetY;
 
-            if (m_gp_hover != null && e.Button == MouseButtons.Right) {     //断开连接
-                this.DisConnectionHover();
-                m_is_process_mouse_event = false; //终止MouseClick与MouseUp向下传递
+            if (m_gp_hover != null && e.Button == MouseButtons.Right) {     //Disconnect
+                this.DisconnectionHover();
+                m_is_process_mouse_event = false; //Terminate MouseClick and MouseUp to pass down
                 return;
             }
 
             NodeFindInfo nfi = this.FindNodeFromPoint(m_pt_down_in_canvas);
-            if (!string.IsNullOrEmpty(nfi.Mark)) {                          //如果点下的是标记信息
+            if (!string.IsNullOrEmpty(nfi.Mark)) {                          //If the click is marked information
                 m_ca = CanvasAction.DrawMarkDetails;
                 this.Invalidate();
                 return;
             }
 
-            if (nfi.NodeOption != null) {                                   //如果点下的Option的连接点
+            if (nfi.NodeOption != null) {                                   //If you click the option connection point
                 this.StartConnect(nfi.NodeOption);
                 return;
             }
@@ -742,7 +744,7 @@ namespace ST.Library.UI.NodeEditor
                     {
                         foreach (var n in m_hs_node_selected.ToArray()) n.SetSelected(false, false);
                     }
-                    nfi.Node.SetSelected(true, false);                      //添加到已选择节点
+                    nfi.Node.SetSelected(true, false);                      //Add to selected node
                     this.SetActiveNode(nfi.Node);
                     if (this.PointInRectangle(nfi.Node.TitleRectangle, m_pt_down_in_canvas.X, m_pt_down_in_canvas.Y))
                     {
@@ -758,11 +760,11 @@ namespace ST.Library.UI.NodeEditor
                             m_dic_pt_selected.Clear();
                             lock (m_hs_node_selected)
                             {
-                                foreach (STNode n in m_hs_node_selected)    //记录已选择节点位置 如果需要移动已选中节点时候 将会有用
+                                foreach (STNode n in m_hs_node_selected)    //Record the position of the selected node. It will be useful if you need to move the selected node.
                                     m_dic_pt_selected.Add(n, n.Location);
                             }
-                            m_ca = CanvasAction.MoveNode;                   //如果点下的是节点的标题 则可以移动该节点
-                            if (this._ShowMagnet && this._ActiveNode != null) this.BuildMagnetLocation();   //建立磁铁需要的坐标 如果需要移动已选中节点时候 将会有用
+                            m_ca = CanvasAction.MoveNode;                   //If you click the title of the node, you can move the node
+                            if (this._ShowMagnet && this._ActiveNode != null) this.BuildMagnetLocation();   //It will be useful to establish the coordinates required for the magnet if you need to move the selected node
                         }
                     }
                     else
@@ -772,8 +774,8 @@ namespace ST.Library.UI.NodeEditor
                 if (e.Button == MouseButtons.Left)
                 {
                     this.SetActiveNode(null);
-                    foreach (var n in m_hs_node_selected.ToArray()) n.SetSelected(false, false);//没有点下任何东西 清空已经选择节点
-                    m_ca = CanvasAction.SelectRectangle;                    //进入矩形区域选择模式
+                    foreach (var n in m_hs_node_selected.ToArray()) n.SetSelected(false, false);//Did not click anything to clear the selected node
+                    m_ca = CanvasAction.SelectRectangle;                    //Enter rectangular area selection mode
                     m_rect_select.Width = m_rect_select.Height = 0;
                     m_node_down = null;
                 }
@@ -788,7 +790,7 @@ namespace ST.Library.UI.NodeEditor
             m_pt_in_canvas.Y = ((e.Y - this._CanvasOffsetY) / this._CanvasScale);
 
             if (e.Button == MouseButtons.Middle)
-            {  //鼠标中键移动画布
+            {  //Move the canvas with the middle mouse button
                 this._CanvasOffsetX = m_real_canvas_x = m_pt_canvas_old.X + (e.X - m_pt_down_in_control.X);
                 this._CanvasOffsetY = m_real_canvas_y = m_pt_canvas_old.Y + (e.Y - m_pt_down_in_control.Y);
                 this.Invalidate();
@@ -803,12 +805,12 @@ namespace ST.Library.UI.NodeEditor
             }
 
             
-            if (e.Button == MouseButtons.Left) {    //如果鼠标左键点下 判断行为
+            if (e.Button == MouseButtons.Left) {    //If the left mouse button is clicked, the behavior is judged
                 m_gp_hover = null;
                 switch (m_ca) {
-                    case CanvasAction.MoveNode: this.MoveNode(e.Location); return;  //当前移动节点
-                    case CanvasAction.ConnectOption: this.Invalidate(); return;     //当前正在连线
-                    case CanvasAction.SelectRectangle:                              //当前正在选取
+                    case CanvasAction.MoveNode: this.MoveNode(e.Location); return;  //Current mobile node
+                    case CanvasAction.ConnectOption: this.Invalidate(); return;     //Currently connecting
+                    case CanvasAction.SelectRectangle:                              //Currently selected
                         m_rect_select.X = m_pt_down_in_canvas.X < m_pt_in_canvas.X ? m_pt_down_in_canvas.X : m_pt_in_canvas.X;
                         m_rect_select.Y = m_pt_down_in_canvas.Y < m_pt_in_canvas.Y ? m_pt_down_in_canvas.Y : m_pt_in_canvas.Y;
                         m_rect_select.Width = Math.Abs(m_pt_in_canvas.X - m_pt_down_in_canvas.X);
@@ -820,10 +822,10 @@ namespace ST.Library.UI.NodeEditor
                         return;
                 }
             }
-            //若不存在行为 则判断鼠标下方是否存在其他对象
+            //If there is no behavior, judge whether there are other objects under the mouse
             NodeFindInfo nfi = this.FindNodeFromPoint(m_pt_in_canvas);
             bool bRedraw = false;
-            if (this._HoverNode != nfi.Node) {          //鼠标悬停到Node上
+            if (this._HoverNode != nfi.Node) {          //Hover over Node
                 if (nfi.Node != null) nfi.Node.OnMouseEnter(EventArgs.Empty);
                 if (this._HoverNode != null)
                     this._HoverNode.OnMouseLeave(new MouseEventArgs(e.Button, e.Clicks,
@@ -840,7 +842,7 @@ namespace ST.Library.UI.NodeEditor
                 m_gp_hover = null;
             } else {
                 GraphicsPath gp = null;
-                foreach (var v in m_dic_gp_info) {          //判断鼠标是否悬停到连线路径上
+                foreach (var v in m_dic_gp_info) {          //Determine whether the mouse is hovering over the connection path
                     if (v.Key.IsOutlineVisible(m_pt_in_canvas, m_p_line_hover)) {
                         gp = v.Key;
                         break;
@@ -857,11 +859,11 @@ namespace ST.Library.UI.NodeEditor
         protected override void OnMouseUp(MouseEventArgs e) {
             base.OnMouseUp(e);
             var nfi = this.FindNodeFromPoint(m_pt_in_canvas);
-            switch (m_ca) {                         //鼠标抬起时候 判断行为
-                case CanvasAction.MoveNode:         //若正在移动Node 则重新记录当前位置
+            switch (m_ca) {                         //Judging behavior when the mouse is raised
+                case CanvasAction.MoveNode:         //If you are moving Node, re-record the current position
                     foreach (STNode n in m_dic_pt_selected.Keys.ToList()) m_dic_pt_selected[n] = n.Location;
                     break;
-                case CanvasAction.ConnectOption:    //若正在连线 则结束连接
+                case CanvasAction.ConnectOption:    //If it is connecting, end the connection
                     if (e.Location == m_pt_down_in_control) break;
                     if (nfi.NodeOption != null) {
                         if (m_option_down.IsInput)
@@ -878,7 +880,7 @@ namespace ST.Library.UI.NodeEditor
                 this._ActiveNode.OnMouseUp(mea);
                 m_node_down = null;
             }
-            m_is_process_mouse_event = true;        //当前为断开连接操作不进行事件传递 下次将接受事件
+            m_is_process_mouse_event = true;        //The current disconnection operation does not carry out event delivery, and the event will be accepted next time
             m_ca = CanvasAction.None;
             this.Invalidate();
         }
@@ -997,23 +999,23 @@ namespace ST.Library.UI.NodeEditor
 
         #region protected ----------------------------------------------------------------------------------------------------
         /// <summary>
-        /// 当绘制背景网格线时候发生
+        /// Occurs when the background grid lines are drawn.
         /// </summary>
-        /// <param name="dt">绘制工具</param>
-        /// <param name="nWidth">需要绘制宽度</param>
-        /// <param name="nHeight">需要绘制高度</param>
+        /// <param name="dt">Drawing tools</param>
+        /// <param name="nWidth">Need to draw width</param>
+        /// <param name="nHeight">Need to draw height</param>
         protected virtual void OnDrawGrid(DrawingTools dt, int nWidth, int nHeight) {
             Graphics g = dt.Graphics;
             using (Pen p_2 = new Pen(Color.FromArgb(65, this._GridColor))) {
                 using (Pen p_1 = new Pen(Color.FromArgb(30, this._GridColor))) {
-                    float nIncrement = (20 * this._CanvasScale);             //网格间的间隔 根据比例绘制
+                    float nIncrement = (20 * this._CanvasScale);             //The interval between the grids is drawn according to the scale
                     int n = 5 - (int)(this._CanvasOffsetX / nIncrement);
                     for (float f = this._CanvasOffsetX % nIncrement; f < nWidth; f += nIncrement)
                         g.DrawLine((n++ % 5 == 0 ? p_2 : p_1), f, 0, f, nHeight);
                     n = 5 - (int)(this._CanvasOffsetY / nIncrement);
                     for (float f = this._CanvasOffsetY % nIncrement; f < nHeight; f += nIncrement)
                         g.DrawLine((n++ % 5 == 0 ? p_2 : p_1), 0, f, nWidth, f);
-                    //原点两天线
+                    //Two antennas at origin
                     p_1.Color = Color.FromArgb(this._Nodes.Count == 0 ? 255 : 120, this._GridColor);
                     g.DrawLine(p_1, this._CanvasOffsetX, 0, this._CanvasOffsetX, nHeight);
                     g.DrawLine(p_1, 0, this._CanvasOffsetY, nWidth, this._CanvasOffsetY);
@@ -1021,26 +1023,26 @@ namespace ST.Library.UI.NodeEditor
             }
         }
         /// <summary>
-        /// 当绘制 Node 时候发生
+        /// Occurs when the Node is drawn.
         /// </summary>
-        /// <param name="dt">绘制工具</param>
-        /// <param name="rect">可视画布区域大小</param>
+        /// <param name="dt">Drawing tools</param>
+        /// <param name="rect">Viewable canvas area size</param>
         protected virtual void OnDrawNode(DrawingTools dt, Rectangle rect) {
-            m_lst_node_out.Clear(); //清空超出视觉区域的 Node 的坐标
+            m_lst_node_out.Clear(); //Clear the coordinates of the Node beyond the visual area
             foreach (STNode n in this._Nodes) {
                 if (this._ShowBorder) this.OnDrawNodeBorder(dt, n);
-                n.OnDrawNode(dt);                                       //调用 Node 进行自身绘制主体部分
-                if (!string.IsNullOrEmpty(n.Mark)) n.OnDrawMark(dt);    //调用 Node 进行自身绘制 Mark 区域
+                n.OnDrawNode(dt);                                       //Call Node to draw the main part of itself
+                if (!string.IsNullOrEmpty(n.Mark)) n.OnDrawMark(dt);    //Call Node to draw the Mark area by itself
                 if (!rect.IntersectsWith(n.Rectangle)) {
-                    m_lst_node_out.Add(n.Location);                     //判断此 Node 是否超出视觉区域
+                    m_lst_node_out.Add(n.Location);                     //Determine whether this Node exceeds the visual area
                 }
             }
         }
         /// <summary>
-        /// 当绘制 Node 边框时候发生
+        /// Occurs when the Node border is drawn.
         /// </summary>
-        /// <param name="dt">绘制工具</param>
-        /// <param name="node">目标node</param>
+        /// <param name="dt">Drawing tools</param>
+        /// <param name="node">Target node</param>
         protected virtual void OnDrawNodeBorder(DrawingTools dt, STNode node) {
             Image img_border = null;
             if (this._ActiveNode == node) img_border = m_img_border_active;
@@ -1051,9 +1053,9 @@ namespace ST.Library.UI.NodeEditor
             if (!string.IsNullOrEmpty(node.Mark)) this.RenderBorder(dt.Graphics, node.MarkRectangle, img_border);
         }
         /// <summary>
-        /// 当绘制已连接路径时候发生
+        /// Occurs when drawing a connected path.
         /// </summary>
-        /// <param name="dt">绘制工具</param>
+        /// <param name="dt">Drawing tools</param>
         protected virtual void OnDrawConnectedLine(DrawingTools dt) {
             Graphics g = dt.Graphics;
             g.SmoothingMode = SmoothingMode.HighQuality;
@@ -1062,7 +1064,7 @@ namespace ST.Library.UI.NodeEditor
             foreach (STNode n in this._Nodes) {
                 foreach (STNodeOption op in n.OutputOptions) {
                     if (op == STNodeOption.Empty) continue;
-                    if (op.DotColor != Color.Transparent)       //确定线条颜色
+                    if (op.DotColor != Color.Transparent)       //Determine the line color
                         m_p_line.Color = op.DotColor;
                     else {
                         if (op.DataType == t)
@@ -1075,7 +1077,7 @@ namespace ST.Library.UI.NodeEditor
                             v.DotLeft - 1, v.DotTop + v.DotSize / 2, this._Curvature);
                         this.DrawBezier(g, m_p_line, op.DotLeft + op.DotSize, op.DotTop + op.DotSize / 2,
                             v.DotLeft - 1, v.DotTop + v.DotSize / 2, this._Curvature);
-                        if (m_is_buildpath) {                       //如果当前绘制需要重新建立已连接的路径缓存
+                        if (m_is_buildpath) {                       //If the current drawing needs to re-establish the connected path cache
                             GraphicsPath gp = this.CreateBezierPath(op.DotLeft + op.DotSize, op.DotTop + op.DotSize / 2,
                                 v.DotLeft - 1, v.DotTop + v.DotSize / 2, this._Curvature);
                             m_dic_gp_info.Add(gp, new ConnectionInfo() { Output = op, Input = v });
@@ -1084,22 +1086,22 @@ namespace ST.Library.UI.NodeEditor
                 }
             }
             m_p_line_hover.Color = this._HighLineColor;
-            if (m_gp_hover != null) {       //如果当前有被悬停的连接路劲 则高亮绘制
+            if (m_gp_hover != null) {       //If there is currently a hovering link, highlight it and draw it
                 g.DrawPath(m_p_line_hover, m_gp_hover);
             }
-            m_is_buildpath = false;         //重置标志 下次绘制时候 不再重新建立路径缓存
+            m_is_buildpath = false;         //Reset the flag, the path cache will not be re-established the next time you draw
         }
         /// <summary>
-        /// 当绘制 Mark 详情信息时候发生
+        /// Occurs when drawing the Mark details.
         /// </summary>
-        /// <param name="dt">绘制工具</param>
+        /// <param name="dt">Drawing tools</param>
         protected virtual void OnDrawMark(DrawingTools dt) {
             Graphics g = dt.Graphics;
-            SizeF sz = g.MeasureString(m_find.Mark, this.Font);             //确认文字需要的大小
+            SizeF sz = g.MeasureString(m_find.Mark, this.Font);             //Confirm the required size of the text
             Rectangle rect = new Rectangle(m_pt_in_control.X + 15,
                 m_pt_in_control.Y + 10,
                 (int)sz.Width + 6,
-                4 + (this.Font.Height + 4) * m_find.MarkLines.Length);      //sz.Height并没有考虑文字的行距 所以这里高度自己计算
+                4 + (this.Font.Height + 4) * m_find.MarkLines.Length);      //sz.Height does not consider the line spacing of the text, so here the height is calculated by itself
 
             if (rect.Right > this.Width) rect.X = this.Width - rect.Width;
             if (rect.Bottom > this.Height) rect.Y = this.Height - rect.Height;
@@ -1108,7 +1110,7 @@ namespace ST.Library.UI.NodeEditor
 
             dt.SolidBrush.Color = this._MarkBackColor;
             g.SmoothingMode = SmoothingMode.None;
-            g.FillRectangle(dt.SolidBrush, rect);                             //绘制背景区域
+            g.FillRectangle(dt.SolidBrush, rect);                             //Draw background area
             rect.Width--; rect.Height--;
             dt.Pen.Color = Color.FromArgb(255, this._MarkBackColor);
             g.DrawRectangle(dt.Pen, rect);
@@ -1119,16 +1121,16 @@ namespace ST.Library.UI.NodeEditor
             rect.X += 2; rect.Width -= 3;
             rect.Height = this.Font.Height + 4;
             int nY = rect.Y + 2;
-            for (int i = 0; i < m_find.MarkLines.Length; i++) {             //绘制文字
+            for (int i = 0; i < m_find.MarkLines.Length; i++) {             //Draw text
                 rect.Y = nY + i * (this.Font.Height + 4);
                 g.DrawString(m_find.MarkLines[i], this.Font, dt.SolidBrush, rect, m_sf);
             }
         }
         /// <summary>
-        /// 当移动 Node 时候 需要显示对齐参考线时候发生
+        /// Occurs when the alignment guide line needs to be displayed when moving the Node.
         /// </summary>
-        /// <param name="dt">绘制工具</param>
-        /// <param name="mi">匹配的磁铁信息</param>
+        /// <param name="dt">Drawing tools</param>
+        /// <param name="mi">Matching magnet information</param>
         protected virtual void OnDrawMagnet(DrawingTools dt, MagnetInfo mi) {
             if (this._ActiveNode == null) return;
             Graphics g = dt.Graphics;
@@ -1141,8 +1143,8 @@ namespace ST.Library.UI.NodeEditor
             int nT = this._ActiveNode.Top, nMY = this._ActiveNode.Top + this._ActiveNode.Height / 2, nB = this._ActiveNode.Bottom;
             if (mi.XMatched) g.DrawLine(pen, this.CanvasToControl(mi.X, true), 0, this.CanvasToControl(mi.X, true), this.Height);
             if (mi.YMatched) g.DrawLine(pen, 0, this.CanvasToControl(mi.Y, false), this.Width, this.CanvasToControl(mi.Y, false));
-            g.TranslateTransform(this._CanvasOffsetX, this._CanvasOffsetY); //移动坐标系
-            g.ScaleTransform(this._CanvasScale, this._CanvasScale);         //缩放绘图表面
+            g.TranslateTransform(this._CanvasOffsetX, this._CanvasOffsetY); //Move the coordinate system
+            g.ScaleTransform(this._CanvasScale, this._CanvasScale);         //Scale the drawing surface
             if (mi.XMatched) {
                 //g.DrawLine(pen, this.CanvasToControl(mi.X, true), 0, this.CanvasToControl(mi.X, true), this.Height);
                 foreach (STNode n in this._Nodes) {
@@ -1164,10 +1166,10 @@ namespace ST.Library.UI.NodeEditor
             g.ResetTransform();
         }
         /// <summary>
-        /// 绘制选择的矩形区域
+        /// Draw selected rectangular area.
         /// </summary>
-        /// <param name="dt">绘制工具</param>
-        /// <param name="rectf">位于控件上的矩形区域</param>
+        /// <param name="dt">Drawing tools</param>
+        /// <param name="rectf">Rectangular area located on the control</param>
         protected virtual void OnDrawSelectedRectangle(DrawingTools dt, RectangleF rectf) {
             Graphics g = dt.Graphics;
             SolidBrush brush = dt.SolidBrush;
@@ -1177,25 +1179,25 @@ namespace ST.Library.UI.NodeEditor
             g.FillRectangle(brush, this.CanvasToControl(m_rect_select));
         }
         /// <summary>
-        /// 绘制超出视觉区域的 Node 位置提示信息
+        /// Draw the Node position prompt message beyond the visual area.
         /// </summary>
-        /// <param name="dt">绘制工具</param>
-        /// <param name="sz">提示框边距</param>
-        /// <param name="lstPts">超出视觉区域的 Node 位置信息</param>
+        /// <param name="dt">Drawing tools</param>
+        /// <param name="sz">Tip box margin</param>
+        /// <param name="lstPts">Node location information beyond the visual area</param>
         protected virtual void OnDrawNodeOutLocation(DrawingTools dt, Size sz, List<Point> lstPts) {
             Graphics g = dt.Graphics;
             SolidBrush brush = dt.SolidBrush;
             brush.Color = this._LocationBackColor;
             g.SmoothingMode = SmoothingMode.None;
-            if (lstPts.Count == this._Nodes.Count && this._Nodes.Count != 0) {  //如果超出个数和集合个数一样多 则全部超出 绘制外切矩形
+            if (lstPts.Count == this._Nodes.Count && this._Nodes.Count != 0) {  //If the number of excesses is as much as the number of sets, all are exceeded. Draw an outer rectangle
                 g.FillRectangle(brush, this.CanvasToControl(this._CanvasValidBounds));
             }
-            g.FillRectangle(brush, 0, 0, 4, sz.Height);                       //绘制四边背景
+            g.FillRectangle(brush, 0, 0, 4, sz.Height);                       //Draw a four-sided background
             g.FillRectangle(brush, sz.Width - 4, 0, 4, sz.Height);
             g.FillRectangle(brush, 4, 0, sz.Width - 8, 4);
             g.FillRectangle(brush, 4, sz.Height - 4, sz.Width - 8, 4);
             brush.Color = this._LocationForeColor;
-            foreach (var v in lstPts) {                                         //绘制点
+            foreach (var v in lstPts) {                                         //Draw points
                 var pt = this.CanvasToControl(v);
                 if (pt.X < 0) pt.X = 0;
                 if (pt.Y < 0) pt.Y = 0;
@@ -1205,14 +1207,14 @@ namespace ST.Library.UI.NodeEditor
             }
         }
         /// <summary>
-        /// 绘制提示信息
+        /// Drawing prompt message.
         /// </summary>
-        /// <param name="dt">绘制工具</param>
-        /// <param name="rect">需要绘制区域</param>
-        /// <param name="strText">需要绘制文本</param>
-        /// <param name="foreColor">信息前景色</param>
-        /// <param name="backColor">信息背景色</param>
-        /// <param name="al">信息位置</param>
+        /// <param name="dt">Drawing tools</param>
+        /// <param name="rect">Need to draw area</param>
+        /// <param name="strText">Need to draw text</param>
+        /// <param name="foreColor">Information foreground</param>
+        /// <param name="backColor">Information background color</param>
+        /// <param name="al">Information location</param>
         protected virtual void OnDrawAlert(DrawingTools dt, Rectangle rect, string strText, Color foreColor, Color backColor, AlertLocation al) {
             if (m_alpha_alert == 0) return;
             Graphics g = dt.Graphics;
@@ -1231,12 +1233,12 @@ namespace ST.Library.UI.NodeEditor
             g.DrawString(strText, this.Font, brush, rect, m_sf);
         }
         /// <summary>
-        /// 获取提示信息需要绘制的矩形区域
+        /// Rectangular area that needs to be drawn to get the prompt information.
         /// </summary>
-        /// <param name="g">绘图表面</param>
-        /// <param name="strText">需要绘制文本</param>
-        /// <param name="al">信息位置</param>
-        /// <returns>矩形区域</returns>
+        /// <param name="g">Drawing surface</param>
+        /// <param name="strText">Need to draw text</param>
+        /// <param name="al">Information location</param>
+        /// <returns>Rectangular area</returns>
         protected virtual Rectangle GetAlertRectangle(Graphics g, string strText, AlertLocation al) {
             SizeF szf = g.MeasureString(m_str_alert, this.Font);
             Size sz = new Size((int)Math.Round(szf.Width + 10), (int)Math.Round(szf.Height + 4));
@@ -1384,10 +1386,10 @@ namespace ST.Library.UI.NodeEditor
             return img;
         }
 
-        private ConnectionStatus DisConnectionHover() {
+        private ConnectionStatus DisconnectionHover() {
             if (!m_dic_gp_info.ContainsKey(m_gp_hover)) return ConnectionStatus.Disconnected;
             ConnectionInfo ci = m_dic_gp_info[m_gp_hover];
-            var ret = ci.Output.DisConnectOption(ci.Input);
+            var ret = ci.Output.DisconnectOption(ci.Input);
             //this.OnOptionDisconnected(new STNodeOptionEventArgs(ci.Output, ci.Input, ret));
             if (ret == ConnectionStatus.Disconnected) {
                 m_dic_gp_info.Remove(m_gp_hover);
@@ -1542,7 +1544,7 @@ namespace ST.Library.UI.NodeEditor
         }
 
         private void RenderBorder(Graphics g, Rectangle rect, Image img) {
-            //填充四个角
+            //Fill the four corners
             g.DrawImage(img, new Rectangle(rect.X - 5, rect.Y - 5, 5, 5),
                 new Rectangle(0, 0, 5, 5), GraphicsUnit.Pixel);
             g.DrawImage(img, new Rectangle(rect.Right, rect.Y - 5, 5, 5),
@@ -1551,7 +1553,7 @@ namespace ST.Library.UI.NodeEditor
                 new Rectangle(0, img.Height - 5, 5, 5), GraphicsUnit.Pixel);
             g.DrawImage(img, new Rectangle(rect.Right, rect.Bottom, 5, 5),
                 new Rectangle(img.Width - 5, img.Height - 5, 5, 5), GraphicsUnit.Pixel);
-            //四边
+            //four sides
             g.DrawImage(img, new Rectangle(rect.X - 5, rect.Y, 5, rect.Height),
                 new Rectangle(0, 5, 5, img.Height - 10), GraphicsUnit.Pixel);
             g.DrawImage(img, new Rectangle(rect.X, rect.Y - 5, rect.Width, 5),
@@ -1566,10 +1568,10 @@ namespace ST.Library.UI.NodeEditor
 
         #region public --------------------------------------------------------------------------------------------------------
         /// <summary>
-        /// 通过画布坐标进行寻找
+        /// Find by canvas coordinates.
         /// </summary>
-        /// <param name="pt">画布中的坐标</param>
-        /// <returns>寻找到的数据</returns>
+        /// <param name="pt">Coordinates in the canvas</param>
+        /// <returns>Data found</returns>
         public NodeFindInfo FindNodeFromPoint(PointF pt) {
             m_find.Node = null; m_find.NodeOption = null; m_find.Mark = null;
             for (int i = this._Nodes.Count - 1; i >= 0; i--) {
@@ -1594,26 +1596,26 @@ namespace ST.Library.UI.NodeEditor
             return m_find;
         }
         /// <summary>
-        /// 获取已经被选择的 Node 集合
+        /// Get the selected Node collection.
         /// </summary>
-        /// <returns>Node 集合</returns>
+        /// <returns>Node collection</returns>
         public STNode[] GetSelectedNode() {
             return m_hs_node_selected.ToArray();
         }
         /// <summary>
-        /// 将画布坐标转换为控件坐标
+        /// Convert canvas coordinates to control coordinates.
         /// </summary>
-        /// <param name="number">参数</param>
-        /// <param name="isX">是否为 X 坐标</param>
-        /// <returns>转换后的坐标</returns>
+        /// <param name="number">parameter</param>
+        /// <param name="isX">Is it the X coordinate</param>
+        /// <returns>Converted coordinates</returns>
         public float CanvasToControl(float number, bool isX) {
             return (number * this._CanvasScale) + (isX ? this._CanvasOffsetX : this._CanvasOffsetY);
         }
         /// <summary>
-        /// 将画布坐标转换为控件坐标
+        /// Convert canvas coordinates to control coordinates.
         /// </summary>
-        /// <param name="pt">坐标</param>
-        /// <returns>转换后的坐标</returns>
+        /// <param name="pt">coordinate</param>
+        /// <returns>Converted coordinates</returns>
         public PointF CanvasToControl(PointF pt) {
             pt.X = (pt.X * this._CanvasScale) + this._CanvasOffsetX;
             pt.Y = (pt.Y * this._CanvasScale) + this._CanvasOffsetY;
@@ -1622,10 +1624,10 @@ namespace ST.Library.UI.NodeEditor
             return pt;
         }
         /// <summary>
-        /// 将画布坐标转换为控件坐标
+        /// Convert canvas coordinates to control coordinates.
         /// </summary>
-        /// <param name="pt">坐标</param>
-        /// <returns>转换后的坐标</returns>
+        /// <param name="pt">coordinate</param>
+        /// <returns>Converted coordinates</returns>
         public Point CanvasToControl(Point pt) {
             pt.X = (int)(pt.X * this._CanvasScale + this._CanvasOffsetX);
             pt.Y = (int)(pt.Y * this._CanvasScale + this._CanvasOffsetY);
@@ -1634,10 +1636,10 @@ namespace ST.Library.UI.NodeEditor
             return pt;
         }
         /// <summary>
-        /// 将画布坐标转换为控件坐标
+        /// Convert canvas coordinates to control coordinates.
         /// </summary>
-        /// <param name="rect">矩形区域</param>
-        /// <returns>转换后的矩形区域</returns>
+        /// <param name="rect">Rectangular area</param>
+        /// <returns>Converted rectangular area</returns>
         public Rectangle CanvasToControl(Rectangle rect) {
             rect.X = (int)((rect.X * this._CanvasScale) + this._CanvasOffsetX);
             rect.Y = (int)((rect.Y * this._CanvasScale) + this._CanvasOffsetY);
@@ -1648,10 +1650,10 @@ namespace ST.Library.UI.NodeEditor
             return rect;
         }
         /// <summary>
-        /// 将画布坐标转换为控件坐标
+        /// Convert canvas coordinates to control coordinates.
         /// </summary>
-        /// <param name="rect">矩形区域</param>
-        /// <returns>转换后的矩形区域</returns>
+        /// <param name="rect">Rectangular area</param>
+        /// <returns>Converted rectangular area</returns>
         public RectangleF CanvasToControl(RectangleF rect) {
             rect.X = (rect.X * this._CanvasScale) + this._CanvasOffsetX;
             rect.Y = (rect.Y * this._CanvasScale) + this._CanvasOffsetY;
@@ -1662,39 +1664,39 @@ namespace ST.Library.UI.NodeEditor
             return rect;
         }
         /// <summary>
-        /// 将控件坐标转换为画布坐标
+        /// Convert control coordinates to canvas coordinates.
         /// </summary>
-        /// <param name="number">参数</param>
-        /// <param name="isX">是否为 X 坐标</param>
-        /// <returns>转换后的坐标</returns>
+        /// <param name="number">parameter</param>
+        /// <param name="isX">Is it the X coordinate</param>
+        /// <returns>Converted coordinates</returns>
         public float ControlToCanvas(float number, bool isX) {
             return (number - (isX ? this._CanvasOffsetX : this._CanvasOffsetY)) / this._CanvasScale;
         }
         /// <summary>
-        /// 将控件坐标转换为画布坐标
+        /// Convert control coordinates to canvas coordinates.
         /// </summary>
-        /// <param name="pt">坐标</param>
-        /// <returns>转换后的坐标</returns>
+        /// <param name="pt">coordinate</param>
+        /// <returns>Converted coordinates</returns>
         public Point ControlToCanvas(Point pt) {
             pt.X = (int)((pt.X - this._CanvasOffsetX) / this._CanvasScale);
             pt.Y = (int)((pt.Y - this._CanvasOffsetY) / this._CanvasScale);
             return pt;
         }
         /// <summary>
-        /// 将控件坐标转换为画布坐标
+        /// Convert control coordinates to canvas coordinates.
         /// </summary>
-        /// <param name="pt">坐标</param>
-        /// <returns>转换后的坐标</returns>
+        /// <param name="pt">coordinate</param>
+        /// <returns>Converted coordinates</returns>
         public PointF ControlToCanvas(PointF pt) {
             pt.X = ((pt.X - this._CanvasOffsetX) / this._CanvasScale);
             pt.Y = ((pt.Y - this._CanvasOffsetY) / this._CanvasScale);
             return pt;
         }
         /// <summary>
-        /// 将控件坐标转换为画布坐标
+        /// Convert control coordinates to canvas coordinates.
         /// </summary>
-        /// <param name="rect">矩形区域</param>
-        /// <returns>转换后的区域</returns>
+        /// <param name="rect">Rectangular area</param>
+        /// <returns>Converted area</returns>
         public Rectangle ControlToCanvas(Rectangle rect) {
             rect.X = (int)((rect.X - this._CanvasOffsetX) / this._CanvasScale);
             rect.Y = (int)((rect.Y - this._CanvasOffsetY) / this._CanvasScale);
@@ -1703,10 +1705,10 @@ namespace ST.Library.UI.NodeEditor
             return rect;
         }
         /// <summary>
-        /// 将控件坐标转换为画布坐标
+        /// Convert control coordinates to canvas coordinates.
         /// </summary>
-        /// <param name="rect">矩形区域</param>
-        /// <returns>转换后的区域</returns>
+        /// <param name="rect">Rectangular area</param>
+        /// <returns>Converted area</returns>
         public RectangleF ControlToCanvas(RectangleF rect) {
             rect.X = ((rect.X - this._CanvasOffsetX) / this._CanvasScale);
             rect.Y = ((rect.Y - this._CanvasOffsetY) / this._CanvasScale);
@@ -1715,13 +1717,13 @@ namespace ST.Library.UI.NodeEditor
             return rect;
         }
         /// <summary>
-        /// 移动画布原点坐标到指定的控件坐标位置
-        /// 当不存在 Node 时候 无法移动
+        /// Move the coordinates of the origin of the canvas to the specified coordinate position of the control.
+        /// Cannot move when Node does not exist.
         /// </summary>
-        /// <param name="x">X 坐标</param>
-        /// <param name="y">Y 坐标</param>
-        /// <param name="bAnimation">移动过程中是否启动动画效果</param>
-        /// <param name="ma">指定需要修改的坐标参数</param>
+        /// <param name="x">X coordinate</param>
+        /// <param name="y">Y coordinate</param>
+        /// <param name="bAnimation">Whether to start the animation effect during the movement</param>
+        /// <param name="ma">Specify the coordinate parameters that need to be modified</param>
         public void MoveCanvas(float x, float y, bool bAnimation, CanvasMoveArgs ma) {
             if (this._Nodes.Count == 0) {
                 m_real_canvas_x = m_real_canvas_y = 10;
@@ -1747,12 +1749,12 @@ namespace ST.Library.UI.NodeEditor
             this.OnCanvasMoved(EventArgs.Empty);
         }
         /// <summary>
-        /// 缩放画布
-        /// 当不存在 Node 时候 无法缩放
+        /// Zoom canvas.
+        /// Unable to zoom when there is no Node.
         /// </summary>
-        /// <param name="f">缩放比例</param>
-        /// <param name="x">缩放中心X位于控件上的坐标</param>
-        /// <param name="y">缩放中心Y位于控件上的坐标</param>
+        /// <param name="f">scaling ratio</param>
+        /// <param name="x">The coordinate of the zoom center X on the control</param>
+        /// <param name="y">The coordinate of the zoom center Y on the control</param>
         public void ScaleCanvas(float f, float x, float y) {
             if (this._Nodes.Count == 0) {
                 this._CanvasScale = 1F;
@@ -1773,18 +1775,18 @@ namespace ST.Library.UI.NodeEditor
             this.Invalidate();
         }
         /// <summary>
-        /// 获取当前已连接的 Option 对应关系
+        /// Get the corresponding relationship of the currently connected Option.
         /// </summary>
         /// <returns>连接信息集合</returns>
         public ConnectionInfo[] GetConnectionInfo() {
             return m_dic_gp_info.Values.ToArray();
         }
         /// <summary>
-        /// 判断两个 Node 之间是否存在连接路径
+        /// Determine whether there is a connection path between two Nodes.
         /// </summary>
-        /// <param name="nodeStart">起始 Node</param>
-        /// <param name="nodeFind">目标 Node</param>
-        /// <returns>若存在路径返回true 否则false</returns>
+        /// <param name="nodeStart">Starting Node</param>
+        /// <param name="nodeFind">Target Node</param>
+        /// <returns>Return true if there is a path, otherwise false</returns>
         public static bool CanFindNodePath(STNode nodeStart, STNode nodeFind) {
             HashSet<STNode> hs = new HashSet<STNode>();
             return STNodeEditor.CanFindNodePath(nodeStart, nodeFind, hs);
@@ -1801,17 +1803,17 @@ namespace ST.Library.UI.NodeEditor
             return false;
         }
         /// <summary>
-        /// 获取画布中指定矩形区域图像
+        /// Get the image of the specified rectangular area in the canvas.
         /// </summary>
-        /// <param name="rect">画布中指定的矩形区域</param>
-        /// <returns>图像</returns>
+        /// <param name="rect">A specified rectangular area in the canvas</param>
+        /// <returns>image</returns>
         public Image GetCanvasImage(Rectangle rect) { return this.GetCanvasImage(rect, 1f); }
         /// <summary>
-        /// 获取画布中指定矩形区域图像
+        /// Get the image of the specified rectangular area in the canvas.
         /// </summary>
-        /// <param name="rect">画布中指定的矩形区域</param>
-        /// <param name="fScale">缩放比例</param>
-        /// <returns>图像</returns>
+        /// <param name="rect">A specified rectangular area in the canvas</param>
+        /// <param name="fScale">scaling ratio</param>
+        /// <returns>image</returns>
         public Image GetCanvasImage(Rectangle rect, float fScale) {
             if (fScale < 0.5) fScale = 0.5f; else if (fScale > 3) fScale = 3;
             Image img = new Bitmap((int)(rect.Width * fScale), (int)(rect.Height * fScale));
@@ -1821,7 +1823,7 @@ namespace ST.Library.UI.NodeEditor
                 m_drawing_tools.Graphics = g;
 
                 if (this._ShowGrid) this.OnDrawGrid(m_drawing_tools, rect.Width, rect.Height);
-                g.TranslateTransform(-rect.X, -rect.Y); //移动坐标系
+                g.TranslateTransform(-rect.X, -rect.Y); //Move the coordinate system
                 this.OnDrawNode(m_drawing_tools, rect);
                 this.OnDrawConnectedLine(m_drawing_tools);
 
@@ -1832,18 +1834,18 @@ namespace ST.Library.UI.NodeEditor
             return img;
         }
         /// <summary>
-        /// 保存画布中的类容到文件中
+        /// Save the class content in the canvas to the file.
         /// </summary>
-        /// <param name="strFileName">文件路径</param>
+        /// <param name="strFileName">file path</param>
         public void SaveCanvas(string strFileName) {
             using (FileStream fs = new FileStream(strFileName, FileMode.Create, FileAccess.Write)) {
                 this.SaveCanvas(fs);
             }
         }
         /// <summary>
-        /// 保存画布中的类容到数据流
+        /// Save the class content in the canvas to the data stream.
         /// </summary>
-        /// <param name="s">数据流对象</param>
+        /// <param name="s">Data stream object</param>
         public void SaveCanvas(Stream s) {
             Dictionary<STNodeOption, long> dic = new Dictionary<STNodeOption, long>();
             s.Write(new byte[] { (byte)'S', (byte)'T', (byte)'N', (byte)'D' }, 0, 4); //file head
@@ -1870,9 +1872,9 @@ namespace ST.Library.UI.NodeEditor
             }
         }
         /// <summary>
-        /// 获取画布中内容二进制数据
+        /// Get the binary data of the content in the canvas.
         /// </summary>
-        /// <returns>二进制数据</returns>
+        /// <returns>Binary data</returns>
         public byte[] GetCanvasData() {
             using (MemoryStream ms = new MemoryStream()) {
                 this.SaveCanvas(ms);
@@ -1880,10 +1882,10 @@ namespace ST.Library.UI.NodeEditor
             }
         }
         /// <summary>
-        /// 加载程序集
+        /// Load assembly.
         /// </summary>
-        /// <param name="strFiles">程序集集合</param>
-        /// <returns>存在STNode类型的文件的个数</returns>
+        /// <param name="strFiles">Assembly collection</param>
+        /// <returns>The number of files of type STNode</returns>
         public int LoadAssembly(string[] strFiles) {
             int nCount = 0;
             foreach (var v in strFiles) {
@@ -1894,10 +1896,10 @@ namespace ST.Library.UI.NodeEditor
             return nCount;
         }
         /// <summary>
-        /// 加载程序集
+        /// Load assembly.
         /// </summary>
-        /// <param name="strFile">指定需要加载的文件</param>
-        /// <returns>是否加载成功</returns>
+        /// <param name="strFile">Specify the file to be loaded</param>
+        /// <returns>Whether the load is successful</returns>
         public bool LoadAssembly(string strFile) {
             bool bFound = false;
             Assembly asm = Assembly.LoadFrom(strFile);
@@ -1913,35 +1915,35 @@ namespace ST.Library.UI.NodeEditor
             return bFound;
         }
         /// <summary>
-        /// 获取当前编辑器中已加载的Node类型
+        /// Get the Node type loaded in the current editor.
         /// </summary>
-        /// <returns>类型集合</returns>
+        /// <returns>Type collection</returns>
         public Type[] GetTypes() {
             return m_dic_type.Values.ToArray();
         }
         /// <summary>
-        /// 从文件中加载数据
-        /// 注意: 此方法并不会清空画布中数据 而是数据叠加
+        /// Load data from file.
+        /// Note: This method does not clear the data in the canvas, but data overlay.
         /// </summary>
-        /// <param name="strFileName">文件路径</param>
+        /// <param name="strFileName">file path</param>
         public void LoadCanvas(string strFileName) {
             using (MemoryStream ms = new MemoryStream(File.ReadAllBytes(strFileName)))
                 this.LoadCanvas(ms);
         }
         /// <summary>
-        /// 从二进制加载数据
-        /// 注意: 此方法并不会清空画布中数据 而是数据叠加
+        /// Load data from binary.
+        /// Note: This method does not clear the data in the canvas, but data overlay.
         /// </summary>
-        /// <param name="byData">二进制数据</param>
+        /// <param name="byData">Binary data</param>
         public void LoadCanvas(byte[] byData) {
             using (MemoryStream ms = new MemoryStream(byData))
                 this.LoadCanvas(ms);
         }
         /// <summary>
-        /// 从数据流中加载数据
-        /// 注意: 此方法并不会清空画布中数据 而是数据叠加
+        /// Load data from the data stream.
+        /// Note: This method does not clear the data in the canvas, but data overlay.
         /// </summary>
-        /// <param name="s">数据流对象</param>
+        /// <param name="s">Data stream object</param>
         public void LoadCanvas(Stream s) {
             int nLen = 0;
             byte[] byLen = new byte[4];
@@ -2028,33 +2030,33 @@ namespace ST.Library.UI.NodeEditor
             return node;
         }
         /// <summary>
-        /// 在画布中显示提示信息
+        /// Display prompt information in the canvas.
         /// </summary>
-        /// <param name="strText">要显示的信息</param>
-        /// <param name="foreColor">信息前景色</param>
-        /// <param name="backColor">信息背景色</param>
+        /// <param name="strText">Information to be displayed</param>
+        /// <param name="foreColor">Information foreground</param>
+        /// <param name="backColor">Information background color</param>
         public void ShowAlert(string strText, Color foreColor, Color backColor) {
             this.ShowAlert(strText, foreColor, backColor, 1000, AlertLocation.RightBottom, true);
         }
         /// <summary>
-        /// 在画布中显示提示信息
+        /// Display prompt information in the canvas.
         /// </summary>
-        /// <param name="strText">要显示的信息</param>
-        /// <param name="foreColor">信息前景色</param>
-        /// <param name="backColor">信息背景色</param>
-        /// <param name="al">信息要显示的位置</param>
+        /// <param name="strText">Information to be displayed</param>
+        /// <param name="foreColor">Information foreground</param>
+        /// <param name="backColor">Information background color</param>
+        /// <param name="al">Where to display the information</param>
         public void ShowAlert(string strText, Color foreColor, Color backColor, AlertLocation al) {
             this.ShowAlert(strText, foreColor, backColor, 1000, al, true);
         }
         /// <summary>
-        /// 在画布中显示提示信息
+        /// Display prompt information in the canvas.
         /// </summary>
-        /// <param name="strText">要显示的信息</param>
-        /// <param name="foreColor">信息前景色</param>
-        /// <param name="backColor">信息背景色</param>
-        /// <param name="nTime">信息持续时间</param>
-        /// <param name="al">信息要显示的位置</param>
-        /// <param name="bRedraw">是否立即重绘</param>
+        /// <param name="strText">Information to be displayed</param>
+        /// <param name="foreColor">Information foreground</param>
+        /// <param name="backColor">Information background color</param>
+        /// <param name="nTime">Message duration</param>
+        /// <param name="al">Where to display the information</param>
+        /// <param name="bRedraw">Whether to redraw immediately</param>
         public void ShowAlert(string strText, Color foreColor, Color backColor, int nTime, AlertLocation al, bool bRedraw) {
             m_str_alert = strText;
             m_forecolor_alert = foreColor;
@@ -2066,14 +2068,14 @@ namespace ST.Library.UI.NodeEditor
             if (bRedraw) this.Invalidate();
         }
         /// <summary>
-        /// 设置画布中活动的节点
+        /// Set the active node in the canvas.
         /// </summary>
-        /// <param name="node">需要被设置为活动的节点</param>
-        /// <returns>设置前的活动节点</returns>
+        /// <param name="node">Need to be set as active node</param>
+        /// <returns>Active node before setting</returns>
         public STNode SetActiveNode(STNode node) {
             if (node != null && !this._Nodes.Contains(node)) return this._ActiveNode;
             STNode ret = this._ActiveNode;
-            if (this._ActiveNode != node) {         //重置活动选择节点
+            if (this._ActiveNode != node) {         //Reset active selection node
                 if (node != null) {
                     this._Nodes.MoveToEnd(node);
                     node.IsActive = true;
@@ -2092,10 +2094,10 @@ namespace ST.Library.UI.NodeEditor
             return ret;
         }
         /// <summary>
-        /// 向画布中添加一个被选中的节点
+        /// Add a selected node to the canvas
         /// </summary>
-        /// <param name="node">需要被选中的节点</param>
-        /// <returns>是否添加成功</returns>
+        /// <param name="node">The node that needs to be selected</param>
+        /// <returns>Is it added successfully?</returns>
         public bool AddSelectedNode(STNode node) {
             if (!this._Nodes.Contains(node)) return false;
             bool b = !node.IsSelected;
@@ -2103,10 +2105,10 @@ namespace ST.Library.UI.NodeEditor
             lock (m_hs_node_selected) return m_hs_node_selected.Add(node) || b;
         }
         /// <summary>
-        /// 向画布中移除一个被选中的节点
+        /// Remove a selected node from the canvas.
         /// </summary>
-        /// <param name="node">需要被移除的节点</param>
-        /// <returns>是移除否成功</returns>
+        /// <param name="node">The node that needs to be removed</param>
+        /// <returns>Is the removal successful?</returns>
         public bool RemoveSelectedNode(STNode node) {
             if (!this._Nodes.Contains(node)) return false;
             bool b = node.IsSelected;
@@ -2114,21 +2116,21 @@ namespace ST.Library.UI.NodeEditor
             lock (m_hs_node_selected) return m_hs_node_selected.Remove(node) || b;
         }
         /// <summary>
-        /// 向编辑器中添加默认数据类型颜色
+        /// Add the default data type color to the editor
         /// </summary>
-        /// <param name="t">数据类型</param>
-        /// <param name="clr">对应颜色</param>
-        /// <returns>被设置后的颜色</returns>
+        /// <param name="t">type of data</param>
+        /// <param name="clr">Corresponding color</param>
+        /// <returns>Color after being set</returns>
         public Color SetTypeColor(Type t, Color clr) {
             return this.SetTypeColor(t, clr, false);
         }
         /// <summary>
-        /// 向编辑器中添加默认数据类型颜色
+        /// Add the default data type color to the editor
         /// </summary>
-        /// <param name="t">数据类型</param>
-        /// <param name="clr">对应颜色</param>
-        /// <param name="bReplace">若已经存在是否替换颜色</param>
-        /// <returns>被设置后的颜色</returns>
+        /// <param name="t">type of data</param>
+        /// <param name="clr">Corresponding color</param>
+        /// <param name="bReplace">Whether to replace the color if it already exists</param>
+        /// <returns>Color after being set</returns>
         public Color SetTypeColor(Type t, Color clr, bool bReplace) {
             if (this._TypeColor.ContainsKey(t)) {
                 if (bReplace) this._TypeColor[t] = clr;

@@ -69,13 +69,13 @@ namespace ST.Library.UI.NodeEditor
             this.OutputOptions.Add(output);
             input.Connected += new STNodeOptionEventHandler(input_Connected);
             input.DataTransfer += new STNodeOptionEventHandler(input_DataTransfer);
-            input.DisConnected += new STNodeOptionEventHandler(input_DisConnected);
+            input.Disconnected += new STNodeOptionEventHandler(input_Disconnected);
             output.Connected += new STNodeOptionEventHandler(output_Connected);
-            output.DisConnected += new STNodeOptionEventHandler(output_DisConnected);
+            output.Disconnected += new STNodeOptionEventHandler(output_Disconnected);
             this.Height = this.TitleHeight + this.InputOptions.Count * 20;
         }
 
-        void output_DisConnected(object sender, STNodeOptionEventArgs e) {
+        void output_Disconnected(object sender, STNodeOptionEventArgs e) {
             STNodeOption op = sender as STNodeOption;
             if (op.ConnectionCount != 0) return;
             int nIndex = this.OutputOptions.IndexOf(op);
@@ -100,7 +100,7 @@ namespace ST.Library.UI.NodeEditor
             }
         }
 
-        void input_DisConnected(object sender, STNodeOptionEventArgs e) {
+        void input_Disconnected(object sender, STNodeOptionEventArgs e) {
             STNodeOption op = sender as STNodeOption;
             if (op.ConnectionCount != 0) return;
             int nIndex = this.InputOptions.IndexOf(op);

@@ -8,14 +8,14 @@ using System.Text.RegularExpressions;
 namespace ST.Library.UI.NodeEditor
 {
     /// <summary>
-    /// STNode节点特性
-    /// 用于描述STNode开发者信息 以及部分行为
+    /// STNode node characteristics.
+    /// Used to describe STNode developer information and some behaviors.
     /// </summary>
     public class STNodeAttribute : Attribute
     {
         private string _Path;
         /// <summary>
-        /// 获取STNode节点期望在树形控件的路径
+        /// Get the path of the STNode node expected in the tree control.
         /// </summary>
         public string Path {
             get { return _Path; }
@@ -23,7 +23,7 @@ namespace ST.Library.UI.NodeEditor
 
         private string _Author;
         /// <summary>
-        /// 获取STNode节点的作者名称
+        /// Get the author name of the STNode node.
         /// </summary>
         public string Author {
             get { return _Author; }
@@ -31,7 +31,7 @@ namespace ST.Library.UI.NodeEditor
 
         private string _Mail;
         /// <summary>
-        /// 获取STNode节点的作者邮箱
+        /// Get the author mailbox of the STNode node.
         /// </summary>
         public string Mail {
             get { return _Mail; }
@@ -39,7 +39,7 @@ namespace ST.Library.UI.NodeEditor
 
         private string _Link;
         /// <summary>
-        /// 获取STNode节点的作者链接
+        /// Get the author link of the STNode node.
         /// </summary>
         public string Link {
             get { return _Link; }
@@ -47,7 +47,7 @@ namespace ST.Library.UI.NodeEditor
 
         private string _Description;
         /// <summary>
-        /// 获取STNode节点的描述信息
+        /// Get the description information of the STNode node.
         /// </summary>
         public string Description {
             get { return _Description; }
@@ -56,24 +56,24 @@ namespace ST.Library.UI.NodeEditor
         private static char[] m_ch_splitter = new char[] { '/', '\\' };
         private static Regex m_reg = new Regex(@"^https?://", RegexOptions.IgnoreCase);
         /// <summary>
-        /// 构造一个STNode特性
+        /// Construct an STNode feature.
         /// </summary>
-        /// <param name="strPath">期望路径</param>
+        /// <param name="strPath">Desired path</param>
         public STNodeAttribute(string strPath) : this(strPath, null, null, null, null) { }
         /// <summary>
-        /// 构造一个STNode特性
+        /// Construct an STNode feature.
         /// </summary>
-        /// <param name="strPath">期望路径</param>
-        /// <param name="strDescription">描述信息</param>
+        /// <param name="strPath">Desired path</param>
+        /// <param name="strDescription">Description</param>
         public STNodeAttribute(string strPath, string strDescription) : this(strPath, null, null, null, strDescription) { }
         /// <summary>
-        /// 构造一个STNode特性
+        /// Construct an STNode feature.
         /// </summary>
-        /// <param name="strPath">期望路径</param>
-        /// <param name="strAuthor">STNode作者名称</param>
-        /// <param name="strMail">STNode作者邮箱</param>
-        /// <param name="strLink">STNode作者链接</param>
-        /// <param name="strDescription">STNode节点描述信息</param>
+        /// <param name="strPath">Desired path</param>
+        /// <param name="strAuthor">STNode author name</param>
+        /// <param name="strMail">STNode author email</param>
+        /// <param name="strLink">STNode author link</param>
+        /// <param name="strDescription">STNode node description information</param>
         public STNodeAttribute(string strPath, string strAuthor, string strMail, string strLink, string strDescription) {
             if (!string.IsNullOrEmpty(strPath))
                 strPath = strPath.Trim().Trim(m_ch_splitter).Trim();
@@ -93,10 +93,10 @@ namespace ST.Library.UI.NodeEditor
 
         private static Dictionary<Type, MethodInfo> m_dic = new Dictionary<Type, MethodInfo>();
         /// <summary>
-        /// 获取类型的帮助函数
+        /// Get type helper function.
         /// </summary>
-        /// <param name="stNodeType">节点类型</param>
-        /// <returns>函数信息</returns>
+        /// <param name="stNodeType">Node type</param>
+        /// <returns>Function information</returns>
         public static MethodInfo GetHelpMethod(Type stNodeType) {
             if (m_dic.ContainsKey(stNodeType)) return m_dic[stNodeType];
             var mi = stNodeType.GetMethod("ShowHelpInfo");
@@ -109,9 +109,9 @@ namespace ST.Library.UI.NodeEditor
             return mi;
         }
         /// <summary>
-        /// 执行对应节点类型的帮助函数
+        /// Execute the help function of the corresponding node type.
         /// </summary>
-        /// <param name="stNodeType">节点类型</param>
+        /// <param name="stNodeType">Node type</param>
         public static void ShowHelp(Type stNodeType) {
             var mi = STNodeAttribute.GetHelpMethod(stNodeType);
             if (mi == null) return;

@@ -186,56 +186,56 @@ namespace ST.Library.UI.NodeEditor
         #region protected fields ==========
 
         /// <summary>
-        /// 作者链接地址区域
+        /// Author link address area.
         /// </summary>
         protected Rectangle m_rect_link;
         /// <summary>
-        /// 查看帮助按钮区域
+        /// View the help button area.
         /// </summary>
         protected Rectangle m_rect_help;
         /// <summary>
-        /// 编辑器标题区域
+        /// Editor title area.
         /// </summary>
         protected Rectangle m_rect_title;
         /// <summary>
-        /// 面板切换按钮区域
+        /// Panel switch button area.
         /// </summary>
         protected Rectangle m_rect_switch;
 
         /// <summary>
-        /// 控件在绘制过程中使用的垂直滚动偏移
+        /// The vertical scroll offset used by the control in the drawing process.
         /// </summary>
         protected int m_nOffsetY;
         /// <summary>
-        /// 保存的信息面板垂直滚动偏移
+        /// Vertical scroll offset of saved information panel.
         /// </summary>
         protected int m_nInfoOffsetY;
         /// <summary>
-        /// 保存的属性面板垂直滚动偏移
+        /// Vertical scroll offset of saved properties panel.
         /// </summary>
         protected int m_nPropertyOffsetY;
 
         /// <summary>
-        /// 控件在绘制过程中使用的绘图区域总高度
+        /// The total height of the drawing area used by the control in the drawing process.
         /// </summary>
         protected int m_nVHeight;
         /// <summary>
-        /// 保存的信息面板需要的总高度
+        /// The total height of the saved information panel.
         /// </summary>
         protected int m_nInfoVHeight;
         /// <summary>
-        /// 保存的属性面板需要的总高度
+        /// The total height of the saved property panel.
         /// </summary>
         protected int m_nPropertyVHeight;
         /// <summary>
-        /// 信息面板中Key显示需要的水平宽度
+        /// The horizontal width required for the Key display in the information panel.
         /// </summary>
         protected int m_nInfoLeft;
 
         #endregion
 
         private Type m_type;
-        private string[] m_KeysString = new string[] { "作者", "邮箱", "链接", "查看帮助" };
+        private string[] m_KeysString = new string[] { "Author", "Mail", "Link", "Help" };
 
         private int m_nTitleHeight = 20;
         private int m_item_height = 30;
@@ -244,18 +244,18 @@ namespace ST.Library.UI.NodeEditor
         // All attribute lists are saved in this List.
         private List<STNodePropertyDescriptor> m_lst_item = new List<STNodePropertyDescriptor>();
 
-        private STNodePropertyDescriptor m_item_hover;        //当前被鼠标悬停的选项
-        private STNodePropertyDescriptor m_item_hover_value;  //当前值区域被鼠标悬停的选项
-        private STNodePropertyDescriptor m_item_down_value;   //当前值区域被鼠标点击的选项
-        private STNodePropertyDescriptor m_item_selected;     //当前选中的选项
-        private STNodeAttribute m_node_attribute;       //节点参数信息
-        private bool m_b_hover_switch;                  //是否鼠标悬停在面板切换按钮上
-        private bool m_b_current_draw_info;             //当前绘制的时候是信息面板
+        private STNodePropertyDescriptor m_item_hover;        //The currently hovered option
+        private STNodePropertyDescriptor m_item_hover_value;  //The current value area is hovered by the mouse
+        private STNodePropertyDescriptor m_item_down_value;   //The current value area is clicked by the mouse
+        private STNodePropertyDescriptor m_item_selected;     //Currently selected option
+        private STNodeAttribute m_node_attribute;       //Node parameter information
+        private bool m_b_hover_switch;                  //Whether the mouse is hovering over the panel switch button
+        private bool m_b_current_draw_info;             //The current drawing is the information panel
 
-        private Point m_pt_move;                        //鼠标在控件上的实时坐标
-        private Point m_pt_down;                        //上次鼠标在控件上点下的坐标
-        private string m_str_err;                       //当被设置时 绘制错误信息
-        private string m_str_desc;                      //当被设置时 绘制描述信息
+        private Point m_pt_move;                        //Real-time coordinates of the mouse on the control
+        private Point m_pt_down;                        //The coordinates of the last time the mouse was on the top and bottom of the control
+        private string m_str_err;                       //When set, draw error message
+        private string m_str_desc;                      //When set, draw description information
 
         private Pen m_pen;
         private SolidBrush m_brush;
@@ -263,7 +263,7 @@ namespace ST.Library.UI.NodeEditor
         private DrawingTools m_dt;
 
         /// <summary>
-        /// 构造一个节点属性编辑器
+        /// Construct a node attribute editor.
         /// </summary>
         public STNodePropertyGrid() {
             this.SetStyle(ControlStyles.UserPaint, true);
@@ -361,9 +361,9 @@ namespace ST.Library.UI.NodeEditor
         #region override ==========
 
         /// <summary>
-        /// 当控件重绘时候发生
+        /// Occurs when the control is redrawn.
         /// </summary>
-        /// <param name="e">事件参数</param>
+        /// <param name="e">Event parameter</param>
         protected override void OnPaint(PaintEventArgs e) {
             base.OnPaint(e);
             Graphics g = e.Graphics;
@@ -391,9 +391,9 @@ namespace ST.Library.UI.NodeEditor
             if (!string.IsNullOrEmpty(m_str_desc)) this.OnDrawDescription(m_dt);
         }
         /// <summary>
-        /// 当鼠标在控件上移动时候发生
+        /// Occurs when the mouse moves over the control.
         /// </summary>
-        /// <param name="e">事件参数</param>
+        /// <param name="e">Event parameter</param>
         protected override void OnMouseMove(MouseEventArgs e) {
             base.OnMouseMove(e);
             m_pt_move = e.Location;
@@ -410,9 +410,9 @@ namespace ST.Library.UI.NodeEditor
                 this.OnProcessPropertyMouseMove(mea);
         }
         /// <summary>
-        /// 当鼠标在控件上点下时候发生
+        /// Occurs when the mouse clicks on the control.
         /// </summary>
-        /// <param name="e">事件参数</param>
+        /// <param name="e">Event parameter</param>
         protected override void OnMouseDown(MouseEventArgs e) {
             base.OnMouseDown(e);
             m_pt_down = e.Location;
@@ -448,9 +448,9 @@ namespace ST.Library.UI.NodeEditor
             if (bRedraw) this.Invalidate();
         }
         /// <summary>
-        /// 当鼠标在控件上抬起时候发生
+        /// Occurs when the mouse is raised on the control.
         /// </summary>
-        /// <param name="e">事件参数</param>
+        /// <param name="e">Event parameter</param>
         protected override void OnMouseUp(MouseEventArgs e) {
             base.OnMouseUp(e);
             m_str_desc = null;
@@ -466,9 +466,9 @@ namespace ST.Library.UI.NodeEditor
             this.Invalidate();
         }
         /// <summary>
-        /// 当鼠标离开控件时候发生
+        /// Occurs when the mouse leaves the control.
         /// </summary>
-        /// <param name="e">事件参数</param>
+        /// <param name="e">Event parameter</param>
         protected override void OnMouseLeave(EventArgs e) {
             base.OnMouseLeave(e);
             m_b_hover_switch = false;
@@ -477,9 +477,9 @@ namespace ST.Library.UI.NodeEditor
             this.Invalidate();
         }
         /// <summary>
-        /// 当鼠标在控件上滚动滚轮时候发生
+        /// Occurs when the mouse scrolls the wheel on the control.
         /// </summary>
-        /// <param name="e">事件参数</param>
+        /// <param name="e">Event parameter</param>
         protected override void OnMouseWheel(MouseEventArgs e) {
             base.OnMouseWheel(e);
             if (e.Delta > 0) {
@@ -497,22 +497,22 @@ namespace ST.Library.UI.NodeEditor
             this.Invalidate();
         }
         /// <summary>
-        /// 当设置控件矩形区域时候发生
+        /// Occurs when the rectangular area of ​​the control is set.
         /// </summary>
-        /// <param name="x">x坐标</param>
-        /// <param name="y">y坐标</param>
-        /// <param name="width">宽度</param>
-        /// <param name="height">高度</param>
-        /// <param name="specified">指定需要设置的标识</param>
+        /// <param name="x">x coordinate</param>
+        /// <param name="y">y coordinate</param>
+        /// <param name="width">width</param>
+        /// <param name="height">high</param>
+        /// <param name="specified">Specify the logo that needs to be set</param>
         //protected override void SetBoundsCore(int x, int y, int width, int height, BoundsSpecified specified) {
         //    if (width < 120) width = 120;
         //    if (height < 50) height = 50;
         //    base.SetBoundsCore(x, y, width, height, specified);
         //}
         /// <summary>
-        /// 当控件尺寸发生改变时候发生
+        /// Occurs when the size of the control changes.
         /// </summary>
-        /// <param name="e">事件参数</param>
+        /// <param name="e">Event parameter</param>
         protected override void OnResize(EventArgs e) {
             base.OnResize(e);
             m_rect_title.Width = this.Width;
@@ -527,11 +527,11 @@ namespace ST.Library.UI.NodeEditor
         #region virtual method ==========
 
         /// <summary>
-        /// 当绘制属性选项时候发生
+        /// Occurs when drawing attribute options.
         /// </summary>
-        /// <param name="dt">绘制工具</param>
-        /// <param name="item">目标属性选项描述器</param>
-        /// <param name="nIndex">选项所在索引</param>
+        /// <param name="dt">Drawing tools</param>
+        /// <param name="item">Target attribute option descriptor.</param>
+        /// <param name="nIndex">The index of the option</param>
         protected virtual void OnDrawPropertyItem(DrawingTools dt, STNodePropertyDescriptor item, int nIndex) {
             Graphics g = dt.Graphics;
             m_brush.Color = (nIndex % 2 == 0) ? m_clr_item_1 : m_clr_item_2;
@@ -563,9 +563,9 @@ namespace ST.Library.UI.NodeEditor
             }
         }
         /// <summary>
-        /// 绘制属性窗口标题
+        /// Draw the title of the properties window.
         /// </summary>
-        /// <param name="dt">绘制工具</param>
+        /// <param name="dt">Drawing tools</param>
         protected virtual void OnDrawTitle(DrawingTools dt) {
             Graphics g = dt.Graphics;
             if (this._AutoColor)
@@ -584,7 +584,7 @@ namespace ST.Library.UI.NodeEditor
                 g.FillRectangle(dt.SolidBrush, 8, 5, 2, 4);
                 g.FillRectangle(dt.SolidBrush, 3, 9, 8, 6);
             }
-            //是否绘制面板切换按钮
+            //Whether to draw the panel switch button.
             if (m_node_attribute == null || m_lst_item.Count == 0) return;
             if (m_b_hover_switch) {
                 m_brush.Color = this.BackColor;
@@ -617,9 +617,9 @@ namespace ST.Library.UI.NodeEditor
             });
         }
         /// <summary>
-        /// 当需要绘制属性描述信息时发生
+        /// Occurs when the property description information needs to be drawn.
         /// </summary>
-        /// <param name="dt">绘制工具</param>
+        /// <param name="dt">Drawing tools</param>
         protected virtual void OnDrawDescription(DrawingTools dt) {
             if (string.IsNullOrEmpty(m_str_desc)) return;
             Graphics g = dt.Graphics;
@@ -635,9 +635,9 @@ namespace ST.Library.UI.NodeEditor
             g.DrawString(m_str_desc, this.Font, m_brush, rect_desc, m_sf);
         }
         /// <summary>
-        /// 当需要绘制错误信息时发生
+        /// Occurs when an error message needs to be drawn.
         /// </summary>
-        /// <param name="dt">绘制工具</param>
+        /// <param name="dt">Drawing tools</param>
         protected virtual void OnDrawErrorInfo(DrawingTools dt) {
             if (string.IsNullOrEmpty(m_str_err)) return;
             Graphics g = dt.Graphics;
@@ -653,9 +653,9 @@ namespace ST.Library.UI.NodeEditor
             g.DrawString(m_str_err, this.Font, m_brush, rect_desc, m_sf);
         }
         /// <summary>
-        /// 当绘制节点信息时候发生
+        /// Occurs when drawing node information.
         /// </summary>
-        /// <param name="dt">绘制工具</param>
+        /// <param name="dt">Drawing tools</param>
         protected virtual void OnDrawInfo(DrawingTools dt) {
             if (m_node_attribute == null) return;
             var attr = m_node_attribute;
@@ -722,9 +722,9 @@ namespace ST.Library.UI.NodeEditor
             m_nInfoVHeight = rect.Bottom;
         }
         /// <summary>
-        /// 当在属性面板鼠标点下时候发生
+        /// Occurs when the mouse is clicked in the property panel.
         /// </summary>
-        /// <param name="e">鼠标事件参数</param>
+        /// <param name="e">Mouse event parameters</param>
         protected virtual void OnProcessPropertyMouseDown(MouseEventArgs e) {
             bool bRedraw = false;
             if (m_item_selected != m_item_hover) {
@@ -750,9 +750,9 @@ namespace ST.Library.UI.NodeEditor
             if (bRedraw) this.Invalidate();
         }
         /// <summary>
-        /// 当在信息面板鼠标点下时候发生
+        /// Occurs when the mouse clicks on the information panel.
         /// </summary>
-        /// <param name="e">鼠标事件参数</param>
+        /// <param name="e">Mouse event parameters</param>
         protected virtual void OnProcessInfoMouseDown(MouseEventArgs e) {
             try {
                 if (m_rect_link.Contains(e.Location)) {
@@ -765,9 +765,9 @@ namespace ST.Library.UI.NodeEditor
             }
         }
         /// <summary>
-        /// 当在属性面板鼠标移动时候发生
+        /// Occurs when the mouse moves in the properties panel.
         /// </summary>
-        /// <param name="e">鼠标事件参数</param>
+        /// <param name="e">Mouse event parameters</param>
         protected virtual void OnProcessPropertyMouseMove(MouseEventArgs e) {
             if (m_item_down_value != null) {
                 m_item_down_value.OnMouseMove(e);
@@ -798,9 +798,9 @@ namespace ST.Library.UI.NodeEditor
             }
         }
         /// <summary>
-        /// 当在信息面板鼠标移动时候发生
+        /// Occurs when the mouse moves in the information panel.
         /// </summary>
-        /// <param name="e">鼠标事件参数</param>
+        /// <param name="e">Mouse event parameters</param>
         protected virtual void OnProcessHelpMouseMove(MouseEventArgs e) {
             if (m_rect_link.Contains(e.Location) || m_rect_help.Contains(e.Location)) {
                 this.Cursor = Cursors.Hand;
@@ -812,9 +812,9 @@ namespace ST.Library.UI.NodeEditor
         #region public ==========
 
         /// <summary>
-        /// 设置需要显示的STNode节点
+        /// Set the STNode node that needs to be displayed.
         /// </summary>
-        /// <param name="node">目标节点</param>
+        /// <param name="node">Target node</param>
         public void SetNode(STNode node) {
             if (node == this._STNode) return;
             m_nInfoOffsetY = m_nPropertyOffsetY = 0;
@@ -837,19 +837,19 @@ namespace ST.Library.UI.NodeEditor
             this.Invalidate();
         }
         /// <summary>
-        /// 设置信息页面Key的显示文本
+        /// Set the display text of the key on the information page.
         /// </summary>
-        /// <param name="strAuthor">作者</param>
-        /// <param name="strMail">邮箱</param>
-        /// <param name="strLink">连接</param>
-        /// <param name="strHelp">查看帮助</param>
+        /// <param name="strAuthor">Author</param>
+        /// <param name="strMail">Mail</param>
+        /// <param name="strLink">Link</param>
+        /// <param name="strHelp">Help</param>
         public void SetInfoKey(string strAuthor, string strMail, string strLink, string strHelp) {
             m_KeysString = new string[] { strAuthor, strMail, strLink, strHelp };
         }
         /// <summary>
-        /// 设置要显示的错误信息
+        /// Set the error message to be displayed.
         /// </summary>
-        /// <param name="strText">错误信息</param>
+        /// <param name="strText">Error message</param>
         public void SetErrorMessage(string strText) {
             m_str_err = strText;
             this.Invalidate();

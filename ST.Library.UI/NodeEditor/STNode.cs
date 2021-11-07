@@ -50,8 +50,8 @@ namespace ST.Library.UI.NodeEditor
             internal set {
                 if (value == _Owner) return;
                 if (_Owner != null) {
-                    foreach (STNodeOption op in this._InputOptions.ToArray()) op.DisConnectionAll();
-                    foreach (STNodeOption op in this._OutputOptions.ToArray()) op.DisConnectionAll();
+                    foreach (STNodeOption op in this._InputOptions.ToArray()) op.DisconnectAll();
+                    foreach (STNodeOption op in this._OutputOptions.ToArray()) op.DisconnectAll();
                 }
                 _Owner = value;
                 if (!this._AutoSize) this.SetOptionsLocation();

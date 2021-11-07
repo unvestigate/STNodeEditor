@@ -198,21 +198,21 @@ namespace ST.Library.UI.NodeEditor
         private Color m_clr_item_1 = Color.FromArgb(10, 0, 0, 0);// Color.FromArgb(255, 40, 40, 40);
         private Color m_clr_item_2 = Color.FromArgb(10, 255, 255, 255);// Color.FromArgb(255, 50, 50, 50);
 
-        private int m_nOffsetY;                         //控件绘制时候需要偏移的垂直高度
-        private int m_nSourceOffsetY;                   //绘制源数据时候需要偏移的垂直高度
-        private int m_nSearchOffsetY;                   //绘制检索数据时候需要偏移的垂直高度
-        private int m_nVHeight;                         //控件中内容需要的总高度
+        private int m_nOffsetY;                         //The vertical height that the control needs to be offset when drawing
+        private int m_nSourceOffsetY;                   //The vertical height that needs to be offset when drawing the source data
+        private int m_nSearchOffsetY;                   //The vertical height that needs to be offset when drawing and retrieving data
+        private int m_nVHeight;                         //The total height required by the content in the control
 
-        private bool m_bHoverInfo;                      //当前鼠标是否悬停在信息显示按钮上
-        private STNodeTreeCollection m_item_hover;      //当前鼠标悬停的树节点
-        private Point m_pt_control;                     //鼠标在控件上的坐标
-        private Point m_pt_offsety;                     //鼠标在控件上锤子偏移后的坐标
-        private Rectangle m_rect_clear;                 //清空检索按钮区域
+        private bool m_bHoverInfo;                      //Whether the current mouse is hovering over the information display button
+        private STNodeTreeCollection m_item_hover;      //The tree node currently hovering over
+        private Point m_pt_control;                     //The coordinates of the mouse on the control
+        private Point m_pt_offsety;                     //The coordinates of the mouse after the hammer is offset on the control
+        private Rectangle m_rect_clear;                 //Clear the search button area
 
-        private string m_str_search;                    //检索的文本
-        private TextBox m_tbx = new TextBox();          //检索文本框
+        private string m_str_search;                    //Retrieved text
+        private TextBox m_tbx = new TextBox();          //Search text box
         /// <summary>
-        /// 构造一个STNode树控件
+        /// Construct a STNode tree control.
         /// </summary>
         public STNodeTreeView() {
             this.SetStyle(ControlStyles.UserPaint, true);
@@ -474,9 +474,9 @@ namespace ST.Library.UI.NodeEditor
 
         #region protected method ==========
         /// <summary>
-        /// 当绘制检索文本区域时候发生
+        /// Occurs when the search text area is drawn.
         /// </summary>
-        /// <param name="dt">绘制工具</param>
+        /// <param name="dt">Drawing tools</param>
         protected virtual void OnDrawSearch(DrawingTools dt) {
             Graphics g = dt.Graphics;
             m_brush.Color = this._TitleColor;
@@ -499,13 +499,13 @@ namespace ST.Library.UI.NodeEditor
             }
         }
         /// <summary>
-        /// 当开始绘制树节点的每一个节点时候发生
+        /// Occurs when starting to draw each node of the tree node.
         /// </summary>
-        /// <param name="dt">绘制工具</param>
-        /// <param name="Items">当前需要绘制的集合</param>
-        /// <param name="nCounter">已经绘制个数的计数器</param>
-        /// <param name="nLevel">当前位于第几级子集合</param>
-        /// <returns>已经绘制个数</returns>
+        /// <param name="dt">Drawing tools</param>
+        /// <param name="Items">The collection that currently needs to be drawn</param>
+        /// <param name="nCounter">A counter of the number that has been drawn</param>
+        /// <param name="nLevel">Which level of sub-collection is currently located</param>
+        /// <returns>Number already drawn</returns>
         protected virtual int OnStartDrawItem(DrawingTools dt, STNodeTreeCollection Items, int nCounter, int nLevel) {
             Graphics g = dt.Graphics;
             Items.DisplayRectangle = new Rectangle(0, m_nItemHeight * (nCounter + 1), this.Width, m_nItemHeight);
@@ -527,12 +527,12 @@ namespace ST.Library.UI.NodeEditor
             return nCounter;
         }
         /// <summary>
-        /// 当绘制树节点每一个节点时候发生
+        /// Occurs when each node of the tree node is drawn.
         /// </summary>
-        /// <param name="dt">绘制工具</param>
-        /// <param name="items">当前需要绘制的集合</param>
-        /// <param name="nCounter">已经绘制个数的计数器</param>
-        /// <param name="nLevel">当前位于第几级子集合</param>
+        /// <param name="dt">Drawing tools</param>
+        /// <param name="items">The collection that currently needs to be drawn</param>
+        /// <param name="nCounter">A counter of the number that has been drawn</param>
+        /// <param name="nLevel">Which level of sub-collection is currently located</param>
         protected virtual void OnDrawItem(DrawingTools dt, STNodeTreeCollection items, int nCounter, int nLevel) {
             Graphics g = dt.Graphics;
             m_brush.Color = nCounter % 2 == 0 ? m_clr_item_1 : m_clr_item_2;
@@ -553,10 +553,10 @@ namespace ST.Library.UI.NodeEditor
             this.OnDrawItemIcon(dt, items, rect);
         }
         /// <summary>
-        /// 当绘制树节点展开与关闭开关时候发生
+        /// Occurs when the drawing tree node expands and closes the switch.
         /// </summary>
-        /// <param name="dt">绘制工具</param>
-        /// <param name="items">当前需要绘制的集合</param>
+        /// <param name="dt">Drawing tools</param>
+        /// <param name="items">The collection that currently needs to be drawn</param>
         protected virtual void OnDrawSwitch(DrawingTools dt, STNodeTreeCollection items) {
             Graphics g = dt.Graphics;
             if (items.Count != 0) {
@@ -588,11 +588,11 @@ namespace ST.Library.UI.NodeEditor
             }
         }
         /// <summary>
-        /// 当绘制树节点的文本时候发生
+        /// Occurs when the text of the tree node is drawn.
         /// </summary>
-        /// <param name="dt">绘制工具</param>
-        /// <param name="items">当前需要绘制的集合</param>
-        /// <param name="rect">文本域所在矩形区域</param>
+        /// <param name="dt">Drawing tools</param>
+        /// <param name="items">The collection that currently needs to be drawn</param>
+        /// <param name="rect">The rectangular area where the text field is located</param>
         protected virtual void OnDrawItemText(DrawingTools dt, STNodeTreeCollection items, Rectangle rect) {
             Graphics g = dt.Graphics;
             rect.Width -= 20;
@@ -618,11 +618,11 @@ namespace ST.Library.UI.NodeEditor
             g.DrawString(items.Name, this.Font, m_brush, rect, m_sf);
         }
         /// <summary>
-        /// 当绘制树节点图标时候发生
+        /// Occurs when the tree node icon is drawn.
         /// </summary>
-        /// <param name="dt">绘制工具</param>
-        /// <param name="items">当前需要绘制的集合</param>
-        /// <param name="rect">文本域所在矩形区域</param>
+        /// <param name="dt">Drawing tools</param>
+        /// <param name="items">The collection that currently needs to be drawn</param>
+        /// <param name="rect">The rectangular area where the text field is located</param>
         protected virtual void OnDrawItemIcon(DrawingTools dt, STNodeTreeCollection items, Rectangle rect) {
             Graphics g = dt.Graphics;
             if (items.STNodeType != null) {
@@ -668,25 +668,25 @@ namespace ST.Library.UI.NodeEditor
 
         #region public method ==========
         /// <summary>
-        /// 在控件中检索STNode
+        /// Retrieve STNode in the control.
         /// </summary>
-        /// <param name="strText">需要检索的文本</param>
+        /// <param name="strText">The text to be retrieved</param>
         public void Search(string strText) {
             if (strText == null) return;
             if (strText.Trim() == string.Empty) return;
             m_tbx.Text = strText.Trim();
         }
         /// <summary>
-        /// 向控件中添加一个STNode类型
+        /// Add an STNode type to the control.
         /// </summary>
-        /// <param name="stNodeType">STNode类型</param>
-        /// <returns>是否添加成功</returns>
+        /// <param name="stNodeType">STNode type</param>
+        /// <returns>Is it added successfully?</returns>
         public bool AddNode(Type stNodeType) { return this.AddSTNode(stNodeType, m_items_source, null, true); }
         /// <summary>
-        /// 从文件中向控件添加STNode类型
+        /// Add the STNode type to the control from the file
         /// </summary>
-        /// <param name="strFile">指定文件路径</param>
-        /// <returns>添加成功个数</returns>
+        /// <param name="strFile">Specify file path</param>
+        /// <returns>Number of successful additions</returns>
         public int LoadAssembly(string strFile) {
             strFile = System.IO.Path.GetFullPath(strFile);
             var items = this.AddAssemblyPrivate(strFile);
@@ -696,7 +696,7 @@ namespace ST.Library.UI.NodeEditor
             return items.STNodeCount;
         }
         /// <summary>
-        /// 清空控件中所有STNode类型
+        /// Clear all STNode types in the control.
         /// </summary>
         public void Clear() {
             m_items_source.Clear();
@@ -705,10 +705,10 @@ namespace ST.Library.UI.NodeEditor
             this.Invalidate();
         }
         /// <summary>
-        /// 向控件中移除一个STNode类型
+        /// Remove an STNode type from the control.
         /// </summary>
-        /// <param name="stNodeType">STNode类型</param>
-        /// <returns>是否移除成功</returns>
+        /// <param name="stNodeType">STNode type</param>
+        /// <returns>Whether the removal was successful</returns>
         public bool RemoveNode(Type stNodeType) {
             if (!m_dic_all_type.ContainsKey(stNodeType)) return false;
             string strPath = m_dic_all_type[stNodeType];
@@ -733,13 +733,13 @@ namespace ST.Library.UI.NodeEditor
         #endregion
         //=================================================================================================
         /// <summary>
-        /// STNodeTreeView控件中每一项的集合
+        /// The collection of each item in the STNodeTreeView control.
         /// </summary>
         protected class STNodeTreeCollection : IEnumerable
         {
             private string _Name;
             /// <summary>
-            /// 获取当前树节点显示名称
+            /// Get the current tree node display name.
             /// </summary>
             public string Name {
                 get {
@@ -747,59 +747,59 @@ namespace ST.Library.UI.NodeEditor
                 }
             }
             /// <summary>
-            /// 获取当前树节点显示名称的小写字符串
+            /// Get the lowercase string of the display name of the current tree node.
             /// </summary>
             public string NameLower { get; private set; }
             /// <summary>
-            /// 获取当前树节点对应的STNode类型
+            /// Get the STNode type corresponding to the current tree node.
             /// </summary>
             public Type STNodeType { get; internal set; }
             /// <summary>
-            /// 获取当前树节点的父级树节点
+            /// Get the parent tree node of the current tree node.
             /// </summary>
             public STNodeTreeCollection Parent { get; internal set; }
 
             /// <summary>
-            /// 获取当前树节点下拥有的STNode类型个数
+            /// Get the number of STNode types under the current tree node.
             /// </summary>
             public int STNodeCount { get; internal set; }
             /// <summary>
-            /// 获取当前树节点对应STNode类型在树控件中对应路径
+            /// Get the corresponding path of the current tree node corresponding to the STNode type in the tree control.
             /// </summary>
             public string Path { get; internal set; }
             /// <summary>
-            /// 获取当前或设置树节点是否为打开状态
+            /// Get the current or set tree node is open.
             /// </summary>
             public bool IsOpen { get; set; }
             /// <summary>
-            /// 获取当前树节点是否为加载模块的根路劲节点
+            /// Get whether the current tree node is the root path node of the loaded module.
             /// </summary>
             public bool IsLibraryRoot { get; internal set; }
             /// <summary>
-            /// 获取当前树节点在控件中的显示区域
+            /// Get the display area of ​​the current tree node in the control.
             /// </summary>
             public Rectangle DisplayRectangle { get; internal set; }
             /// <summary>
-            /// 获取当前树节点在控件中的开关按钮区域
+            /// Get the switch button area of ​​the current tree node in the control.
             /// </summary>
             public Rectangle SwitchRectangle { get; internal set; }
             /// <summary>
-            /// 获取当前树节点在控件中的信息按钮区域
+            /// Get the information button area of ​​the current tree node in the control.
             /// </summary>
             public Rectangle InfoRectangle { get; internal set; }
             /// <summary>
-            /// 获取当前树节点对应STNode类型的标题颜色
+            /// Get the title color of the current tree node corresponding to the STNode type.
             /// </summary>
             public Color STNodeTypeColor { get; internal set; }
             /// <summary>
-            /// 获取当前树节点所包含子节点个数
+            /// Get the number of child nodes contained in the current tree node.
             /// </summary>
             public int Count { get { return m_dic.Count; } }
             /// <summary>
-            /// 获取或设置指定名称的集合
+            /// Get or set the collection of the specified name.
             /// </summary>
-            /// <param name="strKey">指定名称</param>
-            /// <returns>集合</returns>
+            /// <param name="strKey">Specify name</param>
+            /// <returns>gather</returns>
             public STNodeTreeCollection this[string strKey] {
                 get {
                     if (string.IsNullOrEmpty(strKey)) return null;
@@ -820,9 +820,9 @@ namespace ST.Library.UI.NodeEditor
 
             private SortedDictionary<string, STNodeTreeCollection> m_dic = new SortedDictionary<string, STNodeTreeCollection>();
             /// <summary>
-            /// 构造一颗树节点集合
+            /// Construct a tree node set.
             /// </summary>
-            /// <param name="strName">当前树节点在控件中的显示名称</param>
+            /// <param name="strName">The display name of the current tree node in the control</param>
             public STNodeTreeCollection(string strName) {
                 if (strName == null || strName.Trim() == string.Empty)
                     throw new ArgumentNullException("Display name cannot be empty.");
@@ -830,21 +830,21 @@ namespace ST.Library.UI.NodeEditor
                 this.NameLower = this._Name.ToLower();
             }
             /// <summary>
-            /// 向当前树节点中添加一个子节点
+            /// Add a child node to the current tree node.
             /// </summary>
-            /// <param name="strName">节点显示名称</param>
-            /// <returns>添加后的子节点集合</returns>
+            /// <param name="strName">Node display name</param>
+            /// <returns>The added child node collection</returns>
             public STNodeTreeCollection Add(string strName) {
                 if (!m_dic.ContainsKey(strName))
                     m_dic.Add(strName, new STNodeTreeCollection(strName) { Parent = this });
                 return m_dic[strName];
             }
             /// <summary>
-            /// 向当前树节点中删除一个子集合
+            /// Delete a sub-collection from the current tree node.
             /// </summary>
-            /// <param name="strName">子集合名称</param>
-            /// <param name="isAutoDelFolder">是否递归向上自动清空无用节点</param>
-            /// <returns>是否删除成功</returns>
+            /// <param name="strName">Subcollection name</param>
+            /// <param name="isAutoDelFolder">Whether to automatically empty useless nodes recursively upwards</param>
+            /// <returns>Whether the deletion is successful</returns>
             public bool Remove(string strName, bool isAutoDelFolder) {
                 if (!m_dic.ContainsKey(strName)) return false;
                 bool b = m_dic.Remove(strName);
@@ -858,7 +858,7 @@ namespace ST.Library.UI.NodeEditor
                 return b;
             }
             /// <summary>
-            /// 清空当前树节点中所有子节点
+            /// Clear all child nodes in the current tree node.
             /// </summary>
             public void Clear() { this.Clear(this); }
 
@@ -867,14 +867,14 @@ namespace ST.Library.UI.NodeEditor
                 m_dic.Clear();
             }
             /// <summary>
-            /// 获取当前树节点中所有的名称数组
+            /// Get all the name arrays in the current tree node.
             /// </summary>
             /// <returns></returns>
             public string[] GetKeys() { return m_dic.Keys.ToArray(); }
             /// <summary>
-            /// 拷贝当前树节点集合中所有数据
+            /// Copy all data in the current tree node collection.
             /// </summary>
-            /// <returns>拷贝的副本</returns>
+            /// <returns>Copied copy</returns>
             public STNodeTreeCollection Copy() {
                 STNodeTreeCollection items = new STNodeTreeCollection("COPY");
                 this.Copy(this, items);
@@ -892,7 +892,7 @@ namespace ST.Library.UI.NodeEditor
                 items_dst.STNodeTypeColor = items_src.STNodeTypeColor;
             }
             /// <summary>
-            /// 返回 System.Collections.IEnumerator 的 Array
+            /// Return an Array of System.Collections.IEnumerator
             /// </summary>
             /// <returns></returns>
             public IEnumerator GetEnumerator() {

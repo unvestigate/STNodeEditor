@@ -10,18 +10,18 @@ namespace ST.Library.UI.NodeEditor
     public class STNodeOptionCollection : IList, ICollection, IEnumerable
     {
         /*
-         * 虽然该集合提供了完整的数据接口 如:Add,Remove,...
-         * 但是尽可能的不要使用移除的一些操作 如:Remove,RemoveAt,Clear,this[index] = value,...
-         * 因为在我的定义里面 每个Option的Owner是严格绑定的 一些移除或替换等操作会影响到Owner的变更
-         * 所以原本的所有连线将会断开 并且触发DisConnect事件
-         * 为了确保安全在STNode中 仅继承者才能够访问集合
+         * Although the collection provides a complete data interface such as: Add, Remove,...
+         * But as far as possible, do not use some removal operations such as: Remove,RemoveAt,Clear,this[index] = value,...
+         * Because in my definition, the Owner of each Option is strictly bound. Some operations such as removal or replacement will affect the change of Owner.
+         * So all the original connections will be disconnected and the Disconnect event will be triggered
+         * To ensure safety, only the successor can access the collection in STNode
          */
         private int _Count;
         public int Count { get { return _Count; } }
         private STNodeOption[] m_options;
         private STNode m_owner;
 
-        private bool m_isInput;     //当前集合是否是存放的是输入点
+        private bool m_isInput;     //Whether the current collection is stored is the input point.
 
         internal STNodeOptionCollection(STNode owner, bool isInput) {
             if (owner == null) throw new ArgumentNullException("Owner cannot be empty.");
@@ -145,9 +145,9 @@ namespace ST.Library.UI.NodeEditor
                 yield return m_options[i];
         }
         /// <summary>
-        /// 确认空间是否足够 空间不足扩大容量
+        /// Confirm whether there is enough space. Insufficient space to expand capacity
         /// </summary>
-        /// <param name="elements">需要增加的个数</param>
+        /// <param name="elements">Need to increase the number</param>
         private void EnsureSpace(int elements) {
             if (elements + this._Count > m_options.Length) {
                 STNodeOption[] arrTemp = new STNodeOption[Math.Max(m_options.Length * 2, elements + this._Count)];

@@ -101,11 +101,11 @@ namespace ST.Library.UI.NodeEditor
         public SolidBrush SolidBrush;
     }
 
-    public enum CanvasMoveArgs      //移动画布时需要的参数 查看->MoveCanvas()
+    public enum CanvasMoveArgs      //Parameters required when moving the canvas View->MoveCanvas()
     {
-        Left = 1,                   //表示 仅移动 X 坐标
-        Top = 2,                    //表示 仅移动 Y 坐标
-        All = 4                     //表示 X Y 同时移动
+        Left = 1,                   //Means to move only the X coordinate
+        Top = 2,                    //Means to move only the Y coordinate
+        All = 4                     //Means X Y moves at the same time
     }
 
     public struct NodeFindInfo
@@ -128,7 +128,7 @@ namespace ST.Library.UI.NodeEditor
     {
         private STNodeOption _TargetOption;
         /// <summary>
-        /// 触发此事件的对应Option
+        /// The corresponding Option that triggered this event.
         /// </summary>
         public STNodeOption TargetOption {
             get { return _TargetOption; }
@@ -136,7 +136,7 @@ namespace ST.Library.UI.NodeEditor
 
         private ConnectionStatus _Status;
         /// <summary>
-        /// Option之间的连线状态
+        /// Connection status between options.
         /// </summary>
         public ConnectionStatus Status {
             get { return _Status; }
@@ -145,7 +145,7 @@ namespace ST.Library.UI.NodeEditor
 
         private bool _IsSponsor;
         /// <summary>
-        /// 是否为此次行为的发起者
+        /// Is it the initiator of this behavior?
         /// </summary>
         public bool IsSponsor {
             get { return _IsSponsor; }
@@ -180,7 +180,7 @@ namespace ST.Library.UI.NodeEditor
 
         private STNodeOption _CurrentOption;
         /// <summary>
-        /// 主动触发事件的Option
+        /// Option that triggers the event actively.
         /// </summary>
         public STNodeOption CurrentOption {
             get { return _CurrentOption; }
@@ -188,7 +188,7 @@ namespace ST.Library.UI.NodeEditor
 
         private bool _Continue = true;
         /// <summary>
-        /// 是否继续向下操作 用于Begin(Connecting/DisConnecting)是否继续向后操作
+        /// Whether to continue downward operation Used for Begin (Connecting/Disconnecting) whether to continue backward operation.
         /// </summary>
         public bool Continue {
             get { return _Continue; }

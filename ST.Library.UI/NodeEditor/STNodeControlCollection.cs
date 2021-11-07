@@ -9,7 +9,7 @@ namespace ST.Library.UI.NodeEditor
     public class STNodeControlCollection: IList, ICollection, IEnumerable
     {
         /*
-         * 为了确保安全在STNode中 仅继承者才能够访问集合
+         * To ensure safety, only the successor can access the collection in STNode.
          */
         private int _Count;
         public int Count { get { return _Count; } }
@@ -128,9 +128,9 @@ namespace ST.Library.UI.NodeEditor
                 yield return m_controls[i];
         }
         /// <summary>
-        /// 确认空间是否足够 空间不足扩大容量
+        /// Confirm whether there is enough space. Insufficient space to expand capacity.
         /// </summary>
-        /// <param name="elements">需要增加的个数</param>
+        /// <param name="elements">Need to increase the number</param>
         private void EnsureSpace(int elements) {
             if (elements + this._Count > m_controls.Length) {
                 STNodeControl[] arrTemp = new STNodeControl[Math.Max(m_controls.Length * 2, elements + this._Count)];

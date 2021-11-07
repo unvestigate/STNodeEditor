@@ -308,7 +308,7 @@ namespace ST.Library.UI.NodeEditor
     public class STNodeControlPaintEventArgs : EventArgs
     {
         /// <summary>
-        /// 绘制工具
+        /// Drawing tools
         /// </summary>
         public DrawingTools DrawingTools { get; private set; }
 

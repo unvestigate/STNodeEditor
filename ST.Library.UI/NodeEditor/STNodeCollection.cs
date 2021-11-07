@@ -69,8 +69,8 @@ namespace ST.Library.UI.NodeEditor
         public void Clear() {
             for (int i = 0; i < this._Count; i++) {
                 m_nodes[i].Owner = null;
-                foreach (STNodeOption op in m_nodes[i].InputOptions) op.DisConnectionAll();
-                foreach (STNodeOption op in m_nodes[i].OutputOptions) op.DisConnectionAll();
+                foreach (STNodeOption op in m_nodes[i].InputOptions) op.DisconnectAll();
+                foreach (STNodeOption op in m_nodes[i].OutputOptions) op.DisconnectAll();
                 m_owner.OnNodeRemoved(new STNodeEditorEventArgs(m_nodes[i]));
                 m_owner.InternalRemoveSelectedNode(m_nodes[i]);
             }
@@ -78,9 +78,9 @@ namespace ST.Library.UI.NodeEditor
             m_nodes = new STNode[4];
             m_owner.SetActiveNode(null);
             m_owner.BuildBounds();
-            m_owner.ScaleCanvas(1, 0, 0);       //当不存在节点时候 坐标系回归
+            m_owner.ScaleCanvas(1, 0, 0);       //When there are no nodes, the coordinate system returns.
             m_owner.MoveCanvas(10, 10, true, CanvasMoveArgs.All);
-            m_owner.Invalidate();               //如果画布位置和缩放处于初始状态 上面两行代码并不会造成控件重绘
+            m_owner.Invalidate();               //If the canvas position and zoom are in the initial state, the above two lines of code will not cause the control to redraw.
         }
 
         public bool Contains(STNode node) {
@@ -167,9 +167,9 @@ namespace ST.Library.UI.NodeEditor
                 yield return m_nodes[i];
         }
         /// <summary>
-        /// 确认空间是否足够 空间不足扩大容量
+        /// Confirm whether there is enough space. Insufficient space to expand capacity.
         /// </summary>
-        /// <param name="elements">需要增加的个数</param>
+        /// <param name="elements">Need to increase the number</param>
         private void EnsureSpace(int elements) {
             if (elements + this._Count > m_nodes.Length) {
                 STNode[] arrTemp = new STNode[Math.Max(m_nodes.Length * 2, elements + this._Count)];
