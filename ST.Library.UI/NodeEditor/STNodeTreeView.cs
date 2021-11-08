@@ -183,6 +183,21 @@ namespace ST.Library.UI.NodeEditor
             get { return _PropertyGrid; }
         }
 
+        private bool _DrawLines = true;
+        /// <summary>
+        /// Gets or sets whether the lines are to be drawn next to the items in the hierarchy.
+        /// </summary>
+        [Description("Gets or sets whether the lines are to be drawn next to the items in the hierarchy."), DefaultValue(true)]
+        public bool DrawLines
+        {
+            get { return _DrawLines; }
+            set
+            {
+                _DrawLines = value;
+                this.Invalidate();
+            }
+        }
+
         private int m_nItemHeight = 29;
 
         private static Type m_type_node_base = typeof(STNode);
@@ -543,10 +558,15 @@ namespace ST.Library.UI.NodeEditor
             }
             Rectangle rect = new Rectangle(45 + nLevel * 10, items.SwitchRectangle.Top, this.Width - 45 - nLevel * 10, m_nItemHeight);
             m_pen.Color = Color.FromArgb(100, 125, 125, 125);
-            g.DrawLine(m_pen, 9, items.SwitchRectangle.Top + m_nItemHeight / 2, items.SwitchRectangle.Left + 19, items.SwitchRectangle.Top + m_nItemHeight / 2);
-            if (nCounter != 0) {
-                for (int i = 0; i <= nLevel; i++) {
-                    g.DrawLine(m_pen, 9 + i * 10, items.SwitchRectangle.Top - m_nItemHeight / 2, 9 + i * 10, items.SwitchRectangle.Top + m_nItemHeight / 2 - 1);
+            if (_DrawLines)
+            {
+                g.DrawLine(m_pen, 9, items.SwitchRectangle.Top + m_nItemHeight / 2, items.SwitchRectangle.Left + 19, items.SwitchRectangle.Top + m_nItemHeight / 2);
+                if (nCounter != 0)
+                {
+                    for (int i = 0; i <= nLevel; i++)
+                    {
+                        g.DrawLine(m_pen, 9 + i * 10, items.SwitchRectangle.Top - m_nItemHeight / 2, 9 + i * 10, items.SwitchRectangle.Top + m_nItemHeight / 2 - 1);
+                    }
                 }
             }
             this.OnDrawItemText(dt, items, rect);
@@ -564,9 +584,9 @@ namespace ST.Library.UI.NodeEditor
                 m_brush.Color = m_pen.Color;
                 int nT = items.SwitchRectangle.Y + m_nItemHeight / 2 - 4;
                 g.DrawRectangle(m_pen, items.SwitchRectangle.Left, nT, 8, 8);
-                g.DrawLine(m_pen, items.SwitchRectangle.Left + 1, nT + 4, items.SwitchRectangle.Right - 3, nT + 4);
+                g.DrawLine(m_pen, items.SwitchRectangle.Left + 2, nT + 4, items.SwitchRectangle.Right - 4, nT + 4);
                 if (items.IsOpen) return;
-                g.DrawLine(m_pen, items.SwitchRectangle.Left + 4, nT + 1, items.SwitchRectangle.Left + 4, nT + 7);
+                g.DrawLine(m_pen, items.SwitchRectangle.Left + 4, nT + 2, items.SwitchRectangle.Left + 4, nT + 6);
                 //if (items.IsOpen) {
                 //    //g.FillPolygon(m_brush, new Point[]{
                 //    //    new Point(items.DotRectangle.Left + 0, items.DotRectangle.Top + m_nItemHeight / 2 - 2),
