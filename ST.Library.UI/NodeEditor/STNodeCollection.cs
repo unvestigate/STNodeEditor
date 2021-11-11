@@ -127,9 +127,22 @@ namespace ST.Library.UI.NodeEditor
             m_owner.InternalRemoveSelectedNode(m_nodes[nIndex]);
             if (m_owner.ActiveNode == m_nodes[nIndex]) m_owner.SetActiveNode(null);
             m_owner.OnNodeRemoved(new STNodeEditorEventArgs(m_nodes[nIndex]));
+
+            /*
             this._Count--;
             for (int i = nIndex, Len = this._Count; i < Len; i++)
                 m_nodes[i] = m_nodes[i + 1];
+            */
+
+            for (int i = nIndex; i < this._Count; i++)
+            {
+                if (i == m_nodes.Length - 1)
+                    m_nodes[i] = null;
+                else
+                    m_nodes[i] = m_nodes[i + 1];
+            }
+            this._Count--;
+
             if (this._Count == 0) {             // When there are no nodes, the coordinate system returns.
                 m_owner.ScaleCanvas(1, 0, 0);
                 m_owner.MoveCanvas(10, 10, true, CanvasMoveArgs.All);

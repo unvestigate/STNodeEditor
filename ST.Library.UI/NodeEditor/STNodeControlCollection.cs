@@ -93,10 +93,24 @@ namespace ST.Library.UI.NodeEditor
         public void RemoveAt(int index) {
             if (index < 0 || index >= this._Count)
                 throw new IndexOutOfRangeException("Index out of bounds.");
-            this._Count--;
+
             m_controls[index].Owner = null;
+
+            /*
+            this._Count--;
             for (int i = index, Len = this._Count; i < Len; i++)
                 m_controls[i] = m_controls[i + 1];
+            */
+
+            for (int i = index; i < this._Count; i++)
+            {
+                if (i == m_controls.Length - 1)
+                    m_controls[i] = null;
+                else
+                    m_controls[i] = m_controls[i + 1];
+            }
+            this._Count--;
+
             this.Redraw();
         }
 
