@@ -870,6 +870,9 @@ namespace ST.Library.UI.NodeEditor
                         if (NodesMoved != null)
                         {
                             List<NodeMovement> movements = new List<NodeMovement>();
+
+                            bool didNodesReallyMove = false;
+
                             foreach (STNode n in m_dic_pt_selected.Keys.ToList())
                             {
                                 NodeMovement movement = new NodeMovement();
@@ -877,9 +880,13 @@ namespace ST.Library.UI.NodeEditor
                                 movement.OldLocation = m_dic_pt_selected[n];
                                 movement.NewLocation = n.Location;
                                 movements.Add(movement);
+
+                                if (!didNodesReallyMove && movement.OldLocation != movement.NewLocation)
+                                    didNodesReallyMove = true;
                             }
 
-                            NodesMoved(this, new STNodesMovedEventArgs(movements.ToArray()));
+                            if (didNodesReallyMove)
+                                NodesMoved(this, new STNodesMovedEventArgs(movements.ToArray()));
                         }
 
                         foreach (STNode n in m_dic_pt_selected.Keys.ToList())
