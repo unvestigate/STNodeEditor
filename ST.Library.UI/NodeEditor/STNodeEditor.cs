@@ -609,6 +609,9 @@ namespace ST.Library.UI.NodeEditor
         protected internal virtual void OnOptionDisconnecting(STNodeEditorOptionEventArgs e) {
             if (this.OptionDisconnecting != null) this.OptionDisconnecting(this, e);
         }
+        protected internal virtual void OnNodesMoved(STNodesMovedEventArgs e) {
+            if (this.NodesMoved != null) this.NodesMoved(this, e);
+        }
 
         #endregion event
 
@@ -867,27 +870,23 @@ namespace ST.Library.UI.NodeEditor
             switch (m_ca) {                         //Judging behavior when the mouse is raised
                 case CanvasAction.MoveNode:         //If you are moving Node, send NodesMoved event and re-record the current position
                     {
-                        if (NodesMoved != null)
+                        List<NodeMovement> movements = new List<NodeMovement>();
+                        bool didNodesReallyMove = false;
+
+                        foreach (STNode n in m_dic_pt_selected.Keys.ToList())
                         {
-                            List<NodeMovement> movements = new List<NodeMovement>();
+                            NodeMovement movement = new NodeMovement();
+                            movement.Node = n;
+                            movement.OldLocation = m_dic_pt_selected[n];
+                            movement.NewLocation = n.Location;
+                            movements.Add(movement);
 
-                            bool didNodesReallyMove = false;
-
-                            foreach (STNode n in m_dic_pt_selected.Keys.ToList())
-                            {
-                                NodeMovement movement = new NodeMovement();
-                                movement.Node = n;
-                                movement.OldLocation = m_dic_pt_selected[n];
-                                movement.NewLocation = n.Location;
-                                movements.Add(movement);
-
-                                if (!didNodesReallyMove && movement.OldLocation != movement.NewLocation)
-                                    didNodesReallyMove = true;
-                            }
-
-                            if (didNodesReallyMove)
-                                NodesMoved(this, new STNodesMovedEventArgs(movements.ToArray()));
+                            if (movement.OldLocation != movement.NewLocation)
+                                didNodesReallyMove = true;
                         }
+
+                        if (didNodesReallyMove)
+                            OnNodesMoved(new STNodesMovedEventArgs(movements.ToArray()));
 
                         foreach (STNode n in m_dic_pt_selected.Keys.ToList())
                             m_dic_pt_selected[n] = n.Location;
