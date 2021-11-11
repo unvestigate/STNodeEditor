@@ -200,4 +200,28 @@ namespace ST.Library.UI.NodeEditor
             this._CurrentOption = opCurrent;
         }
     }
+
+    public struct NodeMovement
+    {
+        public STNode Node;
+        public Point OldLocation;
+        public Point NewLocation;
+    }
+
+    public class STNodesMovedEventArgs : EventArgs
+    {
+        public STNodesMovedEventArgs(NodeMovement[] movements)
+        {
+            mMovements = movements;
+        }
+
+        public NodeMovement[] Movements
+        {
+            get { return mMovements; }
+        }
+
+        private NodeMovement[] mMovements;
+    }
+
+    public delegate void STNodesMovedEventHandler(object sender, STNodesMovedEventArgs e);
 }

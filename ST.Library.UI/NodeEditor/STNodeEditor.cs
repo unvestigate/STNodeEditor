@@ -570,6 +570,11 @@ namespace ST.Library.UI.NodeEditor
         /// </summary>
         [Description("Occurs when the node option is being disconnected.")]
         public event STNodeEditorOptionEventHandler OptionDisconnecting;
+        /// <summary>
+        /// Occurs when one or more nodes have been moved around the canvas.
+        /// </summary>
+        [Description("Occurs when one or more nodes have been moved around the canvas.")]
+        public event STNodesMovedEventHandler NodesMoved;
 
         protected virtual internal void OnSelectedChanged(EventArgs e) {
             if (this.SelectedChanged != null) this.SelectedChanged(this, e);
@@ -860,8 +865,26 @@ namespace ST.Library.UI.NodeEditor
             base.OnMouseUp(e);
             var nfi = this.FindNodeFromPoint(m_pt_in_canvas);
             switch (m_ca) {                         //Judging behavior when the mouse is raised
-                case CanvasAction.MoveNode:         //If you are moving Node, re-record the current position
-                    foreach (STNode n in m_dic_pt_selected.Keys.ToList()) m_dic_pt_selected[n] = n.Location;
+                case CanvasAction.MoveNode:         //If you are moving Node, send NodesMoved event and re-record the current position
+                    {
+                        if (NodesMoved != null)
+                        {
+                            List<NodeMovement> movements = new List<NodeMovement>();
+                            foreach (STNode n in m_dic_pt_selected.Keys.ToList())
+                            {
+                                NodeMovement movement = new NodeMovement();
+                                movement.Node = n;
+                                movement.OldLocation = m_dic_pt_selected[n];
+                                movement.NewLocation = n.Location;
+                                movements.Add(movement);
+                            }
+
+                            NodesMoved(this, new STNodesMovedEventArgs(movements.ToArray()));
+                        }
+
+                        foreach (STNode n in m_dic_pt_selected.Keys.ToList())
+                            m_dic_pt_selected[n] = n.Location;
+                    }
                     break;
                 case CanvasAction.ConnectOption:    //If it is connecting, end the connection
                     if (e.Location == m_pt_down_in_control) break;
