@@ -897,6 +897,21 @@ namespace ST.Library.UI.NodeEditor
             return false;
         }
 
+        protected internal void ClearActiveCtrl()
+        {
+            if (m_ctrl_active != null)
+            {
+                m_ctrl_active.OnLostFocus(EventArgs.Empty);
+                m_ctrl_active = null;
+            }
+
+            if (m_ctrl_hover != null)
+            {
+                m_ctrl_hover.OnMouseLeave(EventArgs.Empty);
+                m_ctrl_hover = null;
+            }
+        }
+
         //[event]===========================[event]==============================[event]============================[event]
 
         protected internal virtual void OnGotFocus(EventArgs e) { }

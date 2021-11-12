@@ -723,6 +723,15 @@ namespace ST.Library.UI.NodeEditor
             }
 
             if (nfi.NodeOption != null) {                                   //If you click the option connection point
+
+                // This fixes a bug where, after clicking on a node ctrl,
+                // the user clicks on an option and the node treats the ctrl
+                // as still being active.
+                if (nfi.Node != null)
+                {
+                    nfi.Node.ClearActiveCtrl();
+                }
+
                 this.StartConnect(nfi.NodeOption);
                 return;
             }
