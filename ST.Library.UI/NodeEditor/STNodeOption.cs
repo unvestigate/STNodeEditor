@@ -436,7 +436,7 @@ namespace ST.Library.UI.NodeEditor
             if (m_hs_connected.Contains(op)) {
                 b = m_hs_connected.Remove(op);
                 if (this._IsInput) this.OnDataTransfer(new STNodeOptionEventArgs(bSponsor, op, ConnectionStatus.Disconnected));
-                this.OnDisconnected(new STNodeOptionEventArgs(bSponsor, op, ConnectionStatus.Connected));
+                this.OnDisconnected(new STNodeOptionEventArgs(bSponsor, op, ConnectionStatus.Disconnected));
             }
             return b;
         }
