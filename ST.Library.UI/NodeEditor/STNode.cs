@@ -640,17 +640,8 @@ namespace ST.Library.UI.NodeEditor
         /// </summary>
         /// <param name="dt">Drawing tools</param>
         protected virtual void OnDrawBody(DrawingTools dt) {
-            SolidBrush brush = dt.SolidBrush;
-            foreach (STNodeOption op in this._InputOptions) {
-                if (op == STNodeOption.Empty) continue;
-                this.OnDrawOptionDot(dt, op);
-                this.OnDrawOptionText(dt, op);
-            }
-            foreach (STNodeOption op in this._OutputOptions) {
-                if (op == STNodeOption.Empty) continue;
-                this.OnDrawOptionDot(dt, op);
-                this.OnDrawOptionText(dt, op);
-            }
+            //SolidBrush brush = dt.SolidBrush;
+            
             if (this._Controls.Count != 0) {    //Draw child control
                 //Align the origin of the coordinates with the node.
                 //dt.Graphics.ResetTransform();
@@ -658,7 +649,7 @@ namespace ST.Library.UI.NodeEditor
                 Point pt = Point.Empty;         //The amount of offset currently needed 
                 Point pt_last = Point.Empty;    //The coordinates of the last control relative to the node
                 foreach (STNodeControl v in this._Controls) {
-                    if (!v.Visable) continue;
+                    if (!v.Visible) continue;
                     pt.X = v.Left - pt_last.X;
                     pt.Y = v.Top - pt_last.Y;
                     pt_last = v.Location;
@@ -669,6 +660,20 @@ namespace ST.Library.UI.NodeEditor
                 //dt.Graphics.TranslateTransform(-pt_last.X, -pt_last.Y); Restore coordinates
                 dt.Graphics.TranslateTransform(-this._Left - pt_last.X, -this._Top - this._TitleHeight - pt_last.Y);
                 //dt.Graphics.
+            }
+
+            foreach (STNodeOption op in this._InputOptions)
+            {
+                if (op == STNodeOption.Empty) continue;
+                this.OnDrawOptionDot(dt, op);
+                this.OnDrawOptionText(dt, op);
+            }
+
+            foreach (STNodeOption op in this._OutputOptions)
+            {
+                if (op == STNodeOption.Empty) continue;
+                this.OnDrawOptionDot(dt, op);
+                this.OnDrawOptionText(dt, op);
             }
         }
         /// <summary>
@@ -907,7 +912,7 @@ namespace ST.Library.UI.NodeEditor
                 var c = this._Controls[i];
                 if (c.DisplayRectangle.Contains(pt)) {
                     if (!c.Enabled) return;
-                    if (!c.Visable) continue;
+                    if (!c.Visible) continue;
                     c.OnMouseDown(new MouseEventArgs(e.Button, e.Clicks, e.X - c.Left, pt.Y - c.Top, e.Delta));
                     m_ctrl_down = c;
                     if (m_ctrl_active != c) {
@@ -926,7 +931,7 @@ namespace ST.Library.UI.NodeEditor
             Point pt = e.Location;
             pt.Y -= this._TitleHeight;
             if (m_ctrl_down != null) {
-                if (m_ctrl_down.Enabled && m_ctrl_down.Visable)
+                if (m_ctrl_down.Enabled && m_ctrl_down.Visible)
                     m_ctrl_down.OnMouseMove(new MouseEventArgs(e.Button, e.Clicks, e.X - m_ctrl_down.Left, pt.Y - m_ctrl_down.Top, e.Delta));
                 return;
             }
@@ -949,7 +954,7 @@ namespace ST.Library.UI.NodeEditor
         protected internal virtual void OnMouseUp(MouseEventArgs e) {
             Point pt = e.Location;
             pt.Y -= this._TitleHeight;
-            if (m_ctrl_down != null && m_ctrl_down.Enabled && m_ctrl_down.Visable) {
+            if (m_ctrl_down != null && m_ctrl_down.Enabled && m_ctrl_down.Visible) {
                 m_ctrl_down.OnMouseUp(new MouseEventArgs(e.Button, e.Clicks, e.X - m_ctrl_down.Left, pt.Y - m_ctrl_down.Top, e.Delta));
             }
             //if (m_ctrl_active != null) {
@@ -960,40 +965,40 @@ namespace ST.Library.UI.NodeEditor
         }
 
         protected internal virtual void OnMouseLeave(EventArgs e) {
-            if (m_ctrl_hover != null && m_ctrl_hover.Enabled && m_ctrl_hover.Visable) m_ctrl_hover.OnMouseLeave(e);
+            if (m_ctrl_hover != null && m_ctrl_hover.Enabled && m_ctrl_hover.Visible) m_ctrl_hover.OnMouseLeave(e);
             m_ctrl_hover = null;
         }
 
         protected internal virtual void OnMouseClick(MouseEventArgs e) {
             Point pt = e.Location;
             pt.Y -= this._TitleHeight;
-            if (m_ctrl_active != null && m_ctrl_active.Enabled && m_ctrl_active.Visable)
+            if (m_ctrl_active != null && m_ctrl_active.Enabled && m_ctrl_active.Visible)
                 m_ctrl_active.OnMouseClick(new MouseEventArgs(e.Button, e.Clicks, e.X - m_ctrl_active.Left, pt.Y - m_ctrl_active.Top, e.Delta));
         }
 
         protected internal virtual void OnMouseWheel(MouseEventArgs e) {
             Point pt = e.Location;
             pt.Y -= this._TitleHeight;
-            if (m_ctrl_hover != null && m_ctrl_active != null && m_ctrl_active.Enabled && m_ctrl_hover.Visable) {
+            if (m_ctrl_hover != null && m_ctrl_active != null && m_ctrl_active.Enabled && m_ctrl_hover.Visible) {
                 m_ctrl_hover.OnMouseWheel(new MouseEventArgs(e.Button, e.Clicks, e.X - m_ctrl_hover.Left, pt.Y - m_ctrl_hover.Top, e.Delta));
                 return;
             }
         }
         protected internal virtual void OnMouseHWheel(MouseEventArgs e) {
-            if (m_ctrl_hover != null && m_ctrl_active.Enabled && m_ctrl_hover.Visable) {
+            if (m_ctrl_hover != null && m_ctrl_active.Enabled && m_ctrl_hover.Visible) {
                 m_ctrl_hover.OnMouseHWheel(e);
                 return;
             }
         }
 
         protected internal virtual void OnKeyDown(KeyEventArgs e) {
-            if (m_ctrl_active != null && m_ctrl_active.Enabled && m_ctrl_active.Visable) m_ctrl_active.OnKeyDown(e);
+            if (m_ctrl_active != null && m_ctrl_active.Enabled && m_ctrl_active.Visible) m_ctrl_active.OnKeyDown(e);
         }
         protected internal virtual void OnKeyUp(KeyEventArgs e) {
-            if (m_ctrl_active != null && m_ctrl_active.Enabled && m_ctrl_active.Visable) m_ctrl_active.OnKeyUp(e);
+            if (m_ctrl_active != null && m_ctrl_active.Enabled && m_ctrl_active.Visible) m_ctrl_active.OnKeyUp(e);
         }
         protected internal virtual void OnKeyPress(KeyPressEventArgs e) {
-            if (m_ctrl_active != null && m_ctrl_active.Enabled && m_ctrl_active.Visable) m_ctrl_active.OnKeyPress(e);
+            if (m_ctrl_active != null && m_ctrl_active.Enabled && m_ctrl_active.Visible) m_ctrl_active.OnKeyPress(e);
         }
 
         protected virtual void OnMove(EventArgs e) { /*this.SetOptionLocation();*/ }

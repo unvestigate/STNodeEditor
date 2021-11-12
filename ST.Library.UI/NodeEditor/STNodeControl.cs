@@ -172,13 +172,13 @@ namespace ST.Library.UI.NodeEditor
             }
         }
 
-        private bool _Visable = true;
+        private bool _Visible = true;
 
-        public bool Visable {
-            get { return _Visable; }
+        public bool Visible {
+            get { return _Visible; }
             set {
-                if (value == _Visable) return;
-                _Visable = value;
+                if (value == _Visible) return;
+                _Visible = value;
                 this.Invalidate();
             }
         }
