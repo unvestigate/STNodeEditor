@@ -975,6 +975,22 @@ namespace ST.Library.UI.NodeEditor
             base.OnMouseClick(e);
             if (this._ActiveNode != null && m_is_process_mouse_event) {
                 if (!this.PointInRectangle(this._ActiveNode.Rectangle, m_pt_in_canvas.X, m_pt_in_canvas.Y)) return;
+
+                PointF pointInCanvas = new PointF();
+                pointInCanvas.X = ((e.X - this._CanvasOffsetX) / this._CanvasScale);
+                pointInCanvas.Y = ((e.Y - this._CanvasOffsetY) / this._CanvasScale);
+                NodeFindInfo nfi = this.FindNodeFromPoint(pointInCanvas);
+
+                if (nfi.NodeOption != null)
+                {
+                    //System.Diagnostics.Debug.Assert(nfi.Node == this._ActiveNode);
+                    //System.Diagnostics.Trace.WriteLine("Clearing active ctrl");
+
+                    // If we hit an option, the option takes
+                    // precedence so clear the active control.
+                    this._ActiveNode.ClearActiveCtrl();
+                }
+
                 this._ActiveNode.OnMouseClick(new MouseEventArgs(e.Button, e.Clicks,
                     (int)m_pt_down_in_canvas.X - this._ActiveNode.Left,
                     (int)m_pt_down_in_canvas.Y - this._ActiveNode.Top, e.Delta));
