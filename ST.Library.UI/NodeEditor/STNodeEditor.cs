@@ -723,15 +723,6 @@ namespace ST.Library.UI.NodeEditor
             }
 
             if (nfi.NodeOption != null) {                                   //If you click the option connection point
-
-                // This fixes a bug where, after clicking on a node ctrl,
-                // the user clicks on an option and the node treats the ctrl
-                // as still being active.
-                if (nfi.Node != null)
-                {
-                    nfi.Node.ClearActiveCtrl();
-                }
-
                 this.StartConnect(nfi.NodeOption);
                 return;
             }
@@ -1629,6 +1620,14 @@ namespace ST.Library.UI.NodeEditor
                 if (this.PointInRectangle(this._Nodes[i].Rectangle, pt.X, pt.Y)) {
                     m_find.Node = this._Nodes[i];
                 }
+
+                if (m_find.NodeOption != null && m_find.Node != null)
+                {
+                    // If we hit a node and it's option, the option takes
+                    // precedence so clear the active control.
+                    m_find.Node.ClearActiveCtrl();
+                }
+
                 if (m_find.NodeOption != null || m_find.Node != null) return m_find;
             }
             return m_find;
