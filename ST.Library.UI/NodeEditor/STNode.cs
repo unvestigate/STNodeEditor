@@ -161,6 +161,8 @@ namespace ST.Library.UI.NodeEditor
                     _MarkLines = null;
                 else
                     _MarkLines = (from s in value.Split('\n') select s.Trim()).ToArray();
+
+                this.BuildSize(false, true, false);
                 this.Invalidate(new Rectangle(-5, -5, this._MarkRectangle.Width + 10, this._MarkRectangle.Height + 10));
             }
         }
