@@ -1830,7 +1830,7 @@ namespace ST.Library.UI.NodeEditor
         /// <summary>
         /// Get the corresponding relationship of the currently connected Option.
         /// </summary>
-        /// <returns>连接信息集合</returns>
+        /// <returns>Connection information collection</returns>
         public ConnectionInfo[] GetConnectionInfo() {
             return m_dic_gp_info.Values.ToArray();
         }
