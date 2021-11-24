@@ -176,7 +176,10 @@ namespace ST.Library.UI.NodeEditor
 
         #region Constructor
 
-        private STNodeOption() { }
+        private STNodeOption()
+        {
+            m_hs_connected = new HashSet<STNodeOption>();
+        }
 
         /// <summary>
         /// Construct an Option.
