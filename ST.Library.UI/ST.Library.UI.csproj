@@ -55,6 +55,7 @@
     <Compile Include="NodeEditor\STNodeTreeView.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="NodeEditor\STPassthroughNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="NodeEditor\FrmSTNodePropertyInput.cs">
       <SubType>Form</SubType>
