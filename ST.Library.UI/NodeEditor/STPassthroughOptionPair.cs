@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Drawing;
 
 namespace ST.Library.UI.NodeEditor
 {
     // This class was added for the Basis editors.
-    // It is a simplified version of the STNodeHub class
+    // It contains a simplified version of the STNodeHub logic
     // and has one input/output option pair which can be connected
-    // to any type. Derived classes can add their own additional options.
-    public class STPassthroughNode : STNode
+    // to any type. An instance of this class can be added to an STNode
+    // class and any additional "normal" options can then be added.
+    public class STPassthroughOptionPair
     {
+        private STNode mTargetNode;
         private bool m_bSingle;
         private string m_strIn;
         private string m_strOut;
@@ -19,20 +20,20 @@ namespace ST.Library.UI.NodeEditor
         private STPassthroughOption mValueInOption;
         private STPassthroughOption mValueOutOption;
 
-        public STPassthroughNode(bool bSingle, string strTextIn, string strTextOut)
+        public STPassthroughOptionPair(STNode targetNode, bool bSingle, string strTextIn, string strTextOut)
         {
+            mTargetNode = targetNode;
             m_bSingle = bSingle;
             m_strIn = strTextIn;
             m_strOut = strTextOut;
-            //this.Addhub();
-            //this.Title = "HUB";
-            //this.AutoSize = false;
-            //this.TitleColor = System.Drawing.Color.FromArgb(200, System.Drawing.Color.DarkOrange);
+        }
 
+        public void CreateOptionPair()
+        {
             mValueInOption = new STPassthroughOption(m_strIn, typeof(object), m_bSingle);
             mValueOutOption = new STPassthroughOption(m_strOut, typeof(object), false);
-            this.InputOptions.Add(mValueInOption);
-            this.OutputOptions.Add(mValueOutOption);
+            mTargetNode.InputOptions.Add(mValueInOption);
+            mTargetNode.OutputOptions.Add(mValueOutOption);
             mValueInOption.Connected += new STNodeOptionEventHandler(input_Connected);
             mValueInOption.DataTransfer += new STNodeOptionEventHandler(input_DataTransfer);
             mValueInOption.Disconnected += new STNodeOptionEventHandler(input_Disconnected);
@@ -85,13 +86,13 @@ namespace ST.Library.UI.NodeEditor
         void output_Connected(object sender, STNodeOptionEventArgs e)
         {
             STNodeOption op = sender as STNodeOption;
-            int nIndex = this.OutputOptions.IndexOf(op);
+            int nIndex = mTargetNode.OutputOptions.IndexOf(op);
             var t = typeof(object);
-            if (this.InputOptions[nIndex].DataType == t)
+            if (mTargetNode.InputOptions[nIndex].DataType == t)
             {
                 op.DataType = e.TargetOption.DataType;
-                this.InputOptions[nIndex].DataType = op.DataType;
-                foreach (STNodeOption v in this.InputOptions)
+                mTargetNode.InputOptions[nIndex].DataType = op.DataType;
+                foreach (STNodeOption v in mTargetNode.InputOptions)
                 {
                     if (v.DataType == t) return;
                 }
@@ -120,24 +121,24 @@ namespace ST.Library.UI.NodeEditor
         void input_DataTransfer(object sender, STNodeOptionEventArgs e)
         {
             STNodeOption op = sender as STNodeOption;
-            int nIndex = this.InputOptions.IndexOf(op);
+            int nIndex = mTargetNode.InputOptions.IndexOf(op);
             if (e.Status != ConnectionStatus.Connected)
-                this.OutputOptions[nIndex].Data = null;
+                mTargetNode.OutputOptions[nIndex].Data = null;
             else
-                this.OutputOptions[nIndex].Data = e.TargetOption.Data;
-            this.OutputOptions[nIndex].TransferData();
+                mTargetNode.OutputOptions[nIndex].Data = e.TargetOption.Data;
+            mTargetNode.OutputOptions[nIndex].TransferData();
         }
 
         void input_Connected(object sender, STNodeOptionEventArgs e)
         {
             STNodeOption op = sender as STNodeOption;
-            int nIndex = this.InputOptions.IndexOf(op);
+            int nIndex = mTargetNode.InputOptions.IndexOf(op);
             var t = typeof(object);
             if (op.DataType == t)
             {
                 op.DataType = e.TargetOption.DataType;
-                this.OutputOptions[nIndex].DataType = op.DataType;
-                foreach (STNodeOption v in this.InputOptions)
+                mTargetNode.OutputOptions[nIndex].DataType = op.DataType;
+                foreach (STNodeOption v in mTargetNode.InputOptions)
                 {
                     if (v.DataType == t) return;
                 }
@@ -146,27 +147,9 @@ namespace ST.Library.UI.NodeEditor
             else
             {
                 //this.OutputOptions[nIndex].Data = e.TargetOption.Data;
-                this.OutputOptions[nIndex].TransferData(e.TargetOption.Data);
+                mTargetNode.OutputOptions[nIndex].TransferData(e.TargetOption.Data);
             }
         }
-
-        //protected override void OnSaveNode(Dictionary<string, byte[]> dic)
-        //{
-        //    dic.Add("count", BitConverter.GetBytes(this.InputOptionsCount));
-        //    //dic.Add("single", new byte[] { (byte)(m_bSingle ? 1 : 0) });
-        //    //dic.Add("strin", Encoding.UTF8.GetBytes(m_strIn));
-        //    //dic.Add("strout", Encoding.UTF8.GetBytes(m_strOut));
-        //}
-
-        //protected internal override void OnLoadNode(Dictionary<string, byte[]> dic)
-        //{
-        //    base.OnLoadNode(dic);
-        //    int nCount = BitConverter.ToInt32(dic["count"], 0);
-        //    while (this.InputOptionsCount < nCount && this.InputOptionsCount != nCount) this.Addhub();
-        //    //m_bSingle = dic["single"][0] == 1;
-        //    //m_strIn = Encoding.UTF8.GetString(dic["strin"]);
-        //    //m_strOut = Encoding.UTF8.GetString(dic["strout"]);
-        //}
 
         public class STPassthroughOption : STNodeOption
         {
@@ -203,7 +186,7 @@ namespace ST.Library.UI.NodeEditor
                         if (o == op) return ConnectionStatus.Exists;
                     }
                 }
-                return ConnectionStatus.Connected; ;
+                return ConnectionStatus.Connected;
             }
         }
     }
