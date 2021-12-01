@@ -401,6 +401,13 @@ namespace ST.Library.UI.NodeEditor
             get { return _TypeColor; }
         }
 
+        private bool mRequireCtrlForZooming = true;
+        public bool RequireCtrlForZooming
+        {
+            get { return mRequireCtrlForZooming; }
+            set { mRequireCtrlForZooming = value; }
+        }
+
         #endregion
 
         #region protected properties ----------------------------------------------------------------------------------------
@@ -929,7 +936,10 @@ namespace ST.Library.UI.NodeEditor
 
         protected override void OnMouseWheel(MouseEventArgs e) {
             base.OnMouseWheel(e);
-            if ((Control.ModifierKeys & Keys.Control) == Keys.Control) {
+
+            bool zoomInput = !mRequireCtrlForZooming || ((Control.ModifierKeys & Keys.Control) == Keys.Control);
+
+            if (zoomInput) {
                 float f = this._CanvasScale + (e.Delta < 0 ? -0.1f : 0.1f);
                 this.ScaleCanvas(f, this.Width / 2, this.Height / 2);
             } /*else {
@@ -1648,6 +1658,16 @@ namespace ST.Library.UI.NodeEditor
             }
             return m_find;
         }
+
+        /// <summary>
+        /// Returns the NodeFindInfo which was filled last time FindNodeFromPoint() was called.
+        /// </summary>
+        /// <returns></returns>
+        public NodeFindInfo GetPreviousNodeFindInfo()
+        {
+            return m_find;
+        }
+
         /// <summary>
         /// Get the selected Node collection.
         /// </summary>
