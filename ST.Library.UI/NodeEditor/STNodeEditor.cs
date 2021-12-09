@@ -1141,8 +1141,16 @@ namespace ST.Library.UI.NodeEditor
                 }
             }
             m_p_line_hover.Color = this._HighLineColor;
-            if (m_gp_hover != null) {       //If there is currently a hovering link, highlight it and draw it
-                g.DrawPath(m_p_line_hover, m_gp_hover);
+            if (m_gp_hover != null)
+            {       //If there is currently a hovering link, highlight it and draw it
+
+                // The call to DrawPath() occasionally crashes. It would seem like m_gp_hover has somehow been disposed of or something
+                // but I haven't been able to reproduce it reliably, so I'll slap a try-catch around the call for now...
+                try
+                {
+                    g.DrawPath(m_p_line_hover, m_gp_hover);
+                }
+                catch (Exception /*ex*/) { }
             }
             m_is_buildpath = false;         //Reset the flag, the path cache will not be re-established the next time you draw
         }
