@@ -587,7 +587,15 @@ namespace ST.Library.UI.NodeEditor
             //Fill background
             if (this._BackColor.A != 0) {
                 dt.SolidBrush.Color = this._BackColor;
-                dt.Graphics.FillRectangle(dt.SolidBrush, this._Left, this._Top + this._TitleHeight, this._Width, this.Height - this._TitleHeight);
+
+                if (this.Owner.RoundedCornerRadius == -1)
+                {
+                    dt.Graphics.FillRectangle(dt.SolidBrush, this._Left, this._Top + this._TitleHeight, this._Width, this.Height - this._TitleHeight);
+                }
+                else
+                {
+                    RoundedCornerUtils.FillRoundedRectangleBottom(dt.Graphics, dt.SolidBrush, new Rectangle(this._Left, this._Top + this._TitleHeight, this._Width, this.Height - this._TitleHeight), Owner.RoundedCornerRadius);
+                }
             }
             this.OnDrawTitle(dt);
             this.OnDrawBody(dt);
@@ -603,7 +611,14 @@ namespace ST.Library.UI.NodeEditor
             SolidBrush brush = dt.SolidBrush;
             if (this._TitleColor.A != 0) {
                 brush.Color = this._TitleColor;
-                g.FillRectangle(brush, this.TitleRectangle);
+                if (this.Owner.RoundedCornerRadius == -1)
+                {
+                    g.FillRectangle(brush, this.TitleRectangle);
+                }
+                else
+                {
+                    RoundedCornerUtils.FillRoundedRectangleTop(g, brush, this.TitleRectangle, Owner.RoundedCornerRadius);
+                }
             }
             if (this._LockOption) {
                 //dt.Pen.Color = this.ForeColor;

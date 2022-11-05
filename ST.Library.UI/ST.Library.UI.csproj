@@ -49,6 +49,7 @@
     <Compile Include="NodeEditor\FrmSTNodePropertySelect.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="NodeEditor\RoundedCornerUtils.cs" />
     <Compile Include="NodeEditor\STNodeEditorPanel.cs">
       <SubType>Component</SubType>
     </Compile>

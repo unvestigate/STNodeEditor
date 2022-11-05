@@ -408,6 +408,13 @@ namespace ST.Library.UI.NodeEditor
             set { mRequireCtrlForZooming = value; }
         }
 
+        private int mRoundedCornerRadius = -1; // -1 Means no rounded corner rendering.
+        public int RoundedCornerRadius
+        {
+            get { return mRoundedCornerRadius; }
+            set { mRoundedCornerRadius = value; }
+        }
+
         #endregion
 
         #region protected properties ----------------------------------------------------------------------------------------
@@ -478,6 +485,12 @@ namespace ST.Library.UI.NodeEditor
         private Image m_img_border_hover;
         private Image m_img_border_selected;
         private Image m_img_border_active;
+
+        private Pen m_pen_border;
+        private Pen m_pen_border_hover;
+        private Pen m_pen_border_selected;
+        private Pen m_pen_border_active;
+
         //Used for the animation effect when the mouse scrolls or the touchpad moves the canvas. This value is the real coordinate address that needs to be moved to. View->MoveCanvasThread()
         private float m_real_canvas_x;
         private float m_real_canvas_y;
@@ -633,6 +646,12 @@ namespace ST.Library.UI.NodeEditor
             m_img_border_active = this.CreateBorderImage(this._BorderActiveColor);
             m_img_border_hover = this.CreateBorderImage(this._BorderHoverColor);
             m_img_border_selected = this.CreateBorderImage(this._BorderSelectedColor);
+
+            m_pen_border = new Pen(new SolidBrush(Color.FromArgb(50, this._BorderColor)), 4.0f);
+            m_pen_border_active = new Pen(new SolidBrush(Color.FromArgb(150, this._BorderActiveColor)), 2.0f);
+            m_pen_border_hover = new Pen(new SolidBrush(Color.FromArgb(150, this._BorderHoverColor)), 2.0f);
+            m_pen_border_selected = new Pen(new SolidBrush(Color.FromArgb(150, this._BorderSelectedColor)), 2.0f);
+
             base.OnCreateControl();
             new Thread(this.MoveCanvasThread) { IsBackground = true }.Start();
             new Thread(this.ShowAlertThread) { IsBackground = true }.Start();
@@ -1099,13 +1118,44 @@ namespace ST.Library.UI.NodeEditor
         /// <param name="dt">Drawing tools</param>
         /// <param name="node">Target node</param>
         protected virtual void OnDrawNodeBorder(DrawingTools dt, STNode node) {
-            Image img_border = null;
-            if (this._ActiveNode == node) img_border = m_img_border_active;
-            else if (node.IsSelected) img_border = m_img_border_selected;
-            else if (this._HoverNode == node) img_border = m_img_border_hover;
-            else img_border = m_img_border;
-            this.RenderBorder(dt.Graphics, node.Rectangle, img_border);
-            if (!string.IsNullOrEmpty(node.Mark)) this.RenderBorder(dt.Graphics, node.MarkRectangle, img_border);
+            if (mRoundedCornerRadius == -1)
+            {
+                Image img_border = null;
+                if (this._ActiveNode == node) img_border = m_img_border_active;
+                else if (node.IsSelected) img_border = m_img_border_selected;
+                else if (this._HoverNode == node) img_border = m_img_border_hover;
+                else img_border = m_img_border;
+                this.RenderBorder(dt.Graphics, node.Rectangle, img_border);
+                if (!string.IsNullOrEmpty(node.Mark)) this.RenderBorder(dt.Graphics, node.MarkRectangle, img_border);
+            }
+            else
+            {
+                Rectangle borderRect = node.Rectangle;
+
+                Pen pen_border = null;
+                bool highlight = true;
+
+                if (this._ActiveNode == node) pen_border = m_pen_border_active;
+                else if (node.IsSelected) pen_border = m_pen_border_selected;
+                else if (this._HoverNode == node) pen_border = m_pen_border_hover;
+                else
+                {
+                    pen_border = m_pen_border;
+                    highlight = false;
+                }
+
+                if (highlight)
+                {
+                    borderRect.Inflate(2, 2);
+                    RoundedCornerUtils.DrawRoundedRectangle(dt.Graphics, pen_border, borderRect, mRoundedCornerRadius + 2);
+                }
+                else
+                {
+                    //borderRect.X += 2;
+                    //borderRect.Y += 1;
+                    RoundedCornerUtils.DrawRoundedRectangle(dt.Graphics, pen_border, borderRect, mRoundedCornerRadius);
+                }
+            }
         }
         /// <summary>
         /// Occurs when drawing a connected path.
@@ -1213,7 +1263,14 @@ namespace ST.Library.UI.NodeEditor
                 foreach (STNode n in this._Nodes) {
                     if (n.Left == mi.X || n.Right == mi.X || n.Left + n.Width / 2 == mi.X) {
                         //g.DrawRectangle(pen, n.Left, n.Top, n.Width - 1, n.Height - 1);
-                        g.FillRectangle(brush, n.Rectangle);
+                        if (mRoundedCornerRadius == -1)
+                        {
+                            g.FillRectangle(brush, n.Rectangle);
+                        }
+                        else
+                        {
+                            RoundedCornerUtils.FillRoundedRectangle(g, brush, n.Rectangle, mRoundedCornerRadius);
+                        }
                     }
                 }
             }
@@ -1222,7 +1279,14 @@ namespace ST.Library.UI.NodeEditor
                 foreach (STNode n in this._Nodes) {
                     if (n.Top == mi.Y || n.Bottom == mi.Y || n.Top + n.Height / 2 == mi.Y) {
                         //g.DrawRectangle(pen, n.Left, n.Top, n.Width - 1, n.Height - 1);
-                        g.FillRectangle(brush, n.Rectangle);
+                        if (mRoundedCornerRadius == -1)
+                        {
+                            g.FillRectangle(brush, n.Rectangle);
+                        }
+                        else
+                        {
+                            RoundedCornerUtils.FillRoundedRectangle(g, brush, n.Rectangle, mRoundedCornerRadius);
+                        }
                     }
                 }
             }
