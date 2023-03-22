@@ -304,15 +304,13 @@ namespace ST.Library.UI.NodeEditor
                 return ConnectionStatus.Reject;
             }
 
-            bool allowLoops = Owner.Owner.AllowNodeGraphLoops;
-
             var v = this.CanConnect(op);
-            if (v != ConnectionStatus.Connected && !(v == ConnectionStatus.Loop && allowLoops)) {
+            if (v != ConnectionStatus.Connected) {
                 this.STNodeEditorConnected(new STNodeEditorOptionEventArgs(op, this, v));
                 return v;
             }
             v = op.CanConnect(this);
-            if (v != ConnectionStatus.Connected && !(v == ConnectionStatus.Loop && allowLoops)) {
+            if (v != ConnectionStatus.Connected) {
                 this.STNodeEditorConnected(new STNodeEditorOptionEventArgs(op, this, v));
                 return v;
             }
@@ -335,7 +333,10 @@ namespace ST.Library.UI.NodeEditor
             if (op.Owner == this._Owner) return ConnectionStatus.SameOwner;
             if (this._Owner.LockOption || op._Owner.LockOption) return ConnectionStatus.Locked;
             if (this._IsSingle && m_hs_connected.Count == 1) return ConnectionStatus.SingleOption;
-            if (op.IsInput && STNodeEditor.CanFindNodePath(op.Owner, this._Owner)) return ConnectionStatus.Loop;
+            if (!this.Owner.Owner.AllowNodeGraphLoops)
+            {
+                if (op.IsInput && STNodeEditor.CanFindNodePath(op.Owner, this._Owner)) return ConnectionStatus.Loop;
+            }
             if (m_hs_connected.Contains(op)) return ConnectionStatus.Exists;
             if (this._IsInput && op._DataType != this._DataType && !op._DataType.IsSubclassOf(this._DataType)) return ConnectionStatus.ErrorType;
             return ConnectionStatus.Connected;

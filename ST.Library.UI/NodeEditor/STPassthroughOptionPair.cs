@@ -174,7 +174,10 @@ namespace ST.Library.UI.NodeEditor
                 if (op.Owner == this.Owner) return ConnectionStatus.SameOwner;
                 if (this.Owner.LockOption || op.Owner.LockOption) return ConnectionStatus.Locked;
                 if (this.IsSingle && m_hs_connected.Count == 1) return ConnectionStatus.SingleOption;
-                if (op.IsInput && STNodeEditor.CanFindNodePath(op.Owner, this.Owner)) return ConnectionStatus.Loop;
+                if (!this.Owner.Owner.AllowNodeGraphLoops)
+                {
+                    if (op.IsInput && STNodeEditor.CanFindNodePath(op.Owner, this.Owner)) return ConnectionStatus.Loop;
+                }
                 if (m_hs_connected.Contains(op)) return ConnectionStatus.Exists;
                 if (op.DataType == typeof(object)) return ConnectionStatus.ErrorType;
 
