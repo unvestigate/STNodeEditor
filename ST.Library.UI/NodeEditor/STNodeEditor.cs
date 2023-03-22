@@ -415,6 +415,13 @@ namespace ST.Library.UI.NodeEditor
             set { mRoundedCornerRadius = value; }
         }
 
+        private bool mAllowNodeGraphLoops = false;
+        public bool AllowNodeGraphLoops
+        {
+            get { return mAllowNodeGraphLoops; }
+            set { mAllowNodeGraphLoops = value; }
+        }
+
         #endregion
 
         #region protected properties ----------------------------------------------------------------------------------------

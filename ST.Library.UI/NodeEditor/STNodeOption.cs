@@ -304,13 +304,15 @@ namespace ST.Library.UI.NodeEditor
                 return ConnectionStatus.Reject;
             }
 
+            bool allowLoops = Owner.Owner.AllowNodeGraphLoops;
+
             var v = this.CanConnect(op);
-            if (v != ConnectionStatus.Connected) {
+            if (v != ConnectionStatus.Connected && !(v == ConnectionStatus.Loop && allowLoops)) {
                 this.STNodeEditorConnected(new STNodeEditorOptionEventArgs(op, this, v));
                 return v;
             }
             v = op.CanConnect(this);
-            if (v != ConnectionStatus.Connected) {
+            if (v != ConnectionStatus.Connected && !(v == ConnectionStatus.Loop && allowLoops)) {
                 this.STNodeEditorConnected(new STNodeEditorOptionEventArgs(op, this, v));
                 return v;
             }
