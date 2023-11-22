@@ -155,6 +155,33 @@ namespace ST.Library.UI.NodeEditor
                 return new Rectangle(this._DotLeft, this._DotTop, this._DotSize, this._DotSize);
             }
         }
+
+        private int _HitAreaExpandSize;
+        /// <summary>
+        /// How much to expand the hit area of the current Option.
+        /// </summary>
+        public int HitAreaExpandSize
+        {
+            get { return _HitAreaExpandSize; }
+            set { _HitAreaExpandSize = value; }
+        }
+
+        /// <summary>
+        /// Get the hit-area of the current Option connection point, which may be larger than the visual dot.
+        /// </summary>
+        public Rectangle HitRectangle
+        {
+            get
+            {
+                var dotRect = DotRectangle;
+                return new Rectangle(
+                    dotRect.Left - _HitAreaExpandSize,
+                    dotRect.Top - _HitAreaExpandSize,
+                    _DotSize + (_HitAreaExpandSize * 2),
+                    _DotSize + (_HitAreaExpandSize * 2));
+            }
+        }
+
         /// <summary>
         /// Get the number of currently connected Options.
         /// </summary>
@@ -194,6 +221,7 @@ namespace ST.Library.UI.NodeEditor
             this._DataType = dataType;
             this._Text = strText;
             this._IsSingle = bSingle;
+            this._HitAreaExpandSize = 3;
         }
 
         #endregion Constructor

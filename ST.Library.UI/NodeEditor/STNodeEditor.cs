@@ -1716,11 +1716,11 @@ namespace ST.Library.UI.NodeEditor
                 }
                 foreach (STNodeOption v in this._Nodes[i].InputOptions) {
                     if (v == STNodeOption.Empty) continue;
-                    if (this.PointInRectangle(v.DotRectangle, pt.X, pt.Y)) m_find.NodeOption = v;
+                    if (this.PointInRectangle(v.HitRectangle, pt.X, pt.Y)) m_find.NodeOption = v;
                 }
                 foreach (STNodeOption v in this._Nodes[i].OutputOptions) {
                     if (v == STNodeOption.Empty) continue;
-                    if (this.PointInRectangle(v.DotRectangle, pt.X, pt.Y)) m_find.NodeOption = v;
+                    if (this.PointInRectangle(v.HitRectangle, pt.X, pt.Y)) m_find.NodeOption = v;
                 }
                 if (this.PointInRectangle(this._Nodes[i].Rectangle, pt.X, pt.Y)) {
                     m_find.Node = this._Nodes[i];
