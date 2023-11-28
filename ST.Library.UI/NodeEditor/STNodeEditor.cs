@@ -1926,13 +1926,18 @@ namespace ST.Library.UI.NodeEditor
             this.OnCanvasZoomed(EventArgs.Empty);
             this.Invalidate();
         }
+
+        // Commented out GetConnectionInfo() below since it seems to be lazily populated and
+        // generally not very trustworthy.
+
         /// <summary>
         /// Get the corresponding relationship of the currently connected Option.
         /// </summary>
         /// <returns>Connection information collection</returns>
-        public ConnectionInfo[] GetConnectionInfo() {
-            return m_dic_gp_info.Values.ToArray();
-        }
+        //public ConnectionInfo[] GetConnectionInfo() {
+        //    return m_dic_gp_info.Values.ToArray();
+        //}
+
         /// <summary>
         /// Determine whether there is a connection path between two Nodes.
         /// </summary>

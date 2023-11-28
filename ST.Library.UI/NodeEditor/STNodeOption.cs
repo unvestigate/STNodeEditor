@@ -409,15 +409,21 @@ namespace ST.Library.UI.NodeEditor
         /// <returns>If it is null, it means there is no owner, otherwise it returns a collection</returns>
         public List<STNodeOption> GetConnectedOption() {
             if (this._DataType == null) return null;
-            if (!this._IsInput)
+
+            // The stuff below was commented out for Basis. GetConnectionInfo()
+            // seems to be very unreliable and so it was itself commented out.
+            // Both input and output options seem to have up-to-date values in
+            // m_hs_connected though, so we are using that for now...
+
+            //if (!this._IsInput)
                 return m_hs_connected.ToList();
-            List<STNodeOption> lst = new List<STNodeOption>();
-            if (this._Owner == null) return null;
-            if (this._Owner.Owner == null) return null;
-            foreach (var v in this._Owner.Owner.GetConnectionInfo()) {
-                if (v.Output == this) lst.Add(v.Input);
-            }
-            return lst;
+            //List<STNodeOption> lst = new List<STNodeOption>();
+            //if (this._Owner == null) return null;
+            //if (this._Owner.Owner == null) return null;
+            //foreach (var v in this._Owner.Owner.GetConnectionInfo()) {
+            //    if (v.Output == this) lst.Add(v.Input);
+            //}
+            //return lst;
         }
         /// <summary>
         /// Deliver data to all options connected to the current Option
