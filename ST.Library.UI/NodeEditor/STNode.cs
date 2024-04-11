@@ -220,7 +220,7 @@ namespace ST.Library.UI.NodeEditor
         public int Width {
             get { return _Width; }
             protected set {
-                if (value < 50) return;
+                //if (value < 50) return;
                 if (this._AutoSize || value == _Width) return;
                 _Width = value;
                 this.SetOptionsLocation();
@@ -241,7 +241,7 @@ namespace ST.Library.UI.NodeEditor
         public int Height {
             get { return _Height; }
             protected set {
-                if (value < 40) return;
+                //if (value < 40) return;
                 if (this._AutoSize || value == _Height) return;
                 _Height = value;
                 this.SetOptionsLocation();
