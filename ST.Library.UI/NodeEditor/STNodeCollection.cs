@@ -78,8 +78,11 @@ namespace ST.Library.UI.NodeEditor
             m_nodes = new STNode[4];
             m_owner.SetActiveNode(null);
             m_owner.BuildBounds();
-            m_owner.ScaleCanvas(1, 0, 0);       //When there are no nodes, the coordinate system returns.
-            m_owner.MoveCanvas(10, 10, true, CanvasMoveArgs.All);
+            if (m_owner.ResetViewWhenEmpty)
+            {
+                m_owner.ScaleCanvas(1, 0, 0);       //When there are no nodes, the coordinate system returns.
+                m_owner.MoveCanvas(10, 10, true, CanvasMoveArgs.All);
+            }
             m_owner.Invalidate();               //If the canvas position and zoom are in the initial state, the above two lines of code will not cause the control to redraw.
         }
 
@@ -144,8 +147,11 @@ namespace ST.Library.UI.NodeEditor
             this._Count--;
 
             if (this._Count == 0) {             // When there are no nodes, the coordinate system returns.
-                m_owner.ScaleCanvas(1, 0, 0);
-                m_owner.MoveCanvas(10, 10, true, CanvasMoveArgs.All);
+                if (m_owner.ResetViewWhenEmpty)
+                {
+                    m_owner.ScaleCanvas(1, 0, 0);
+                    m_owner.MoveCanvas(10, 10, true, CanvasMoveArgs.All);
+                }
             } else {
                 m_owner.Invalidate();
                 m_owner.BuildBounds();

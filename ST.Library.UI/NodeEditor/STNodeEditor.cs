@@ -422,6 +422,13 @@ namespace ST.Library.UI.NodeEditor
             set { mAllowNodeGraphLoops = value; }
         }
 
+        private bool mResetViewWhenEmpty = true;
+        public bool ResetViewWhenEmpty
+        {
+            get { return mResetViewWhenEmpty; }
+            set { mResetViewWhenEmpty = value; }
+        }
+
         #endregion
 
         #region protected properties ----------------------------------------------------------------------------------------
