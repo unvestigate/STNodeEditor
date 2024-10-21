@@ -366,7 +366,22 @@ namespace ST.Library.UI.NodeEditor
                 if (op.IsInput && STNodeEditor.CanFindNodePath(op.Owner, this._Owner)) return ConnectionStatus.Loop;
             }
             if (m_hs_connected.Contains(op)) return ConnectionStatus.Exists;
-            if (this._IsInput && op._DataType != this._DataType && !op._DataType.IsSubclassOf(this._DataType)) return ConnectionStatus.ErrorType;
+
+            if (this.Owner.Owner.AllowUntypedToTypedConnections)
+            {
+                if (this._IsInput &&
+                    op._DataType != this._DataType &&
+                    !op._DataType.IsSubclassOf(this._DataType) &&
+                    op._DataType != typeof(object))
+                    return ConnectionStatus.ErrorType;
+            }
+            else
+            {
+                if (this._IsInput &&
+                    op._DataType != this._DataType &&
+                    !op._DataType.IsSubclassOf(this._DataType))
+                    return ConnectionStatus.ErrorType;
+            }
             return ConnectionStatus.Connected;
         }
         /// <summary>

@@ -429,6 +429,15 @@ namespace ST.Library.UI.NodeEditor
             set { mResetViewWhenEmpty = value; }
         }
 
+        // Added for Basis. Allow connecting an output option of type
+        // typeof(object) to a properly typed input option.
+        private bool mAllowUntypedToTypedConnections = false;
+        public bool AllowUntypedToTypedConnections
+        {
+            get { return mAllowUntypedToTypedConnections; }
+            set { mAllowUntypedToTypedConnections = value; }
+        }
+
         #endregion
 
         #region protected properties ----------------------------------------------------------------------------------------
